@@ -160,7 +160,7 @@ const chapter=document.getElementById('chapter'),zoneTag=document.getElementById
 const buttons=[...document.querySelectorAll('[data-scene]')];
 const zones=[{name:'Sunlit Start',start:0,cam:0,player:165,tag:'01 / SUNLIT START'},{name:'The Rhythm Works',start:880,cam:900,player:1080,tag:'02 / THE RHYTHM WORKS'},{name:'Flip & Lift Lab',start:1760,cam:1720,player:1800,tag:'03 / FLIP • SLIDE • LIFT'},{name:'The Skyward Finish',start:2680,cam:2620,player:2840,tag:'04 / SKYWARD FINISH'}];
 const keys={left:false,right:false,jump:false,flip:false};const player={x:165,y:GROUND,vx:0,vy:0,onGround:true,slide:false,rot:0,facing:1,flipTime:0,flipTriggered:false,holdUsed:false,airtime:0,blink:0,cp:165,land:0,coyote:0,jumpBuffer:0,flipAngle:0,flipStart:0,feetWas:GROUND,supportId:'ground',flipLanded:false,chainStep:0,chainTicks:0,slideJump:0};
-let cam=0,time=0,last=0,scene=0,freezeCameraUntil=0,particles=[],rings=[],score=0,complete=false;const lift={id:'lift',x:2440,y:451,prevX:2440,prevY:451,w:154,h:28,vx:0,vy:0};const kip3d=window.createKip3D(document.getElementById('hero3d'),W,H);
+let cam=0,time=0,last=0,scene=0,freezeCameraUntil=0,particles=[],rings=[],score=0,complete=false;const lift={id:'lift',x:2505,y:451,prevX:2505,prevY:451,w:180,h:28,vx:0,vy:0};const kip3d=window.createKip3D(document.getElementById('hero3d'),W,H);
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),mix=(a,b,t)=>a+(b-a)*t,fract=x=>x-Math.floor(x),rand=n=>fract(Math.sin(n*128.892+13.19)*43758.5453);
 function rect(x,y,w,h,fill,r=0){g.fillStyle=fill;g.beginPath();g.roundRect(x,y,w,h,r);g.fill();}
 function path(pts,fill,stroke=null,lw=1){g.beginPath();pts.forEach(([x,y],i)=>i?g.lineTo(x,y):g.moveTo(x,y));g.closePath();g.fillStyle=fill;g.fill();if(stroke){g.strokeStyle=stroke;g.lineWidth=lw;g.stroke();}}
@@ -204,14 +204,14 @@ function pathShortcuts(){beam(332,466,174,30,'#e8bc78','#ffebbd','#9a7b83',14);b
 }
 function updateMovingLift(dt){
  lift.prevX=lift.x;lift.prevY=lift.y;
- lift.x=2450+57*Math.sin(time*1.30);
+ lift.x=2505+33*Math.sin(time*1.30);
  lift.y=453+15*Math.sin(time*1.55+.45);
  lift.vx=lift.x-lift.prevX;lift.vy=lift.y-lift.prevY;
 }
 function drawMovingLift(){
  if(lift.x+lift.w<cam-110||lift.x>cam+W+110)return;
  const cx=lift.x+lift.w*.5-cam,cy=lift.y;
- const guideX=2450+lift.w*.5-cam;
+ const guideX=2505+lift.w*.5-cam;
  g.save();g.globalAlpha=.68;
  line(guideX-65,416,guideX+65,416,'#e2dcfc55',4);
  line(guideX-65,416,guideX-65,508,'#d9d4ff70',5);
