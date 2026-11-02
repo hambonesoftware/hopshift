@@ -15,7 +15,17 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  test:
+    name: Verify platforming physics
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out game
+        uses: actions/checkout@v4
+      - name: Test jump, flip, tunnel, lift, and recovery
+        run: node tests/course-physics.test.cjs
+
   deploy:
+    needs: test
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
