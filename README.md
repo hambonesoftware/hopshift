@@ -2,11 +2,19 @@
 
 **HopShift** is a character-driven 2D precision platformer built around **Kip**, a living cube with a face on his front, little arms and legs, and a signature **flip → upside-down head slide → jump recovery** move. The design combines deliberate, Mario-like character control with readable, Geometry Dash-like obstacle courses. It is **not** an automatic runner or a Sonic-style momentum game.
 
-## Preview the redesigned character (Kip 2.0)
+## Preview the 3D character (canonical)
+
+**[Launch Kip's 3D Character Studio](https://hambonesoftware.github.io/hopshift/character-3d.html)**
+
+Kip is a genuinely **three-dimensional rounded cube** with a face on his *front*, short arms, and stubby legs. He **rotates his actual 3D body to the left/right when running**, showing real side depth. The WebGL viewer demonstrates front-facing idle, side-facing run, jump, 3D flip, and a compressed upside-down head slide. It supports camera orbit and body color choices.
+
+The 3D viewer is a **character animation prototype**, not integrated platformer gameplay yet. The main `index.html` still contains the original prototype. See the [canonical 3D character direction](docs/3D_CHARACTER_DIRECTION.md) and [M1 integration issue](https://github.com/hambonesoftware/hopshift/issues/2).
+
+## Earlier flat 2D study (superseded)
 
 **[Open the interactive Kip 2.0 Character Lab](https://hambonesoftware.github.io/hopshift/character-lab.html)**
 
-The character lab uses **real Canvas 2D code** (no bitmap characters or external assets) to render Kip as a softly rounded **anthropomorphic cube**, with a face on the front, short arms/legs, and expressive poses. It includes animated **idle, run, jump, full flip, upside-down head-slide, and recovery** showcases, along with three selectable body colors. The controls are interactive pose demonstrations, **not yet a finished platformer physics/collision system**. The head slide remains a visual prototype while its actual collision mechanics are tracked in M3.
+The **superseded** 2D character lab uses **Canvas 2D code** (no bitmap characters or external assets) to render Kip as a softly rounded **anthropomorphic cube**, with a face on the front, short arms/legs, and expressive poses. It includes animated **idle, run, jump, full flip, upside-down head-slide, and recovery** showcases, along with three selectable body colors. The controls are interactive pose demonstrations, **not yet a finished platformer physics/collision system**. The head slide remains a visual prototype while its actual collision mechanics are tracked in M3.
 
 The original game prototype remains available separately on the main URL.
 
@@ -16,7 +24,7 @@ The original game prototype remains available separately on the main URL.
 
 The existing playable `index.html` is **Kip 1.0, the original adventurer/scarf character showcase**. It runs without external dependencies or a build step. It has an animated character and portrait, keyboard/touch movement, variable-height jumping, basic game feel, particles, and parallax scenery.
 
-**Important:** The new cube design has an interactive animation lab. The main game's cube replacement and head-slide physics are **not yet implemented**; those changes remain tracked as milestones.
+**Important:** The 3D character studio is now canonical. The main game's 3D cube integration and head-slide physics are **not yet implemented**; those changes remain tracked as milestones.
 
 ## New character direction
 
@@ -33,7 +41,8 @@ The existing playable `index.html` is **Kip 1.0, the original adventurer/scarf c
 | Document | Contents |
 | --- | --- |
 | [Roadmap](docs/ROADMAP.md) | M0–M6 milestone sequence, dependencies, and quality gates |
-| [Character design](docs/CHARACTER_DESIGN.md) | Cube silhouette, proportions, hierarchical animation, expression and effects |
+| [Canonical 3D character direction](docs/3D_CHARACTER_DIRECTION.md) | 3D volume, body turning, 2.5D camera, animation and integration requirements |
+| [Early character design](docs/CHARACTER_DESIGN.md) | Original proportions and expressions (superseded where 2D-only) |
 | [Movement & collision](docs/MOVEMENT_AND_COLLISION.md) | Input contract, state machine, physics targets and test cases |
 | [GitHub issues](https://github.com/hambonesoftware/hopshift/issues) | Track implementation and validation work |
 
@@ -50,7 +59,7 @@ The existing playable `index.html` is **Kip 1.0, the original adventurer/scarf c
 ## Implementation order
 
 1. **M0:** Preserve and verify the baseline.
-2. **M1:** Replace the adventurer with the new rigged cube Kip and animated front-facing features.
+2. **M1:** Replace the adventurer with the new **rigged 3D cube Kip**, including real body yaw on left/right running.
 3. **M2:** Fixed-timestep physics and reliable precision controls.
 4. **M3:** Inverted landings, real head-slide collision, recovery and slide-cancel jump.
 5. **M4:** Test chamber with a low tunnel, slope, jump orb and checkpoint.
