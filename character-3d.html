@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101733">
+<title>HOPSHIFT / KIP 3D — Character Studio</title>
+<style>
+  :root{font-family:ui-rounded,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#f8f8ff;color-scheme:dark;background:#101733;--mint:#a9ffde;--edge:#49507b}
+  *{box-sizing:border-box}
+  html,body{margin:0;min-height:100%;overflow-x:hidden}
+  body{background:radial-gradient(ellipse at 50% 29%,#394479 0%,#1b2450 36%,#111830 73%,#0e1429 100%);min-height:100vh}
+  .wrap{max-width:1300px;padding:25px 22px 40px;margin:auto}
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:16px}
+  .logo{letter-spacing:.24em;font-weight:1000;font-size:14px;color:var(--mint)}
+  .tag{border:1px solid #8ab1db60;border-radius:999px;background:#e4e9ff0b;font-size:11px;padding:8px 13px;color:#cbd9f4;font-weight:800;letter-spacing:.12em}
+  h1{font-size:clamp(36px,6vw,69px);letter-spacing:-.07em;line-height:1.02;margin:6px 0 8px;font-weight:950}
+  h1 span{color:#ffd06b}
+  .lede{max-width:720px;font-size:clamp(13px,1.4vw,16px);line-height:1.5;color:#ccd3ef;margin:0 0 20px}
+  .stage{position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 43%,#6577b027 0%,#49568a21 40%,#0d153000 75%),linear-gradient(180deg,#27336570,#141e3ec4);border:1px solid #7b94cb50;border-radius:26px;box-shadow:0 22px 70px #05091d70,inset 0 1px 1px #ffffff34;min-height:min(59vh,545px)}
+  canvas{display:block;width:100%;height:min(59vh,545px);touch-action:none;outline:none}
+  .stage:before{pointer-events:none;content:"";position:absolute;inset:0;background-image:radial-gradient(#ffffff48 .7px,transparent .75px);background-size:38px 38px;mask-image:linear-gradient(90deg,transparent,#000 20%,#000 80%,transparent);opacity:.34}
+  .overlay{pointer-events:none;position:absolute;top:20px;left:22px;display:flex;flex-direction:column;gap:5px}
+  .eyebrow{font-size:11px;font-weight:900;letter-spacing:.24em;color:#b8fddd}
+  .phase{font-size:clamp(16px,2.6vw,25px);font-weight:850;letter-spacing:-.035em}
+  .hint{position:absolute;bottom:16px;left:18px;right:18px;display:flex;justify-content:space-between;align-items:end;gap:10px;pointer-events:none;color:#afc4e1;font-size:11px}
+  .hint strong{color:#fff6d8}
+  .badge{border:1px solid #95bee25c;padding:7px 11px;background:#111e4380;border-radius:8px}
+  .controls{display:flex;flex-wrap:wrap;gap:9px;margin-top:17px}
+  button{font:inherit;color:#e6eafb;border:1px solid #8197cf5e;background:linear-gradient(180deg,#313e6c,#1d294e);padding:11px 16px;border-radius:12px;cursor:pointer;font-weight:800;letter-spacing:.01em;min-height:46px;user-select:none;-webkit-tap-highlight-color:transparent}
+  button:hover{border-color:#e7deff90;background:linear-gradient(180deg,#45558a,#28375f)}
+  button:focus-visible{outline:3px solid #b3fae2;outline-offset:3px}
+  button.active{background:linear-gradient(180deg,#d2fff1,#8ce2cb);color:#14304b;border-color:#c4fff2;box-shadow:0 2px 20px #74e4cd44}
+  .split{display:grid;grid-template-columns:1fr auto;gap:15px;align-items:center;margin-top:20px}
+  .subnote{color:#c9d2eb;font-size:13px;line-height:1.6}
+  .colors{display:flex;gap:9px}
+  .swatch{width:38px;height:38px;min-height:38px;padding:0;border-radius:50%;border:3px solid #ffffff44}
+  .swatch.active{outline:2px solid white;outline-offset:3px;box-shadow:none}
+  .swatch[data-color="gold"]{background:#f4b84e}
+  .swatch[data-color="cyan"]{background:#63e0df}
+  .swatch[data-color="coral"]{background:#ff7d91}
+  .features{margin-top:21px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .feature{background:#141e3fa6;border:1px solid #677aaf50;border-radius:16px;padding:16px}
+  .feature strong{display:block;font-size:13px;margin-bottom:6px;color:#fff4d8}
+  .feature p{font-size:12px;line-height:1.45;color:#b9c5e3;margin:0}
+  .warning{display:none;position:absolute;left:20px;right:20px;top:40%;text-align:center;color:white;background:#131d3af0;border:1px solid #ffdf9c;border-radius:12px;padding:25px}
+  @media(max-width:660px){.wrap{padding:17px 12px 30px}.topbar{margin-bottom:12px}.tag{font-size:9px;padding:7px 8px}.lede{margin-bottom:14px}.stage{min-height:350px;border-radius:20px}canvas{height:350px}.controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}button{padding:9px 7px;font-size:12px}.feature{padding:12px}.features{grid-template-columns:1fr;gap:8px}.split{grid-template-columns:1fr;gap:9px}.overlay{top:16px;left:15px}.hint{font-size:9px;bottom:10px}.badge{padding:6px}.feature p{font-size:11px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <header class="topbar"><div class="logo">HOPSHIFT <span style="color:#fae7c0">/</span> CHARACTER STUDIO</div><div class="tag">KIP 3D · DESIGN 03</div></header>
+ <h1>Little cube. <span>Big personality.</span></h1>
+ <p class="lede">A genuinely three-dimensional little hero. His face lives on the front of the cube; when he runs, he turns his whole body to the side. The feet, arms, flip and upside-down landing all belong to the same 3D character.</p>
+ <section class="stage" aria-label="Live 3D animated character viewer">
+  <canvas id="screen" role="img" aria-label="Interactive 3D rendering of Kip, an anthropomorphic cube with tiny arms and legs"></canvas>
+  <div class="overlay"><div class="eyebrow">REAL-TIME 3D CHARACTER</div><div class="phase" id="phase">Front-facing idle</div></div>
+  <div class="hint"><span class="badge">DRAG TO ORBIT THE 3D MODEL</span><span class="badge"><strong>3D MESH</strong> · CUSTOM WEBGL</span></div>
+  <div class="warning" id="warning">This preview requires WebGL. Try Safari, Chrome, or another modern browser with graphics acceleration enabled.</div>
+ </section>
+ <div class="controls" id="controls" aria-label="Character animation states">
+  <button class="active" data-pose="idle">Face front</button>
+  <button data-pose="run">Run sideways</button>
+  <button data-pose="jump">Jump</button>
+  <button data-pose="flip">3D flip</button>
+  <button data-pose="slide">Head slide</button>
+  <button data-pose="showcase">Auto showcase</button>
+  <button id="direction" aria-label="Toggle facing left or right">Facing: right ↗</button>
+  <button id="resetCamera">Reset camera</button>
+ </div>
+ <div class="split"><div class="subnote"><strong style="color:#fff5d8">Design intent:</strong> the body physically turns towards travel direction; the face does not remain pasted toward the viewer. Press <strong style="color:#fff5d8">Run sideways</strong>, then orbit to see the full depth.</div><div class="colors" aria-label="Body color options"><button class="swatch active" data-color="gold" aria-label="Gold body"></button><button class="swatch" data-color="cyan" aria-label="Cyan body"></button><button class="swatch" data-color="coral" aria-label="Coral body"></button></div></div>
+ <div class="features"><div class="feature"><strong>Real volume, not a flat billboard</strong><p>Rounded 3D body, real side panels, projected lighting and depth-tested limbs.</p></div><div class="feature"><strong>Faces the travel direction</strong><p>Whole rig yaws left or right during a run, with feet pumping in local forward space.</p></div><div class="feature"><strong>Signature cube stunt</strong><p>Somersault and upside-down squashed slide are 3D poses; real gameplay collision comes later.</p></div></div>
+</div>
+<script>
+(()=>{
+ 'use strict';
+ const canvas=document.getElementById('screen');
+ const warning=document.getElementById('warning');
+ const gl=canvas.getContext('webgl2',{alpha:true,antialias:true,premultipliedAlpha:true,powerPreference:'high-performance'}) || canvas.getContext('webgl',{alpha:true,antialias:true,premultipliedAlpha:true});
+ if(!gl){warning.style.display='block';return;}
+ const VS=`attribute vec3 aPosition;attribute vec3 aNormal;uniform mat4 uWorld;uniform mat4 uViewProj;varying vec3 vNormal;varying vec3 vWorld;void main(){vec4 p=uWorld*vec4(aPosition,1.0);vWorld=p.xyz;vNormal=mat3(uWorld)*aNormal;gl_Position=uViewProj*p;}`;
+ const FS=`precision highp float;varying vec3 vNormal;varying vec3 vWorld;uniform vec3 uColor;uniform vec3 uCam;uniform float uGloss;uniform float uGlow;void main(){vec3 n=normalize(vNormal);vec3 l=normalize(vec3(-0.62,0.86,1.17));vec3 l2=normalize(vec3(0.8,0.4,-0.75));float d=max(dot(n,l),0.0);float fill=max(dot(n,l2),0.0);float hemi=0.5+0.5*n.y;vec3 viewDir=normalize(uCam-vWorld);vec3 halfDir=normalize(l+viewDir);float spec=pow(max(dot(n,halfDir),0.0),uGloss)*0.28;float rim=pow(1.0-max(dot(n,viewDir),0.0),2.8)*0.30;vec3 c=uColor*(0.44+0.49*d+0.16*fill+0.10*hemi)+vec3(1.,0.96,0.89)*spec+vec3(0.65,0.78,1.)*rim+uGlow*uColor;gl_FragColor=vec4(pow(max(c,vec3(0.0)),vec3(0.93)),1.0);}`;
+ const SHADOW_FS=`precision mediump float;varying vec2 vUV;uniform float uOpacity;void main(){float r=dot(vUV,vUV);float alpha=exp(-r*5.0)*uOpacity;if(alpha<0.005)discard;gl_FragColor=vec4(0.035,0.06,0.18,alpha);}`;
+ const SHADOW_VS=`attribute vec3 aPosition;attribute vec2 aUV;uniform mat4 uWorld;uniform mat4 uViewProj;varying vec2 vUV;void main(){vUV=aUV;gl_Position=uViewProj*uWorld*vec4(aPosition,1.0);}`;
+ function shader(type,src){const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(s));return s;}
+ function program(vs,fs){const p=gl.createProgram();gl.attachShader(p,shader(gl.VERTEX_SHADER,vs));gl.attachShader(p,shader(gl.FRAGMENT_SHADER,fs));gl.linkProgram(p);if(!gl.getProgramParameter(p,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(p));return p;}
+ let prog,shadowProg;try{prog=program(VS,FS);shadowProg=program(SHADOW_VS,SHADOW_FS);}catch(err){console.error(err);warning.style.display='block';return;}
+ const attrs={position:gl.getAttribLocation(prog,'aPosition'),normal:gl.getAttribLocation(prog,'aNormal')};
+ const uni={world:gl.getUniformLocation(prog,'uWorld'),viewProj:gl.getUniformLocation(prog,'uViewProj'),color:gl.getUniformLocation(prog,'uColor'),cam:gl.getUniformLocation(prog,'uCam'),gloss:gl.getUniformLocation(prog,'uGloss'),glow:gl.getUniformLocation(prog,'uGlow')};
+ const sha={position:gl.getAttribLocation(shadowProg,'aPosition'),uv:gl.getAttribLocation(shadowProg,'aUV'),world:gl.getUniformLocation(shadowProg,'uWorld'),viewProj:gl.getUniformLocation(shadowProg,'uViewProj'),opacity:gl.getUniformLocation(shadowProg,'uOpacity')};
+ const mat={
+  identity(){return new Float32Array([1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]);},
+  mul(a,b){const o=new Float32Array(16);for(let c=0;c<4;c++)for(let r=0;r<4;r++)for(let k=0;k<4;k++)o[c*4+r]+=a[k*4+r]*b[c*4+k];return o;},
+  move(x,y,z){const a=this.identity();a[12]=x;a[13]=y;a[14]=z;return a;},
+  scale(x,y,z){const a=this.identity();a[0]=x;a[5]=y;a[10]=z;return a;},
+  rx(t){const a=this.identity(),c=Math.cos(t),s=Math.sin(t);a[5]=c;a[6]=s;a[9]=-s;a[10]=c;return a;},
+  ry(t){const a=this.identity(),c=Math.cos(t),s=Math.sin(t);a[0]=c;a[2]=-s;a[8]=s;a[10]=c;return a;},
+  rz(t){const a=this.identity(),c=Math.cos(t),s=Math.sin(t);a[0]=c;a[1]=s;a[4]=-s;a[5]=c;return a;},
+  at(parent,x=0,y=0,z=0){return this.mul(parent,this.move(x,y,z));},
+  scaled(parent,x=1,y=1,z=1){return this.mul(parent,this.scale(x,y,z));},
+  rotated(parent,axis,angle){return this.mul(parent,axis==='x'?this.rx(angle):axis==='y'?this.ry(angle):this.rz(angle));},
+  perspective(fov,aspect,near,far){const f=1/Math.tan(fov/2),a=new Float32Array(16);a[0]=f/aspect;a[5]=f;a[10]=(far+near)/(near-far);a[11]=-1;a[14]=2*far*near/(near-far);return a;},
+  lookAt(eye,center){let z=norm(sub(eye,center)),x=norm(cross([0,1,0],z)),y=cross(z,x);const m=this.identity();m[0]=x[0];m[1]=y[0];m[2]=z[0];m[4]=x[1];m[5]=y[1];m[6]=z[1];m[8]=x[2];m[9]=y[2];m[10]=z[2];m[12]=-dot(x,eye);m[13]=-dot(y,eye);m[14]=-dot(z,eye);return m;}
+ };
+ function dot(a,b){return a[0]*b[0]+a[1]*b[1]+a[2]*b[2];}
+ function sub(a,b){return[a[0]-b[0],a[1]-b[1],a[2]-b[2]];}
+ function cross(a,b){return[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];}
+ function norm(v){const n=Math.hypot(...v)||1;return v.map(x=>x/n);}
+ function mix(a,b,t){return a+(b-a)*t;}
+ function clamp(x,a,b){return Math.max(a,Math.min(b,x));}
+ function smooth(x){x=clamp(x,0,1);return x*x*(3-2*x);}
+ function rgb(hex){const h=hex.replace('#','');return [parseInt(h.slice(0,2),16)/255,parseInt(h.slice(2,4),16)/255,parseInt(h.slice(4,6),16)/255];}
+ function makeMesh(pos,normals,indices,uv){const g={count:indices.length,indexType:gl.UNSIGNED_SHORT,hasUv:!!uv};
+  function buffer(array,target){const b=gl.createBuffer();gl.bindBuffer(target,b);gl.bufferData(target,array,gl.STATIC_DRAW);return b;}
+  g.p=buffer(new Float32Array(pos),gl.ARRAY_BUFFER);g.n=buffer(new Float32Array(normals),gl.ARRAY_BUFFER);
+  if(uv)g.uv=buffer(new Float32Array(uv),gl.ARRAY_BUFFER);
+  g.i=buffer(new Uint16Array(indices),gl.ELEMENT_ARRAY_BUFFER);return g;}
+ function sphere(latitude=16,longitude=24){const p=[],n=[],idx=[];for(let y=0;y<=latitude;y++){const th=y*Math.PI/latitude;for(let x=0;x<=longitude;x++){const ph=x*Math.PI*2/longitude;const a=[Math.sin(th)*Math.cos(ph),Math.cos(th),Math.sin(th)*Math.sin(ph)];p.push(...a);n.push(...a);}}
+ for(let y=0;y<latitude;y++)for(let x=0;x<longitude;x++){let a=y*(longitude+1)+x,b=a+longitude+1;idx.push(a,b,a+1,a+1,b,b+1);}return makeMesh(p,n,idx);}
+ function roundedBox(w,h,d,r,segments=13){const p=[],n=[],idx=[];const faces=[{axis:0,sign:1,axes:[2,1]},{axis:0,sign:-1,axes:[2,1]},{axis:1,sign:1,axes:[0,2]},{axis:1,sign:-1,axes:[0,2]},{axis:2,sign:1,axes:[0,1]},{axis:2,sign:-1,axes:[0,1]}],dims=[w,h,d];
+ for(const f of faces){const start=p.length/3;for(let v=0;v<=segments;v++)for(let u=0;u<=segments;u++){const a=[0,0,0];a[f.axis]=dims[f.axis]*.5*f.sign;a[f.axes[0]]=(u/segments-.5)*dims[f.axes[0]];a[f.axes[1]]=(v/segments-.5)*dims[f.axes[1]];const inner=a.map((value,i)=>clamp(value,-dims[i]*.5+r,dims[i]*.5-r));const delta=a.map((value,i)=>value-inner[i]);const nm=norm(delta);p.push(...inner.map((value,i)=>value+nm[i]*r));n.push(...nm);}
+ for(let v=0;v<segments;v++)for(let u=0;u<segments;u++){const a=start+v*(segments+1)+u,b=a+segments+1;
+ // Correct winding for each major axis; WebGL culling disabled, so normals remain authoritative.
+ idx.push(a,b,a+1,a+1,b,b+1);}}
+ return makeMesh(p,n,idx);}
+ function quad(){return makeMesh([-1,0,-1,1,0,-1,-1,0,1,1,0,1],[0,1,0,0,1,0,0,1,0,0,1,0],[0,2,1,1,2,3],[-1,-1,1,-1,-1,1,1,1]);}
+ const meshes={sphere:sphere(),cube:roundedBox(1.58,1.55,1.17,.18),ground:roundedBox(12,.28,3.6,.14,4),shadow:quad(),sole:roundedBox(1,1,1,.20,6),panel:roundedBox(1,1,1,.12,7)};
+ const colors={ink:rgb('#1b244c'),eyes:rgb('#fffaf3'),iris:rgb('#36445c'),pupils:rgb('#151c35'),shine:rgb('#ffffff'),brow:rgb('#5e3a44'),mouth:rgb('#8d415a'),glove:rgb('#fff3d9'),shoe:rgb('#263260'),sole:rgb('#f7f0d9'),cheek:rgb('#ff9c8c'),gold:rgb('#efb84d'),cyan:rgb('#5bd9d8'),coral:rgb('#f27b8b'),stage:rgb('#253a67'),stripe:rgb('#7bf0ce'),sideDecal:rgb('#f7d988')};
+ let bodyColor='gold',pose='idle',direction=1,cameraYaw=0,cameraPitch=.16,drag=null,clock=0,last=0,changeAt=0;
+ let runningYaw=0,currentRoll=0,frameDelta=.016;
+ const poses={idle:'Front-facing idle',run:'Turning sideways to run',jump:'Jump / tuck',flip:'Full 3D cube flip',slide:'Upside-down head slide',showcase:'Animation showcase'};
+ const buttons=[...document.querySelectorAll('button[data-pose]')];
+ const panel=document.getElementById('phase');
+ function setPose(p){pose=p;changeAt=clock;buttons.forEach(b=>b.classList.toggle('active',b.dataset.pose===p));panel.textContent=poses[p];}
+ buttons.forEach(b=>b.addEventListener('click',()=>setPose(b.dataset.pose)));
+ document.getElementById('direction').addEventListener('click',()=>{direction*=-1;document.getElementById('direction').textContent=direction>0?'Facing: right ↗':'Facing: left ↖';});
+ document.getElementById('resetCamera').addEventListener('click',()=>{cameraYaw=0;cameraPitch=.16;});
+ document.querySelectorAll('.swatch').forEach(el=>el.addEventListener('click',()=>{bodyColor=el.dataset.color;document.querySelectorAll('.swatch').forEach(b=>b.classList.toggle('active',b===el));}));
+ canvas.addEventListener('pointerdown',e=>{drag={id:e.pointerId,x:e.clientX,y:e.clientY};canvas.setPointerCapture(e.pointerId);});
+ canvas.addEventListener('pointermove',e=>{if(!drag||drag.id!==e.pointerId)return;cameraYaw=clamp(cameraYaw+(e.clientX-drag.x)*.009,-2.0,2.0);cameraPitch=clamp(cameraPitch+(e.clientY-drag.y)*.005,-.36,.62);drag.x=e.clientX;drag.y=e.clientY;});
+ canvas.addEventListener('pointerup',()=>drag=null);canvas.addEventListener('pointercancel',()=>drag=null);
+ function setBindings(g){gl.bindBuffer(gl.ARRAY_BUFFER,g.p);gl.enableVertexAttribArray(attrs.position);gl.vertexAttribPointer(attrs.position,3,gl.FLOAT,false,0,0);gl.bindBuffer(gl.ARRAY_BUFFER,g.n);gl.enableVertexAttribArray(attrs.normal);gl.vertexAttribPointer(attrs.normal,3,gl.FLOAT,false,0,0);gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,g.i);}
+ function draw(g,world,color,gloss=40,glow=0){setBindings(g);gl.uniformMatrix4fv(uni.world,false,world);gl.uniform3fv(uni.color,color);gl.uniform1f(uni.gloss,gloss);gl.uniform1f(uni.glow,glow);gl.drawElements(gl.TRIANGLES,g.count,g.indexType,0);}
+ function ball(parent,x,y,z,sx,sy,sz,color,gloss=45){draw(meshes.sphere,mat.scaled(mat.at(parent,x,y,z),sx,sy,sz),color,gloss);}
+ function block(parent,x,y,z,sx,sy,sz,color,gloss=30){draw(meshes.panel,mat.scaled(mat.at(parent,x,y,z),sx,sy,sz),color,gloss);}
+ function capsule(parent,p1,p2,r,color){const mid=p1.map((v,i)=>(v+p2[i])*.5);const delta=sub(p2,p1),len=Math.hypot(...delta);let rotation=mat.identity();if(len>.00001){const ax=norm(cross([0,1,0],delta)),angle=Math.acos(clamp(dot(norm(delta),[0,1,0]),-1,1));const [x,y,z]=ax,c=Math.cos(angle),s=Math.sin(angle),t=1-c;rotation=new Float32Array([t*x*x+c,t*x*y+z*s,t*x*z-y*s,0,t*x*y-z*s,t*y*y+c,t*y*z+x*s,0,t*x*z+y*s,t*y*z-x*s,t*z*z+c,0,0,0,0,1]);}const w=mat.mul(mat.at(parent,...mid),rotation);ball(w,0,0,0,r,len*.5+r,r,color);}
+ function drawFace(body,time,action){const front=.63;
+  // Cream inset on front is subtle and makes the front plane instantly recognizable in a real 3D turn.
+  block(body,0,.02,.604,1.33,1.33,.038,colors[bodyColor].map(v=>Math.min(1,v*1.075)),33);
+  const blink=Math.sin(time*1.7)>0.995?.12:1;
+  let eyeShift=action==='run'?0.045:0;let expressive=action==='flip'?.04:0;
+  for(const side of [-1,1]){
+   const x=side*.265;
+   ball(body,x,.17,front,.185,.235*blink,.047,colors.eyes,95);
+   ball(body,x+.025+eyeShift,.168+expressive,front+.047,.097,.133*blink,.027,colors.iris,77);
+   ball(body,x+.038+eyeShift,.167+expressive,front+.071,.062,.104*blink,.016,colors.pupils,89);
+   ball(body,x+.017,.224+expressive,front+.088,.040,.054,.010,colors.shine,98);
+   let brow=mat.at(body,x,.48,front+.010);brow=mat.rotated(brow,'z',side*(action==='slide'?.15:.09));ball(brow,0,0,0,.17,.044,.040,colors.brow,25);
+   ball(body,side*.49,-.13,front+.025,.09,.055,.022,colors.cheek,25);
+  }
+  // 3D smile (series of glossy rounded beads form an actual curved geometry).
+  const surprise=action==='jump'||action==='flip';
+  if(surprise){ball(body,0,-.26,front+.029,.085,.10,.044,colors.mouth,25);ball(body,0,-.235,front+.081,.034,.040,.015,colors.pupils,20);}else{
+   for(let k=0;k<=11;k++){let x=(k/11-.5)*.34,y=-.285+Math.pow(k/11-.5,2)*.17;ball(body,x,y,front+.032,.028,.027,.028,colors.mouth,27);}
+  }
+ }
+ function drawCharacter(seconds){
+  const cycle=seconds*11.5;let action=pose;
+  if(pose==='showcase'){const duration=3.15;const stages=['idle','run','jump','flip','slide'];action=stages[Math.floor((seconds-changeAt)/duration)%stages.length];panel.textContent=poses[action];}
+  else panel.textContent=poses[action];
+  const elapsed=seconds-changeAt;
+  const isMove=action!=='idle';const targetYaw=isMove?direction*1.39:0;
+  runningYaw=mix(runningYaw,targetYaw,1-Math.exp(-7*Math.min(.06,Math.max(0,frameDelta))));
+  let centerY=1.08+Math.sin(seconds*2.4)*.025;
+  let flipAngle=0,bodyZ=0,bodyYScale=1,bodyXScale=1,bodyZScale=1;
+  let swing=0,shoeLift=0;
+  if(action==='run'){centerY=1.09+Math.abs(Math.sin(cycle))*.065;swing=Math.sin(cycle)*.28;shoeLift=Math.abs(Math.sin(cycle))*.19;bodyZ=-direction*.07;}
+  if(action==='jump'){centerY=1.95+Math.sin(seconds*3.3)*.26;shoeLift=.10;bodyYScale=1.045;bodyXScale=.96;}
+  if(action==='flip'){const u=((elapsed%1.55)+1.55)%1.55/1.55;const airborne=Math.sin(Math.PI*u);centerY=1.35+Math.max(0,airborne)*.92;flipAngle=direction*Math.PI*2*smooth(u);shoeLift=.12;}
+  if(action==='slide'){centerY=.40+Math.sin(seconds*7)*.008;flipAngle=Math.PI;bodyYScale=.67;bodyXScale=1.05;bodyZScale=1.03;}
+  const root=mat.mul(mat.move(0,centerY,0),mat.ry(runningYaw));
+  const poseRoot=mat.mul(root,mat.rz(bodyZ+flipAngle));
+  const cubeScaled=mat.scaled(poseRoot,bodyXScale,bodyYScale,bodyZScale);
+  // Hand-detailed rounded cube with unique back/side surface: visually rotates as a real 3D object.
+  draw(meshes.cube,cubeScaled,colors[bodyColor],44);
+  drawFace(cubeScaled,seconds,action);
+  // Physical side markings show that the body has real, independent side faces.
+  for(const side of [-1,1]){
+   ball(cubeScaled,side*.803,.15,-.13,.026,.24,.23,colors.sideDecal,50);
+   ball(cubeScaled,side*.805,-.19,.11,.018,.075,.085,colors.glove,38);
+  }
+  // Short limbs mounted in local cube coordinates, inheriting yaw and pitch.
+  for(const side of [-1,1]){
+   const x=side*.76;
+   const armT=action==='run'?swing*(side===1?1:-1):action==='flip'?.22:action==='slide'?.32:.04*Math.sin(seconds*2.6);
+   const from=[x,-.09,.06],to=[side*.94,-.32,.12+armT];
+   ball(poseRoot,from[0],from[1],from[2],.125,.13,.14,colors[bodyColor],44);
+   capsule(poseRoot,from,to,.092,colors[bodyColor]);
+   ball(poseRoot,to[0],to[1],to[2],.135,.14,.14,colors.glove,80);
+   ball(poseRoot,to[0]+side*.058,to[1]-.025,to[2]+.045,.039,.044,.06,colors.sole,48);
+   // Tiny leg gait runs along body-local forward Z; after Y rotation, that becomes world sideways X.
+   const legFront=action==='run'?(-side)*swing*.95:action==='slide'?-.05:0;
+   const legY=action==='run'?Math.max(0,-side*Math.sin(cycle))*.13:0;
+   const legRoot=[side*.33,-.69,0];
+   const knee=[side*.34,-.87+legY*.6,legFront*.75];
+   capsule(poseRoot,legRoot,knee,.117,colors.shoe);
+   const foot=[side*.34,-1.05+legY+shoeLift*.13,legFront+.15];
+   ball(poseRoot,foot[0],foot[1],foot[2],.23,.128,.28,colors.shoe,49);
+   block(poseRoot,foot[0],foot[1]-.115,foot[2]+.042,.44,.049,.47,colors.sole,42);
+  }
+ }
+ function drawShadow(world,vp,opacity){gl.useProgram(shadowProg);gl.uniformMatrix4fv(sha.viewProj,false,vp);gl.uniformMatrix4fv(sha.world,false,world);gl.uniform1f(sha.opacity,opacity);gl.bindBuffer(gl.ARRAY_BUFFER,meshes.shadow.p);gl.enableVertexAttribArray(sha.position);gl.vertexAttribPointer(sha.position,3,gl.FLOAT,false,0,0);gl.bindBuffer(gl.ARRAY_BUFFER,meshes.shadow.uv);gl.enableVertexAttribArray(sha.uv);gl.vertexAttribPointer(sha.uv,2,gl.FLOAT,false,0,0);gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,meshes.shadow.i);gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);gl.depthMask(false);gl.drawElements(gl.TRIANGLES,meshes.shadow.count,gl.UNSIGNED_SHORT,0);gl.depthMask(true);gl.disable(gl.BLEND);gl.useProgram(prog);}
+ function resize(){const r=canvas.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2),w=Math.max(1,Math.round(r.width*d)),h=Math.max(1,Math.round(r.height*d));if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}gl.viewport(0,0,w,h);}
+ function frame(timestamp){const seconds=timestamp/1000;let dt=last?Math.min(.05,Math.max(0,seconds-last)):.016;last=seconds;clock=seconds;frameDelta=dt;resize();
+  gl.enable(gl.DEPTH_TEST);gl.depthFunc(gl.LEQUAL);gl.disable(gl.CULL_FACE);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+  const aspect=canvas.width/canvas.height;
+  const dist=aspect<.85?8.5:7.15;
+  const eye=[Math.sin(cameraYaw)*dist,2.0+cameraPitch*dist,Math.cos(cameraYaw)*dist];
+  const projection=mat.perspective((aspect<.85?49:45)*Math.PI/180,aspect,.1,70);
+  const view=mat.lookAt(eye,[0,1.0,0]);
+  const vp=mat.mul(projection,view);
+  gl.useProgram(prog);gl.uniformMatrix4fv(uni.viewProj,false,vp);gl.uniform3fv(uni.cam,eye);
+  draw(meshes.ground,mat.at(mat.identity(),0,-.27,0),colors.stage,19);
+  // Platform inlaid stripes; character always rests on the platform, which anchors the 3D geometry.
+  for(let i=-5;i<=5;i++){block(mat.identity(),i*.90,-.112,.80,.28,.014,.022,colors.stripe,26);}
+  // Soft projected contact shadow; transparent quad is rendered in world coordinates.
+  const sh=mat.scaled(mat.at(mat.identity(),0,-.102,.0),1.5,1,1.05);
+  drawShadow(sh,vp,.44);
+  gl.useProgram(prog);gl.uniformMatrix4fv(uni.viewProj,false,vp);gl.uniform3fv(uni.cam,eye);
+  drawCharacter(seconds);
+  requestAnimationFrame(frame);
+ }
+ requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
