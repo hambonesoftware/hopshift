@@ -2,19 +2,165 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#121c37"><title>HopShift — Clockwork Canopy Course Concept</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;background:#101c35;color:#fff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}body{min-height:100vh;background:radial-gradient(ellipse at 50% -10%,#2f466d,#10192e 65%)}
-.shell{width:min(1360px,calc(100% - 24px));margin:0 auto;padding:24px 0 28px}header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:13px}.eyebrow{color:#70e7d5;font-size:10px;font-weight:900;letter-spacing:.22em}h1{font-size:clamp(22px,3.5vw,36px);margin:3px 0 0;letter-spacing:-.05em;font-weight:950}.sub{color:#b6c5e1;font-size:12px;max-width:410px;line-height:1.45;text-align:right}.window{background:#1d2a4a;border:1px solid #ffffff3b;border-radius:22px;overflow:hidden;box-shadow:0 16px 80px #02071596,inset 0 1px #ffffff4a}.toolbar{height:52px;background:linear-gradient(180deg,#26375c,#192745);border-bottom:1px solid #ffffff2e;display:flex;align-items:center;justify-content:space-between;padding:0 22px;gap:8px}.toolbar .left{display:flex;align-items:center;gap:10px;min-width:0}.dot{width:9px;height:9px;border-radius:100%;box-shadow:inset 0 1px 2px #fff8}.dot.c{background:#ff777d}.dot.y{background:#ffc46e}.dot.g{background:#6fe2a7}.toolbar .label{font-size:11px;color:#cbdcf6;font-weight:850;letter-spacing:.09em;margin-left:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tag{border:1px solid #a1b9da45;padding:6px 10px;border-radius:15px;color:#e0f7ee;font-size:10px;letter-spacing:.09em;font-weight:900;white-space:nowrap}.stage{position:relative;overflow:hidden}canvas{display:block;width:100%;aspect-ratio:16/9;touch-action:none;background:#88d4fa}.stage .caption{position:absolute;z-index:4;left:18px;top:16px;background:#112845be;border:1px solid #ffffff6d;border-radius:16px;padding:11px 15px;backdrop-filter:blur(12px);pointer-events:none;min-width:160px}.bigcap{font-weight:950;letter-spacing:-.025em;font-size:17px}.smallcap{font-size:10px;color:#d4ebec;font-weight:800;letter-spacing:.15em;text-transform:uppercase;margin-bottom:2px}.directions{position:absolute;z-index:4;right:19px;top:17px;background:#203a5cc9;border:1px solid #ffffff64;border-radius:14px;padding:9px 12px;font-size:10px;color:#ecffff;font-weight:800;text-align:right;pointer-events:none}.progress{position:absolute;left:21px;right:21px;bottom:15px;height:8px;background:#091a2c8a;border:1px solid #ffffff6b;border-radius:30px;overflow:hidden;pointer-events:none;z-index:5}.fill{height:100%;width:0;background:linear-gradient(90deg,#88e8bd,#f9ce63,#f17b9c);border-radius:20px;box-shadow:0 0 18px #b2fdc5;transition:width .08s}.bottom{padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:linear-gradient(#233450,#1c2a48)}button{border:1px solid #afc1df66;background:#2c3d60;color:#edf7ff;border-radius:12px;padding:11px 16px;font-size:12px;font-weight:800;cursor:pointer;min-height:41px;touch-action:manipulation}button:hover{background:#40547d}button.selected{background:linear-gradient(145deg,#ffe1a0,#ffae75);color:#493459;border:1px solid #ffe1b9}button:focus-visible{outline:3px solid #a7fff4;outline-offset:2px}.buttonrow{display:flex;gap:7px;flex-wrap:wrap}.help{font-size:11px;color:#cbdaed;text-align:right;line-height:1.6}.help strong{color:#fff}.mobile{display:none}.key{display:inline-block;padding:3px 5px;border-radius:5px;background:#ffffff27;border:1px solid #ffffff24;font-size:10px}.legend{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:12px}.legend>div{border:1px solid #ffffff1c;border-radius:13px;background:#ffffff09;padding:13px}.legend strong{display:block;color:#fff5df;font-size:12px}.legend span{display:block;color:#adbed7;font-size:11px;line-height:1.45;margin-top:4px}.legend b{font-size:10px;color:#6ceccf;letter-spacing:.06em}footer{margin-top:12px;color:#829aba;font-size:11px;text-align:center}@media(max-width:700px){.shell{width:calc(100% - 12px);padding:12px 0}.sub{display:none}header{padding:0 8px}.window{border-radius:15px}.toolbar{height:42px;padding:0 11px}.tag{font-size:8px;padding:5px}.toolbar .label{font-size:9px}.bottom{padding:10px}.buttonrow{gap:5px}.buttonrow button{font-size:10px;padding:9px}.help{display:none}.stage .caption{top:10px;left:10px;padding:7px 10px;border-radius:11px}.bigcap{font-size:12px}.smallcap{font-size:8px}.directions{font-size:8px;padding:6px 8px;top:10px;right:10px}.legend{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.legend>div{padding:9px}.legend strong{font-size:10px}.legend span{font-size:9px}.mobile{display:flex;justify-content:space-between;gap:12px;padding:8px 4px 0}canvas{aspect-ratio:8/9}.cluster{display:flex;gap:8px}.mobile button{min-width:65px;min-height:58px;border-radius:17px;font-size:16px;background:#344b75}.mobile #flip{background:#744c9e}.mobile #jump{background:#b86c55}}
+.shell{width:min(1360px,calc(100% - 24px));margin:0 auto;padding:24px 0 28px}header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:13px}.eyebrow{color:#70e7d5;font-size:10px;font-weight:900;letter-spacing:.22em}h1{font-size:clamp(22px,3.5vw,36px);margin:3px 0 0;letter-spacing:-.05em;font-weight:950}.sub{color:#b6c5e1;font-size:12px;max-width:410px;line-height:1.45;text-align:right}.window{background:#1d2a4a;border:1px solid #ffffff3b;border-radius:22px;overflow:hidden;box-shadow:0 16px 80px #02071596,inset 0 1px #ffffff4a}.toolbar{height:52px;background:linear-gradient(180deg,#26375c,#192745);border-bottom:1px solid #ffffff2e;display:flex;align-items:center;justify-content:space-between;padding:0 22px;gap:8px}.toolbar .left{display:flex;align-items:center;gap:10px;min-width:0}.dot{width:9px;height:9px;border-radius:100%;box-shadow:inset 0 1px 2px #fff8}.dot.c{background:#ff777d}.dot.y{background:#ffc46e}.dot.g{background:#6fe2a7}.toolbar .label{font-size:11px;color:#cbdcf6;font-weight:850;letter-spacing:.09em;margin-left:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tag{border:1px solid #a1b9da45;padding:6px 10px;border-radius:15px;color:#e0f7ee;font-size:10px;letter-spacing:.09em;font-weight:900;white-space:nowrap}.stage{position:relative;overflow:hidden}canvas#game{display:block;width:100%;aspect-ratio:16/9;touch-action:none;background:#88d4fa}canvas#hero3d{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}#renderWarning{position:absolute;bottom:40px;left:20px;z-index:5;padding:12px;background:#501c37;color:white;border-radius:10px}#renderWarning[hidden]{display:none}.stage .caption{position:absolute;z-index:4;left:18px;top:16px;background:#112845be;border:1px solid #ffffff6d;border-radius:16px;padding:11px 15px;backdrop-filter:blur(12px);pointer-events:none;min-width:160px}.bigcap{font-weight:950;letter-spacing:-.025em;font-size:17px}.smallcap{font-size:10px;color:#d4ebec;font-weight:800;letter-spacing:.15em;text-transform:uppercase;margin-bottom:2px}.directions{position:absolute;z-index:4;right:19px;top:17px;background:#203a5cc9;border:1px solid #ffffff64;border-radius:14px;padding:9px 12px;font-size:10px;color:#ecffff;font-weight:800;text-align:right;pointer-events:none}.progress{position:absolute;left:21px;right:21px;bottom:15px;height:8px;background:#091a2c8a;border:1px solid #ffffff6b;border-radius:30px;overflow:hidden;pointer-events:none;z-index:5}.fill{height:100%;width:0;background:linear-gradient(90deg,#88e8bd,#f9ce63,#f17b9c);border-radius:20px;box-shadow:0 0 18px #b2fdc5;transition:width .08s}.bottom{padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:linear-gradient(#233450,#1c2a48)}button{border:1px solid #afc1df66;background:#2c3d60;color:#edf7ff;border-radius:12px;padding:11px 16px;font-size:12px;font-weight:800;cursor:pointer;min-height:41px;touch-action:manipulation}button:hover{background:#40547d}button.selected{background:linear-gradient(145deg,#ffe1a0,#ffae75);color:#493459;border:1px solid #ffe1b9}button:focus-visible{outline:3px solid #a7fff4;outline-offset:2px}.buttonrow{display:flex;gap:7px;flex-wrap:wrap}.help{font-size:11px;color:#cbdaed;text-align:right;line-height:1.6}.help strong{color:#fff}.mobile{display:none}.key{display:inline-block;padding:3px 5px;border-radius:5px;background:#ffffff27;border:1px solid #ffffff24;font-size:10px}.legend{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:12px}.legend>div{border:1px solid #ffffff1c;border-radius:13px;background:#ffffff09;padding:13px}.legend strong{display:block;color:#fff5df;font-size:12px}.legend span{display:block;color:#adbed7;font-size:11px;line-height:1.45;margin-top:4px}.legend b{font-size:10px;color:#6ceccf;letter-spacing:.06em}footer{margin-top:12px;color:#829aba;font-size:11px;text-align:center}@media(max-width:700px){.shell{width:calc(100% - 12px);padding:12px 0}.sub{display:none}header{padding:0 8px}.window{border-radius:15px}.toolbar{height:42px;padding:0 11px}.tag{font-size:8px;padding:5px}.toolbar .label{font-size:9px}.bottom{padding:10px}.buttonrow{gap:5px}.buttonrow button{font-size:10px;padding:9px}.help{display:none}.stage .caption{top:10px;left:10px;padding:7px 10px;border-radius:11px}.bigcap{font-size:12px}.smallcap{font-size:8px}.directions{font-size:8px;padding:6px 8px;top:10px;right:10px}.legend{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.legend>div{padding:9px}.legend strong{font-size:10px}.legend span{font-size:9px}.mobile{display:flex;justify-content:space-between;gap:12px;padding:8px 4px 0}canvas#game{aspect-ratio:8/9}.cluster{display:flex;gap:8px}.mobile button{min-width:65px;min-height:58px;border-radius:17px;font-size:16px;background:#344b75}.mobile #flip{background:#744c9e}.mobile #jump{background:#b86c55}}
 </style></head><body><div class="shell"><header><div><div class="eyebrow">HOPSHIFT / PLAYABLE COURSE DESIGN STUDY</div><h1>Clockwork Canopy <span style="color:#ffcd7d">✦</span></h1></div><div class="sub">A whimsical platforming world with precise stunts, musical machinery, secret paths, and Kip's signature head-slide.</div></header>
-<div class="window"><div class="toolbar"><div class="left"><span class="dot c"></span><span class="dot y"></span><span class="dot g"></span><span class="label">WORLD 01 · THE FIRST FLIP</span></div><span class="tag" id="zoneTag">01 / SUNLIT START</span></div><div class="stage"><canvas id="game" width="1280" height="720" aria-label="Interactive illustrated HopShift course concept"></canvas><div class="caption"><div class="smallcap">COURSE PREVIEW</div><div class="bigcap" id="chapter">Sunlit Start</div></div><div class="directions">RUN · JUMP · FLIP · HEAD SLIDE<br><span style="color:#ffe3a6">2.5D WORLD / 3D HERO CONCEPT</span></div><div class="progress"><div class="fill" id="bar"></div></div></div><div class="bottom"><div class="buttonrow"><button class="selected" data-scene="0">01 · Garden</button><button data-scene="1">02 · Precision</button><button data-scene="2">03 · Head slide</button><button data-scene="3">04 · Finish</button><button id="reset">↺ Restart</button></div><div class="help"><strong>Move:</strong> <span class="key">←</span> <span class="key">→</span> or A / D &nbsp; <strong>Jump:</strong> <span class="key">SPACE</span><br><strong>Flip / invert:</strong> <span class="key">X</span> while airborne · hold to land upside down</div></div></div>
+<div class="window"><div class="toolbar"><div class="left"><span class="dot c"></span><span class="dot y"></span><span class="dot g"></span><span class="label">WORLD 01 · THE FIRST FLIP</span></div><span class="tag" id="zoneTag">01 / SUNLIT START</span></div><div class="stage"><canvas id="game" width="1280" height="720" aria-label="Playable Clockwork Canopy level with elevated platforms"></canvas><canvas id="hero3d" aria-label="3D Kip character running and flipping"></canvas><div id="renderWarning" hidden>WebGL is required to display the 3D character. Please enable graphics acceleration.</div><div class="caption"><div class="smallcap">COURSE PREVIEW</div><div class="bigcap" id="chapter">Sunlit Start</div></div><div class="directions">RUN · LAND ON PLATFORMS · FLIP · SLIDE<br><span style="color:#ffe3a6">ACTUAL WEBGL 3D KIP</span></div><div class="progress"><div class="fill" id="bar"></div></div></div><div class="bottom"><div class="buttonrow"><button class="selected" data-scene="0">01 · Garden</button><button data-scene="1">02 · Precision</button><button data-scene="2">03 · Head slide</button><button data-scene="3">04 · Finish</button><button id="reset">↺ Restart</button></div><div class="help"><strong>Move:</strong> <span class="key">←</span> <span class="key">→</span> or A / D &nbsp; <strong>Jump:</strong> <span class="key">SPACE</span><br><strong>Flip / invert:</strong> <span class="key">X</span> while airborne · hold to land upside down</div></div></div>
 <div class="mobile"><div class="cluster"><button id="left" aria-label="Move left">◀</button><button id="right" aria-label="Move right">▶</button></div><div class="cluster"><button id="flip" aria-label="Flip">↻</button><button id="jump" aria-label="Jump">JUMP</button></div></div>
-<div class="legend"><div><b>01 · MARIO DNA</b><strong>Explore and experiment</strong><span>Friendly terrain, branching paths, secrets, bouncy enemies and discoverable rewards.</span></div><div><b>02 · DASH DNA</b><strong>Precision in short bursts</strong><span>Readable spikes, launch orbs, rhythmic moving blocks and fast retry points.</span></div><div><b>03 · KIP'S OWN MOVE</b><strong>Flip into head slide</strong><span>Jump, tumble head over heels, land inverted, and skim beneath a low mechanical tunnel.</span></div><div><b>04 · THE RESULT</b><strong>Flow, not forced speed</strong><span>Walk slowly to explore, then master an uninterrupted stunt chain across the course.</span></div></div><footer>This is an interactive course/look-and-feel concept, not the finished HopShift game. All graphics are procedurally rendered in Canvas.</footer></div>
+<div class="legend"><div><b>01 · MARIO DNA</b><strong>Explore and experiment</strong><span>Friendly terrain, branching paths, secrets, bouncy enemies and discoverable rewards.</span></div><div><b>02 · DASH DNA</b><strong>Precision in short bursts</strong><span>Readable spikes, launch orbs, rhythmic moving blocks and fast retry points.</span></div><div><b>03 · KIP'S OWN MOVE</b><strong>Flip into head slide</strong><span>Jump, tumble head over heels, land inverted, and skim beneath a low mechanical tunnel.</span></div><div><b>04 · THE RESULT</b><strong>Flow, not forced speed</strong><span>Walk slowly to explore, then master an uninterrupted stunt chain across the course.</span></div></div><footer>This is an interactive course/look-and-feel concept, not the finished HopShift game. Course scenery uses Canvas 2D; the real Kip 3D mesh is rendered with WebGL. Raised platforms have real landing collision.</footer></div>
+<script>
+/* HopShift Kip 3D gameplay renderer — shared rounded-cube, front face, and limb geometry from character-3d.html. */
+(()=>{'use strict';
+window.createKip3D=function(canvas,width,height){
+ const gl=canvas.getContext('webgl2',{alpha:true,antialias:true,premultipliedAlpha:true})||canvas.getContext('webgl',{alpha:true,antialias:true,premultipliedAlpha:true});
+ if(!gl){const e=document.getElementById('renderWarning');if(e)e.hidden=false;return {render(){},ready:false};}
+ const warning=document.getElementById('renderWarning');
+ const W=width,H=height,SCALE=34;
+ let bodyColor='gold',runningYaw=0;
+ const VS=`attribute vec3 aPosition;attribute vec3 aNormal;uniform mat4 uWorld;uniform mat4 uViewProj;varying vec3 vNormal;varying vec3 vWorld;void main(){vec4 p=uWorld*vec4(aPosition,1.0);vWorld=p.xyz;vNormal=mat3(uWorld)*aNormal;gl_Position=uViewProj*p;}`;
+ const FS=`precision highp float;varying vec3 vNormal;varying vec3 vWorld;uniform vec3 uColor;uniform vec3 uCam;uniform float uGloss;uniform float uGlow;void main(){vec3 n=normalize(vNormal);vec3 l=normalize(vec3(-0.62,0.86,1.17));vec3 l2=normalize(vec3(0.8,0.4,-0.75));float d=max(dot(n,l),0.0);float fill=max(dot(n,l2),0.0);float hemi=0.5+0.5*n.y;vec3 viewDir=normalize(uCam-vWorld);vec3 halfDir=normalize(l+viewDir);float spec=pow(max(dot(n,halfDir),0.0),uGloss)*0.28;float rim=pow(1.0-max(dot(n,viewDir),0.0),2.8)*0.30;vec3 c=uColor*(0.44+0.49*d+0.16*fill+0.10*hemi)+vec3(1.,0.96,0.89)*spec+vec3(0.65,0.78,1.)*rim+uGlow*uColor;gl_FragColor=vec4(pow(max(c,vec3(0.0)),vec3(0.93)),1.0);}`;
+ const SHADOW_FS=`precision mediump float;varying vec2 vUV;uniform float uOpacity;void main(){float r=dot(vUV,vUV);float alpha=exp(-r*5.0)*uOpacity;if(alpha<0.005)discard;gl_FragColor=vec4(0.035,0.06,0.18,alpha);}`;
+ const SHADOW_VS=`attribute vec3 aPosition;attribute vec2 aUV;uniform mat4 uWorld;uniform mat4 uViewProj;varying vec2 vUV;void main(){vUV=aUV;gl_Position=uViewProj*uWorld*vec4(aPosition,1.0);}`;
+ function shader(type,src){const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(s));return s;}
+ function program(vs,fs){const p=gl.createProgram();gl.attachShader(p,shader(gl.VERTEX_SHADER,vs));gl.attachShader(p,shader(gl.FRAGMENT_SHADER,fs));gl.linkProgram(p);if(!gl.getProgramParameter(p,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(p));return p;}
+ let prog,shadowProg;try{prog=program(VS,FS);shadowProg=program(SHADOW_VS,SHADOW_FS);}catch(err){console.error(err);warning.style.display='block';return;}
+ const attrs={position:gl.getAttribLocation(prog,'aPosition'),normal:gl.getAttribLocation(prog,'aNormal')};
+ const uni={world:gl.getUniformLocation(prog,'uWorld'),viewProj:gl.getUniformLocation(prog,'uViewProj'),color:gl.getUniformLocation(prog,'uColor'),cam:gl.getUniformLocation(prog,'uCam'),gloss:gl.getUniformLocation(prog,'uGloss'),glow:gl.getUniformLocation(prog,'uGlow')};
+ const sha={position:gl.getAttribLocation(shadowProg,'aPosition'),uv:gl.getAttribLocation(shadowProg,'aUV'),world:gl.getUniformLocation(shadowProg,'uWorld'),viewProj:gl.getUniformLocation(shadowProg,'uViewProj'),opacity:gl.getUniformLocation(shadowProg,'uOpacity')};
+ const mat={
+  identity(){return new Float32Array([1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]);},
+  mul(a,b){const o=new Float32Array(16);for(let c=0;c<4;c++)for(let r=0;r<4;r++)for(let k=0;k<4;k++)o[c*4+r]+=a[k*4+r]*b[c*4+k];return o;},
+  move(x,y,z){const a=this.identity();a[12]=x;a[13]=y;a[14]=z;return a;},
+  scale(x,y,z){const a=this.identity();a[0]=x;a[5]=y;a[10]=z;return a;},
+  rx(t){const a=this.identity(),c=Math.cos(t),s=Math.sin(t);a[5]=c;a[6]=s;a[9]=-s;a[10]=c;return a;},
+  ry(t){const a=this.identity(),c=Math.cos(t),s=Math.sin(t);a[0]=c;a[2]=-s;a[8]=s;a[10]=c;return a;},
+  rz(t){const a=this.identity(),c=Math.cos(t),s=Math.sin(t);a[0]=c;a[1]=s;a[4]=-s;a[5]=c;return a;},
+  at(parent,x=0,y=0,z=0){return this.mul(parent,this.move(x,y,z));},
+  scaled(parent,x=1,y=1,z=1){return this.mul(parent,this.scale(x,y,z));},
+  rotated(parent,axis,angle){return this.mul(parent,axis==='x'?this.rx(angle):axis==='y'?this.ry(angle):this.rz(angle));},
+  perspective(fov,aspect,near,far){const f=1/Math.tan(fov/2),a=new Float32Array(16);a[0]=f/aspect;a[5]=f;a[10]=(far+near)/(near-far);a[11]=-1;a[14]=2*far*near/(near-far);return a;},
+  lookAt(eye,center){let z=norm(sub(eye,center)),x=norm(cross([0,1,0],z)),y=cross(z,x);const m=this.identity();m[0]=x[0];m[1]=y[0];m[2]=z[0];m[4]=x[1];m[5]=y[1];m[6]=z[1];m[8]=x[2];m[9]=y[2];m[10]=z[2];m[12]=-dot(x,eye);m[13]=-dot(y,eye);m[14]=-dot(z,eye);return m;}
+ };
+ function dot(a,b){return a[0]*b[0]+a[1]*b[1]+a[2]*b[2];}
+ function sub(a,b){return[a[0]-b[0],a[1]-b[1],a[2]-b[2]];}
+ function cross(a,b){return[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];}
+ function norm(v){const n=Math.hypot(...v)||1;return v.map(x=>x/n);}
+ function mix(a,b,t){return a+(b-a)*t;}
+ function clamp(x,a,b){return Math.max(a,Math.min(b,x));}
+ function smooth(x){x=clamp(x,0,1);return x*x*(3-2*x);}
+ function rgb(hex){const h=hex.replace('#','');return [parseInt(h.slice(0,2),16)/255,parseInt(h.slice(2,4),16)/255,parseInt(h.slice(4,6),16)/255];}
+ function makeMesh(pos,normals,indices,uv){const g={count:indices.length,indexType:gl.UNSIGNED_SHORT,hasUv:!!uv};
+  function buffer(array,target){const b=gl.createBuffer();gl.bindBuffer(target,b);gl.bufferData(target,array,gl.STATIC_DRAW);return b;}
+  g.p=buffer(new Float32Array(pos),gl.ARRAY_BUFFER);g.n=buffer(new Float32Array(normals),gl.ARRAY_BUFFER);
+  if(uv)g.uv=buffer(new Float32Array(uv),gl.ARRAY_BUFFER);
+  g.i=buffer(new Uint16Array(indices),gl.ELEMENT_ARRAY_BUFFER);return g;}
+ function sphere(latitude=16,longitude=24){const p=[],n=[],idx=[];for(let y=0;y<=latitude;y++){const th=y*Math.PI/latitude;for(let x=0;x<=longitude;x++){const ph=x*Math.PI*2/longitude;const a=[Math.sin(th)*Math.cos(ph),Math.cos(th),Math.sin(th)*Math.sin(ph)];p.push(...a);n.push(...a);}}
+ for(let y=0;y<latitude;y++)for(let x=0;x<longitude;x++){let a=y*(longitude+1)+x,b=a+longitude+1;idx.push(a,b,a+1,a+1,b,b+1);}return makeMesh(p,n,idx);}
+ function roundedBox(w,h,d,r,segments=13){const p=[],n=[],idx=[];const faces=[{axis:0,sign:1,axes:[2,1]},{axis:0,sign:-1,axes:[2,1]},{axis:1,sign:1,axes:[0,2]},{axis:1,sign:-1,axes:[0,2]},{axis:2,sign:1,axes:[0,1]},{axis:2,sign:-1,axes:[0,1]}],dims=[w,h,d];
+ for(const f of faces){const start=p.length/3;for(let v=0;v<=segments;v++)for(let u=0;u<=segments;u++){const a=[0,0,0];a[f.axis]=dims[f.axis]*.5*f.sign;a[f.axes[0]]=(u/segments-.5)*dims[f.axes[0]];a[f.axes[1]]=(v/segments-.5)*dims[f.axes[1]];const inner=a.map((value,i)=>clamp(value,-dims[i]*.5+r,dims[i]*.5-r));const delta=a.map((value,i)=>value-inner[i]);const nm=norm(delta);p.push(...inner.map((value,i)=>value+nm[i]*r));n.push(...nm);}
+ for(let v=0;v<segments;v++)for(let u=0;u<segments;u++){const a=start+v*(segments+1)+u,b=a+segments+1;
+ // Correct winding for each major axis; WebGL culling disabled, so normals remain authoritative.
+ idx.push(a,b,a+1,a+1,b,b+1);}}
+ return makeMesh(p,n,idx);}
+ function quad(){return makeMesh([-1,0,-1,1,0,-1,-1,0,1,1,0,1],[0,1,0,0,1,0,0,1,0,0,1,0],[0,2,1,1,2,3],[-1,-1,1,-1,-1,1,1,1]);}
+ const meshes={sphere:sphere(),cube:roundedBox(1.58,1.55,1.17,.18),ground:roundedBox(12,.28,3.6,.14,4),shadow:quad(),sole:roundedBox(1,1,1,.20,6),panel:roundedBox(1,1,1,.12,7)};
+ const colors={ink:rgb('#1b244c'),eyes:rgb('#fffaf3'),iris:rgb('#36445c'),pupils:rgb('#151c35'),shine:rgb('#ffffff'),brow:rgb('#5e3a44'),mouth:rgb('#8d415a'),glove:rgb('#fff3d9'),shoe:rgb('#263260'),sole:rgb('#f7f0d9'),cheek:rgb('#ff9c8c'),gold:rgb('#efb84d'),cyan:rgb('#5bd9d8'),coral:rgb('#f27b8b'),stage:rgb('#253a67'),stripe:rgb('#7bf0ce'),sideDecal:rgb('#f7d988')};
+ function setBindings(g){gl.bindBuffer(gl.ARRAY_BUFFER,g.p);gl.enableVertexAttribArray(attrs.position);gl.vertexAttribPointer(attrs.position,3,gl.FLOAT,false,0,0);gl.bindBuffer(gl.ARRAY_BUFFER,g.n);gl.enableVertexAttribArray(attrs.normal);gl.vertexAttribPointer(attrs.normal,3,gl.FLOAT,false,0,0);gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,g.i);}
+ function draw(g,world,color,gloss=40,glow=0){setBindings(g);gl.uniformMatrix4fv(uni.world,false,world);gl.uniform3fv(uni.color,color);gl.uniform1f(uni.gloss,gloss);gl.uniform1f(uni.glow,glow);gl.drawElements(gl.TRIANGLES,g.count,g.indexType,0);}
+ function ball(parent,x,y,z,sx,sy,sz,color,gloss=45){draw(meshes.sphere,mat.scaled(mat.at(parent,x,y,z),sx,sy,sz),color,gloss);}
+ function block(parent,x,y,z,sx,sy,sz,color,gloss=30){draw(meshes.panel,mat.scaled(mat.at(parent,x,y,z),sx,sy,sz),color,gloss);}
+ function capsule(parent,p1,p2,r,color){const mid=p1.map((v,i)=>(v+p2[i])*.5);const delta=sub(p2,p1),len=Math.hypot(...delta);let rotation=mat.identity();if(len>.00001){const ax=norm(cross([0,1,0],delta)),angle=Math.acos(clamp(dot(norm(delta),[0,1,0]),-1,1));const [x,y,z]=ax,c=Math.cos(angle),s=Math.sin(angle),t=1-c;rotation=new Float32Array([t*x*x+c,t*x*y+z*s,t*x*z-y*s,0,t*x*y-z*s,t*y*y+c,t*y*z+x*s,0,t*x*z+y*s,t*y*z-x*s,t*z*z+c,0,0,0,0,1]);}const w=mat.mul(mat.at(parent,...mid),rotation);ball(w,0,0,0,r,len*.5+r,r,color);}
+ function drawFace(body,time,action){const front=.63;
+  // Cream inset on front is subtle and makes the front plane instantly recognizable in a real 3D turn.
+  block(body,0,.02,.604,1.33,1.33,.038,colors[bodyColor].map(v=>Math.min(1,v*1.075)),33);
+  const blink=Math.sin(time*1.7)>0.995?.12:1;
+  let eyeShift=action==='run'?0.045:0;let expressive=action==='flip'?.04:0;
+  for(const side of [-1,1]){
+   const x=side*.265;
+   ball(body,x,.17,front,.185,.235*blink,.047,colors.eyes,95);
+   ball(body,x+.025+eyeShift,.168+expressive,front+.047,.097,.133*blink,.027,colors.iris,77);
+   ball(body,x+.038+eyeShift,.167+expressive,front+.071,.062,.104*blink,.016,colors.pupils,89);
+   ball(body,x+.017,.224+expressive,front+.088,.040,.054,.010,colors.shine,98);
+   let brow=mat.at(body,x,.48,front+.010);brow=mat.rotated(brow,'z',side*(action==='slide'?.15:.09));ball(brow,0,0,0,.17,.044,.040,colors.brow,25);
+   ball(body,side*.49,-.13,front+.025,.09,.055,.022,colors.cheek,25);
+  }
+  // 3D smile (series of glossy rounded beads form an actual curved geometry).
+  const surprise=action==='jump'||action==='flip';
+  if(surprise){ball(body,0,-.26,front+.029,.085,.10,.044,colors.mouth,25);ball(body,0,-.235,front+.081,.034,.040,.015,colors.pupils,20);}else{
+   for(let k=0;k<=11;k++){let x=(k/11-.5)*.34,y=-.285+Math.pow(k/11-.5,2)*.17;ball(body,x,y,front+.032,.028,.027,.028,colors.mouth,27);}
+  }
+ }
+  function drawCharacter(seconds, info){
+   const action=info.slide?'slide':info.air?(info.flip?'flip':'jump'):Math.abs(info.vx)>0.38?'run':'idle';
+   const cycle=seconds*12.8;
+   const dt=Math.min(.055,Math.max(0,info.dt||0));
+   const targetYaw=info.facing*(action==='idle'?.16:1.39);
+   runningYaw=mix(runningYaw,targetYaw,1-Math.exp(-16*dt));
+   let centerY=1.08+Math.sin(seconds*3.1)*.017;
+   let pitch=info.slide?Math.PI:info.flip?info.flipAngle:0;
+   let bodyYScale=1,bodyXScale=1,bodyZScale=1;
+   let swing=0,shoeLift=0;
+   if(action==='run'){centerY=1.09+Math.abs(Math.sin(cycle))*.055;swing=Math.sin(cycle)*.32;shoeLift=Math.abs(Math.sin(cycle))*.17;}
+   if(action==='jump'){centerY=1.08;shoeLift=.12;bodyYScale=1.045;bodyXScale=.96;}
+   if(action==='flip'){centerY=1.09;shoeLift=.16;}
+   if(action==='slide'){centerY=.50;bodyYScale=.67;bodyXScale=1.05;bodyZScale=1.03;}
+   if(!info.air&&!info.slide&&info.land>0){bodyYScale-=.12*info.land;bodyXScale+=.07*info.land;}
+   const base=mat.mul(mat.move(info.x,info.screenY,0),mat.scale(SCALE,SCALE,SCALE));
+   const root=mat.mul(mat.mul(base,mat.move(0,centerY,0)),mat.ry(runningYaw));
+   // Running turns about Y; forward somersault is pitching about the turned cube's local X.
+   const poseRoot=mat.mul(root,mat.rx(pitch));
+   const cubeScaled=mat.scaled(poseRoot,bodyXScale,bodyYScale,bodyZScale);
+  // Hand-detailed rounded cube with unique back/side surface: visually rotates as a real 3D object.
+  draw(meshes.cube,cubeScaled,colors[bodyColor],44);
+  drawFace(cubeScaled,seconds,action);
+  // Physical side markings show that the body has real, independent side faces.
+  for(const side of [-1,1]){
+   ball(cubeScaled,side*.803,.15,-.13,.026,.24,.23,colors.sideDecal,50);
+   ball(cubeScaled,side*.805,-.19,.11,.018,.075,.085,colors.glove,38);
+  }
+  // Short limbs mounted in local cube coordinates, inheriting yaw and pitch.
+  for(const side of [-1,1]){
+   const x=side*.76;
+   const armT=action==='run'?swing*(side===1?1:-1):action==='flip'?.22:action==='slide'?.32:.04*Math.sin(seconds*2.6);
+   const from=[x,-.09,.06],to=[side*.94,-.32,.12+armT];
+   ball(poseRoot,from[0],from[1],from[2],.125,.13,.14,colors[bodyColor],44);
+   capsule(poseRoot,from,to,.092,colors[bodyColor]);
+   ball(poseRoot,to[0],to[1],to[2],.135,.14,.14,colors.glove,80);
+   ball(poseRoot,to[0]+side*.058,to[1]-.025,to[2]+.045,.039,.044,.06,colors.sole,48);
+   // Tiny leg gait runs along body-local forward Z; after Y rotation, that becomes world sideways X.
+   const legFront=action==='run'?(-side)*swing*.95:action==='slide'?-.05:0;
+   const legY=action==='run'?Math.max(0,-side*Math.sin(cycle))*.13:0;
+   const legRoot=[side*.33,-.69,0];
+   const knee=[side*.34,-.87+legY*.6,legFront*.75];
+   capsule(poseRoot,legRoot,knee,.117,colors.shoe);
+   const foot=[side*.34,-1.05+legY+shoeLift*.13,legFront+.15];
+   ball(poseRoot,foot[0],foot[1],foot[2],.23,.128,.28,colors.shoe,49);
+   block(poseRoot,foot[0],foot[1]-.115,foot[2]+.042,.44,.049,.47,colors.sole,42);
+  }
+ }
+
+ const vp=mat.identity();vp[0]=2/W;vp[5]=2/H;vp[10]=-.006;vp[12]=-1;vp[13]=-1;
+ gl.enable(gl.DEPTH_TEST);gl.depthFunc(gl.LEQUAL);gl.disable(gl.CULL_FACE);
+ canvas.width=W;canvas.height=H;gl.viewport(0,0,W,H);
+ function render(info){
+   gl.viewport(0,0,W,H);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+   gl.useProgram(prog);
+   gl.uniformMatrix4fv(uni.viewProj,false,vp);
+   gl.uniform3fv(uni.cam,[W*.5,H*.5,250]);
+   drawCharacter(info.time,info);
+ }
+ return {render,ready:true};
+};
+})();
+
+</script>
 <script>
 (()=>{'use strict';
 const c=document.getElementById('game'),g=c.getContext('2d'),MOBILE=window.innerWidth<=700,W=MOBILE?640:1280,H=720,GROUND=565,LEVEL=3620;c.width=W;c.height=H;
 const chapter=document.getElementById('chapter'),zoneTag=document.getElementById('zoneTag'),bar=document.getElementById('bar');
 const buttons=[...document.querySelectorAll('[data-scene]')];
 const zones=[{name:'Sunlit Start',start:0,cam:0,player:165,tag:'01 / SUNLIT START'},{name:'The Rhythm Works',start:880,cam:900,player:1080,tag:'02 / THE RHYTHM WORKS'},{name:'The Upside-Down Run',start:1760,cam:1720,player:1910,tag:'03 / UPSIDE-DOWN RUN'},{name:'The Skyward Finish',start:2680,cam:2620,player:2840,tag:'04 / SKYWARD FINISH'}];
-const keys={left:false,right:false,jump:false,flip:false};const player={x:165,y:GROUND,vx:0,vy:0,onGround:true,slide:false,rot:0,facing:1,flipTime:0,flipTriggered:false,holdUsed:false,airtime:0,blink:0,cp:165};
-let cam=0,time=0,last=0,scene=0,freezeCameraUntil=0,particles=[],score=0,complete=false;
+const keys={left:false,right:false,jump:false,flip:false};const player={x:165,y:GROUND,vx:0,vy:0,onGround:true,slide:false,rot:0,facing:1,flipTime:0,flipTriggered:false,holdUsed:false,airtime:0,blink:0,cp:165,land:0,coyote:0,jumpBuffer:0,flipAngle:0,flipStart:0,feetWas:GROUND};
+let cam=0,time=0,last=0,scene=0,freezeCameraUntil=0,particles=[],score=0,complete=false;const kip3d=window.createKip3D(document.getElementById('hero3d'),W,H);
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),mix=(a,b,t)=>a+(b-a)*t,fract=x=>x-Math.floor(x),rand=n=>fract(Math.sin(n*128.892+13.19)*43758.5453);
 function rect(x,y,w,h,fill,r=0){g.fillStyle=fill;g.beginPath();g.roundRect(x,y,w,h,r);g.fill();}
 function path(pts,fill,stroke=null,lw=1){g.beginPath();pts.forEach(([x,y],i)=>i?g.lineTo(x,y):g.moveTo(x,y));g.closePath();g.fillStyle=fill;g.fill();if(stroke){g.strokeStyle=stroke;g.lineWidth=lw;g.stroke();}}
@@ -73,24 +219,10 @@ function special(){// First tutorial realm
 function atmosphere(){const points=75;for(let i=0;i<points;i++){const world=i*55+rand(i)*34;const sx=world-cam;if(sx<-40||sx>W+40)continue;const y=130+rand(i+9)*388;g.globalAlpha=.35+.4*Math.abs(Math.sin(time*(.7+rand(i+6))+i));circle(sx,y,1.4+rand(i+15)*2,i%3?'#fffefa':'#ffefff');g.globalAlpha=1;}}
 function moveParticles(x,y,n=12,color='#ffebac'){for(let i=0;i<n;i++){const a=Math.PI*2*rand(time*36+i),sp=2+5*rand(time*13+i);particles.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-2,l:30+rand(i+time)*20,c:color})}}
 function renderParticles(){for(const p of particles){const xx=p.x-cam;g.globalAlpha=clamp(p.l/50,0,1);circle(xx,p.y,2.5,p.c)}g.globalAlpha=1;}
-function hero(){const xx=player.x-cam,yy=player.y;const run=Math.min(1,Math.abs(player.vx)/5),f=player.facing,slide=player.slide;let w=slide?57:55,h=slide?32:55;let rot=slide?Math.PI:player.rot;
- // grounded shadow
- ell(xx,GROUND+4,slide?43:34,8,'#22486c55');
- g.save();g.translate(xx,yy-(slide?16:43));g.rotate(rot);
- // feet: all in the cube's local space and rotate with it
- for(const s of [-1,1]){const off=run*Math.sin(time*14)*s*(slide?.1:1);line(s*17,h*.48,s*18+off*6,h*.62+9,'#725276',8);roundGrad(s*18-11+off*6,h*.60,24,13,6,'#735e97','#4c426e');rect(s*18-9+off*6,h*.62+6,22,4,'#f6f5ef',3);}
- for(const s of [-1,1]){line(s*w*.52,-2,s*(w*.69),8+(run*Math.sin(time*13+s)*6),'#f0ac63',8);circle(s*(w*.7),13+(run*Math.sin(time*13+s)*5),8,'#f8f0d7');}
- // pseudo perspective 3D - distinct side and top planes, with front face turning in the direction of motion
- const sideW=8+run*16,frontW=w-sideW;const left=-w*.5;
- path([[left+frontW,-h*.5],[left+frontW+sideW,-h*.5-6],[left+frontW+sideW,h*.5-6],[left+frontW,h*.5]],'#ce7d4b','#71507c',2);
- path([[left,-h*.5],[left+sideW*.75,-h*.5-9],[left+w,-h*.5-6],[left+frontW,-h*.5]],'#ffe1aa','#dca76c',2);
- roundGrad(left,-h*.5,frontW,h,11,'#ffdb78','#ef9555');g.strokeStyle='#7f5582';g.lineWidth=3;g.strokeRect(left+1,-h*.5+1,frontW-2,h-2);
- rect(left+6,-h*.5+6,frontW-12,5,'#fff3c187',3);
- const faceShift=-run*5,eyeSpacing=Math.min(14,frontW*.26);
- const eyes=[left+frontW*.5-eyeSpacing+faceShift*.35,left+frontW*.5+eyeSpacing+faceShift*.35];for(let ex of eyes){ell(ex,-h*.10,7,10,'#fffdf6');circle(ex+f*2,-h*.10,3.6,'#2c3052');circle(ex+f*1,-h*.16,1.6,'white')};line(eyes[0]-5,-h*.32,eyes[0]+5,-h*.35,'#60466d',2.5);line(eyes[1]-5,-h*.35,eyes[1]+5,-h*.32,'#60466d',2.5);
- g.strokeStyle='#67485f';g.lineWidth=3;g.beginPath();g.arc(left+frontW*.5+faceShift*.3,h*.13,8,.1,Math.PI-.1);g.stroke();
- if(slide){g.save();g.globalAlpha=.7;for(let i=0;i<4;i++)line(-w*.3-i*8,h*.45+i*2,-w*.6-i*17,h*.49+i*2,'#fff1bb',3);g.restore()}
- g.restore();
+function hero(){
+ const xx=player.x-cam,yy=player.y;
+ ell(xx,yy+4,player.slide?34:28,7,'#22486c55');
+ // The real 3D character is rendered by kip3d-game.js on a transparent WebGL layer.
 }
 function drawUI(){g.save();g.textAlign='center';const x=W*.50,y=46;roundGrad(x-200,17,400,42,19,'#234361d9','#20324ed9');text('✦  HOPSHIFT',x-10,y,'950 17px system-ui','#fff7ce','center');text('WORLD 1',x+145,y,'800 11px system-ui','#c6fbe7','center');g.restore();}
 function draw(){backdrop();atmosphere();
@@ -104,37 +236,111 @@ function draw(){backdrop();atmosphere();
  for(let i=0;i<8;i++){let x=2510+i*140-cam;if(x<0||x>W)continue;flower(2510+i*140,GROUND-15,i%2?'#ffc3b6':'#d7c3ff')}
  renderParticles();hero();drawUI();
 }
-function setScene(n){scene=n;cam=zones[n].cam;player.x=zones[n].player;player.y=GROUND;player.vx=0;player.vy=0;player.onGround=true;player.slide=(n===2);player.rot=(n===2?Math.PI:0);player.flipTime=0;player.holdUsed=false;player.cp=zones[n].player;freezeCameraUntil=time+1.4;buttons.forEach((b,i)=>b.classList.toggle('selected',i===n));chapter.textContent=zones[n].name;zoneTag.textContent=zones[n].tag;complete=false;}
-const solidOverhead=x=>x>1835&&x<2326;
-function landReset(){player.vy=0;player.y=GROUND;player.onGround=true;player.airtime=0;if(keys.flip&&Math.abs(player.vx)>1.8&&player.holdUsed){player.slide=true;player.rot=Math.PI;moveParticles(player.x,GROUND-2,10,'#f6abda')}else{player.rot=0;player.slide=false}}
-function step(dt){time+=dt/60;const p=player;
- const accel=p.slide?.20:.34,friction=p.slide?.92:.78;const lr=(keys.right?1:0)-(keys.left?1:0);
- if(lr){p.vx=clamp(p.vx+lr*accel*dt,-(p.slide?6.6:5.2),(p.slide?6.6:5.2));p.facing=lr}else p.vx*=Math.pow(friction,dt);
- if(p.slide && !keys.flip && !solidOverhead(p.x))p.slide=false;
- if(keys.jump&&p.onGround&&!p.slide){p.vy=-12.6;p.onGround=false;p.flipTime=0;p.holdUsed=false;p.rot=0;p.airtime=0;moveParticles(p.x,GROUND-5,7,'#fff7be');keys.jump=false}
- if(keys.jump&&p.slide&&!solidOverhead(p.x)){p.slide=false;p.onGround=false;p.vy=-11.5;p.rot=0;p.airtime=0;keys.jump=false;moveParticles(p.x,GROUND,12,'#fcb8e4')}
- if(!p.onGround){p.airtime+=dt;p.vy+=.59*dt;p.y+=p.vy*dt;
-  if(keys.flip){p.flipTime+=dt;if(p.flipTime>6){p.holdUsed=true;p.rot=mix(p.rot,Math.PI,clamp(.19*dt,0,.3))}else p.rot=mix(p.rot,Math.PI*.65,clamp(.13*dt,0,.3))}
-  else if(p.flipTime>0){p.rot=mix(p.rot,Math.PI*2,clamp(.14*dt,0,.36));}
-  if(p.y>=GROUND)landReset();
+// These are the exact tops of the visible raised beams in pathShortcuts().
+const platforms=[
+ {x:332,w:174,y:466},{x:556,w:150,y:411},{x:771,w:105,y:460},
+ {x:1210,w:142,y:441},{x:1415,w:120,y:396},{x:1545,w:145,y:468},
+ {x:2428,w:155,y:442},{x:2624,w:150,y:388},{x:3035,w:150,y:443}
+];
+const ROOF={left:1845,right:2325,top:483,bottom:526};
+const NORMAL_HEIGHT=61,SLIDE_HEIGHT=29,HALF_WIDTH=21;
+const playerHeight=()=>player.slide?SLIDE_HEIGHT:NORMAL_HEIGHT;
+const roofOverlap=(x,feet,h)=>x+HALF_WIDTH>ROOF.left&&x-HALF_WIDTH<ROOF.right&&feet>ROOF.top+1&&feet-h<ROOF.bottom-1;
+const standingClear=(x,feet)=>!roofOverlap(x,feet,NORMAL_HEIGHT);
+function setScene(n){
+ scene=n;cam=zones[n].cam;player.x=zones[n].player;player.y=GROUND;player.vx=0;player.vy=0;player.onGround=true;player.slide=(n===2);player.rot=player.slide?Math.PI:0;player.flipAngle=player.rot;
+ player.flipTime=0;player.flipStart=0;player.jumpBuffer=0;player.coyote=0;player.land=0;player.holdUsed=false;player.cp=zones[n].player;
+ freezeCameraUntil=time+.9;buttons.forEach((b,i)=>b.classList.toggle('selected',i===n));chapter.textContent=zones[n].name;zoneTag.textContent=zones[n].tag;complete=false;
+}
+function landReset(surfaceY){
+ const p=player;p.vy=0;p.y=surfaceY;p.onGround=true;p.airtime=0;p.coyote=6;p.land=1;
+ if(keys.flip&&Math.abs(p.vx)>1.8&&p.holdUsed&&standingClear(p.x,p.y)){
+  p.slide=true;p.rot=Math.PI;p.flipAngle=Math.PI;moveParticles(p.x,p.y-2,10,'#f6abda');
+ }else if(keys.flip&&Math.abs(p.vx)>1.8&&p.holdUsed){
+  p.slide=true;p.rot=Math.PI;p.flipAngle=Math.PI;
+ }else{p.rot=0;p.slide=false;p.flipAngle=0;}
+}
+function supportAt(x,feet){
+ if(Math.abs(feet-GROUND)<.4)return GROUND;
+ for(const b of platforms){if(Math.abs(feet-b.y)<.4&&x+HALF_WIDTH>b.x&&x-HALF_WIDTH<b.x+b.w)return b.y;}
+ if(Math.abs(feet-ROOF.top)<.4&&x+HALF_WIDTH>ROOF.left&&x-HALF_WIDTH<ROOF.right)return ROOF.top;
+ return null;
+}
+function fallingLanding(oldFeet,newFeet,x){
+ let best=null;
+ for(const b of [...platforms,{x:ROOF.left,w:ROOF.right-ROOF.left,y:ROOF.top},{x:0,w:LEVEL,y:GROUND}]){
+  // Pass upward through platforms; only descend onto a top surface.
+  if(oldFeet<=b.y+.5&&newFeet>=b.y&&x+HALF_WIDTH>b.x+1&&x-HALF_WIDTH<b.x+b.w-1){
+   if(best===null||b.y<best)best=b.y;
+  }
  }
- let newX=p.x+p.vx*dt;
- if(!p.slide && p.onGround && ((p.x<1835 && newX>=1835)||(p.x>2326&&newX<=2326))){newX=p.x;p.vx=0}
- p.x=clamp(newX,50,LEVEL-90);
- if(p.x>1800&&p.x<2340&&p.slide&&Math.abs(p.vx)>3 && (Math.random()<.22))moveParticles(p.x,GROUND,2,'#f2bfdc');
- // hazard zones reset at checkpoint, but demo lets you explore via scene bookmarks
- if(p.onGround&&!p.slide&&((p.x>1110&&p.x<1190)||(p.x>1580&&p.x<1690)||(p.x>2941&&p.x<3031))){p.x=p.cp;p.vx=0;p.y=GROUND;moveParticles(p.x,GROUND-24,24,'#ffd9ad')}
- if(p.x>3350&&!complete){complete=true;moveParticles(p.x,GROUND-70,48,'#fff5b9')}
+ return best;
+}
+function step(dt){
+ time+=dt/60;const p=player;
+ const lr=(keys.right?1:0)-(keys.left?1:0),accel=p.slide?.20:.38,friction=p.slide?.93:.76;
+ if(lr){p.vx=clamp(p.vx+lr*accel*dt,-(p.slide?6.6:5.7),(p.slide?6.6:5.7));p.facing=lr;}else p.vx*=Math.pow(friction,dt);
+ if(p.onGround){const support=supportAt(p.x,p.y);if(support===null){p.onGround=false;p.coyote=6;p.vy=0;}else{p.coyote=6;p.y=support;}}
+ else p.coyote=Math.max(0,p.coyote-dt);
+ p.jumpBuffer=Math.max(0,p.jumpBuffer-dt);
+ if(p.slide&&!keys.flip&&standingClear(p.x,p.y)){p.slide=false;p.rot=0;p.flipAngle=0;}
+ if(p.jumpBuffer>0&&(p.onGround||p.coyote>0)){
+   if(!p.slide||standingClear(p.x,p.y)){
+    p.jumpBuffer=0;p.slide=false;p.rot=0;p.flipAngle=0;p.vy=-13.5;p.onGround=false;p.coyote=0;p.flipTime=0;p.holdUsed=false;p.airtime=0;
+    moveParticles(p.x,p.y-5,7,'#fff7be');
+   }
+ }
+ const oldX=p.x;
+ let newX=clamp(p.x+p.vx*dt,HALF_WIDTH+15,LEVEL-90);
+ // Solid tunnel sidewalls: the upright body cannot pass through the low roof.
+ const height=playerHeight();
+ if(p.y>ROOF.top+1&&p.y-height<ROOF.bottom-1){
+  if(oldX+HALF_WIDTH<=ROOF.left&&newX+HALF_WIDTH>ROOF.left){newX=ROOF.left-HALF_WIDTH;p.vx=0;}
+  if(oldX-HALF_WIDTH>=ROOF.right&&newX-HALF_WIDTH<ROOF.right){newX=ROOF.right+HALF_WIDTH;p.vx=0;}
+ }
+ p.x=newX;
+ if(p.onGround&&supportAt(p.x,p.y)===null){p.onGround=false;p.coyote=6;}
+ if(!p.onGround){
+  p.airtime+=dt;const oldFeet=p.y;
+  p.vy=Math.min(17,p.vy+.61*dt);
+  // Variable jump: let go of Jump to cut upward velocity.
+  if(!keys.jump&&p.vy<-6.0)p.vy+=.40*dt;
+  let newFeet=p.y+p.vy*dt;
+  // Solid underside of tunnel roof: upward collisions stop against the underside.
+  if(p.vy<0&&p.x+HALF_WIDTH>ROOF.left&&p.x-HALF_WIDTH<ROOF.right&&oldFeet-playerHeight()>=ROOF.bottom-.5&&newFeet-playerHeight()<=ROOF.bottom){
+   newFeet=ROOF.bottom+playerHeight();p.vy=0;
+  }
+  p.y=newFeet;
+  if(keys.flip){p.flipTime+=dt;if(p.flipTime>5){p.holdUsed=true;p.flipAngle=mix(p.flipAngle,Math.PI,.25);}else p.flipAngle=mix(p.flipAngle,Math.PI*.62,.17);}
+  else if(p.flipTime>0){p.flipAngle=mix(p.flipAngle,Math.PI*2,.19);}
+  if(p.vy>=0){const surface=fallingLanding(oldFeet,p.y,p.x);if(surface!==null)landReset(surface);}
+ }
+ if(p.x>1800&&p.x<2340&&p.slide&&Math.abs(p.vx)>3&&(Math.random()<.22))moveParticles(p.x,p.y,2,'#f2bfdc');
+ if(p.onGround&&!p.slide&&((p.x>1110&&p.x<1190)||(p.x>1580&&p.x<1690)||(p.x>2941&&p.x<3031))&&p.y>GROUND-42){
+  p.x=p.cp;p.vx=0;p.y=GROUND;p.vy=0;p.onGround=true;moveParticles(p.x,p.y-24,24,'#ffd9ad');
+ }
+ if(p.x>790&&p.cp<790)p.cp=790;
+ if(p.x>1710&&p.cp<1710)p.cp=1710;
+ if(p.x>2450&&p.cp<2450)p.cp=2450;
+ if(p.x>3350&&!complete){complete=true;moveParticles(p.x,p.y-70,48,'#fff5b9')}
+ p.land=Math.max(0,p.land-.09*dt);
  particles=particles.filter(o=>o.l>0);for(const o of particles){o.x+=o.vx*dt;o.y+=o.vy*dt;o.vy+=.18*dt;o.l-=dt;}
  const n=p.x<935?0:p.x<1740?1:p.x<2450?2:3;chapter.textContent=zones[n].name;zoneTag.textContent=zones[n].tag;buttons.forEach((b,i)=>b.classList.toggle('selected',i===n));bar.style.width=(100*p.x/LEVEL).toFixed(1)+'%';
  const target=clamp(p.x-W*.40,0,LEVEL-W+140);if(time>=freezeCameraUntil)cam=mix(cam,target,.066*dt);else cam=mix(cam,zones[scene].cam,.11*dt);
 }
-let acc=0;function frame(now){const delta=Math.min(50,now-(last||now));last=now;acc+=delta;const ms=1000/60;let budget=0;while(acc>=ms&&budget++<5){step(1);acc-=ms}draw();requestAnimationFrame(frame)}
+let acc=0;function frame(now){const delta=Math.min(50,now-(last||now));last=now;acc+=delta;const ms=1000/60;let budget=0;while(acc>=ms&&budget++<5){step(1);acc-=ms}draw();kip3d.render({x:player.x-cam,screenY:H-player.y,time,dt:Math.min(.05,delta/1000),vx:player.vx,air:!player.onGround,slide:player.slide,flip:!player.onGround&&player.flipTime>0,flipAngle:player.flipAngle,facing:player.facing,land:player.land});requestAnimationFrame(frame)}
 const keymap={arrowleft:'left',a:'left',arrowright:'right',d:'right',' ':'jump',arrowup:'jump',w:'jump',x:'flip'};
-function onKey(e,down){const k=keymap[e.key.toLowerCase()];if(!k)return;e.preventDefault();if(k==='jump'){if(down&&!keys.jump)keys.jump=true;else if(!down)keys.jump=false}else keys[k]=down;}
-window.addEventListener('keydown',e=>onKey(e,true),{passive:false});window.addEventListener('keyup',e=>onKey(e,false),{passive:false});window.addEventListener('blur',()=>{keys.left=keys.right=keys.jump=keys.flip=false});
-for(const name of ['left','right','jump','flip']){const el=document.getElementById(name);const set=(down,e)=>{e.preventDefault();if(down)el.setPointerCapture?.(e.pointerId);keys[name]=down;};el.addEventListener('pointerdown',e=>set(true,e));el.addEventListener('pointerup',e=>set(false,e));el.addEventListener('pointercancel',e=>set(false,e));el.addEventListener('lostpointercapture',()=>{keys[name]=false});}
+function onKey(e,down){const k=keymap[e.key.toLowerCase()];if(!k)return;e.preventDefault();
+ if(k==='jump'&&down&&!e.repeat&&!keys.jump)player.jumpBuffer=8;
+ keys[k]=down;
+}
+window.addEventListener('keydown',e=>onKey(e,true),{passive:false});window.addEventListener('keyup',e=>onKey(e,false),{passive:false});
+window.addEventListener('blur',()=>{keys.left=keys.right=keys.jump=keys.flip=false;});
+for(const name of ['left','right','jump','flip']){const el=document.getElementById(name);
+ const set=(down,e)=>{e.preventDefault();if(down)el.setPointerCapture?.(e.pointerId);if(name==='jump'&&down&&!keys.jump)player.jumpBuffer=8;keys[name]=down;};
+ el.addEventListener('pointerdown',e=>set(true,e));el.addEventListener('pointerup',e=>set(false,e));el.addEventListener('pointercancel',e=>set(false,e));el.addEventListener('lostpointercapture',()=>{keys[name]=false});
+}
 buttons.forEach((el,n)=>el.addEventListener('click',()=>setScene(n)));document.getElementById('reset').addEventListener('click',()=>setScene(0));
-const params=new URLSearchParams(location.search);let init=clamp(Number(params.get('scene')||0),0,3);if(!Number.isInteger(init))init=0;setScene(init);requestAnimationFrame(frame);
+const params=new URLSearchParams(location.search);let init=clamp(Number(params.get('scene')||0),0,3);if(!Number.isInteger(init))init=0;setScene(init);if(new URLSearchParams(location.search).has('debug'))window.hopshiftDebug={player,keys,platforms,step,setScene,supportAt,fallingLanding};requestAnimationFrame(frame);
 })();
 </script></body></html>
