@@ -2,17 +2,19 @@
 
 **HopShift** is a character-driven 2D precision platformer built around **Kip**, a living cube with a face on his front, little arms and legs, and a signature **flip → upside-down head slide → jump recovery** move. The design combines deliberate, Mario-like character control with readable, Geometry Dash-like obstacle courses. It is **not** an automatic runner or a Sonic-style momentum game.
 
-## Try the repaired Clockwork Canopy course
+## Play Clockwork Canopy — stunt-chain prototype
 
-**[Play Clockwork Canopy](https://hambonesoftware.github.io/hopshift/course-concept.html)**
+**[Play the upgraded course](https://hambonesoftware.github.io/hopshift/course-concept.html)**
 
-This standalone experimental course now uses **the actual WebGL rounded-cube Kip geometry and face/limb rig** from the [3D Character Studio](https://hambonesoftware.github.io/hopshift/character-3d.html), composited over the colorful Canvas 2D level. Kip turns to run and pitches forward in a jump somersault.
+The course includes the **actual WebGL rounded-cube Kip** from the [3D Character Studio](https://hambonesoftware.github.io/hopshift/character-3d.html), rendered over the colorful 2.5D level. He turns into profile to run and performs a forward head-over-heels somersault.
 
-**Raised platforms are real one-way landing surfaces:** Kip can jump onto the exact tops of the garden and factory platforms, stand on them, and jump again. The low tunnel has an overhead solid volume requiring Kip's compressed head slide. A jump input buffer and coyote window improve responsiveness.
+**What's playable:** Manual running and variable-height jumping; real raised-platform landings; hold **X / Flip** while jumping to land upside down; slide through a low mechanical tunnel; jump straight out of the slide; catch and **ride a moving elevator platform** that uses the same animated position for rendering and collision. There are particles, landing pulses, readable stunt cues, checkpoints, coyote time, and input buffering.
 
-The original `index.html` showcase remains unchanged. This course is still an early **prototype**; animations and collision logic need broader real-device testing.
+**Try the new move chain:** Open the course, choose **03 · Flip + lift**, hold Right + Jump + Flip, release Jump after launching but keep moving and holding Flip to land inverted. Slide beneath the machine, then release Flip and press Jump near its exit to spring onto the moving platform. From the moving lift, jump toward the higher path.
 
-**Verification:** Browser logic tests passed for landing on the first raised platform, standing, jumping back off, landing again, and loading the head-slide scene without JavaScript errors. WebGL rendering could not be visually confirmed in the headless sandbox; test on an actual phone or desktop before treating the visuals as production-final.
+**Regression tests:** Run `node tests/course-physics.test.cjs` from a checkout. It exercises elevated-platform landings, full flip/slide/jump-to-lift sequence, moving platform carry, low-ceiling clearance and reset. These tests are required before GitHub Pages deploys.
+
+**Status:** This is still a game prototype rather than a complete level. Node-based gameplay regression tests pass; WebGL graphics were not visually verifiable in the headless test environment and still need real-phone/browser playtesting. The original `index.html` character study remains unchanged.
 
 ## Preview the 3D character (canonical)
 
