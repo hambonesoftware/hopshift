@@ -2,13 +2,17 @@
 
 **HopShift** is a character-driven 2D precision platformer built around **Kip**, a living cube with a face on his front, little arms and legs, and a signature **flip → upside-down head slide → jump recovery** move. The design combines deliberate, Mario-like character control with readable, Geometry Dash-like obstacle courses. It is **not** an automatic runner or a Sonic-style momentum game.
 
-## Preview the first course design
+## Try the repaired Clockwork Canopy course
 
-**[Explore Clockwork Canopy — an interactive course concept](https://hambonesoftware.github.io/hopshift/course-concept.html)**
+**[Play Clockwork Canopy](https://hambonesoftware.github.io/hopshift/course-concept.html)**
 
-A standalone, code-rendered 2.5D course study combining a friendly Mario-style garden, Geometry Dash-like precision machinery, a low inverted head-slide tunnel, and a colorful finish. It includes four scene jump buttons and simple keyboard/mobile movement, jumping, and inversion controls.
+This standalone experimental course now uses **the actual WebGL rounded-cube Kip geometry and face/limb rig** from the [3D Character Studio](https://hambonesoftware.github.io/hopshift/character-3d.html), composited over the colorful Canvas 2D level. Kip turns to run and pitches forward in a jump somersault.
 
-**Status:** Course art and mechanic visualization, **not a finished playable level**. The character drawn in this 2D Canvas stage is a simplified placeholder; the canonical **true 3D WebGL Kip** from `character-3d.html` has not been integrated with the course. Main `index.html` remains unchanged.
+**Raised platforms are real one-way landing surfaces:** Kip can jump onto the exact tops of the garden and factory platforms, stand on them, and jump again. The low tunnel has an overhead solid volume requiring Kip's compressed head slide. A jump input buffer and coyote window improve responsiveness.
+
+The original `index.html` showcase remains unchanged. This course is still an early **prototype**; animations and collision logic need broader real-device testing.
+
+**Verification:** Browser logic tests passed for landing on the first raised platform, standing, jumping back off, landing again, and loading the head-slide scene without JavaScript errors. WebGL rendering could not be visually confirmed in the headless sandbox; test on an actual phone or desktop before treating the visuals as production-final.
 
 ## Preview the 3D character (canonical)
 
