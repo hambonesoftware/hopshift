@@ -2,11 +2,11 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#121c37"><title>HopShift — Clockwork Canopy Course Concept</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;background:#101c35;color:#fff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}body{min-height:100vh;background:radial-gradient(ellipse at 50% -10%,#2f466d,#10192e 65%)}
-.shell{width:min(1360px,calc(100% - 24px));margin:0 auto;padding:24px 0 28px}header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:13px}.eyebrow{color:#70e7d5;font-size:10px;font-weight:900;letter-spacing:.22em}h1{font-size:clamp(22px,3.5vw,36px);margin:3px 0 0;letter-spacing:-.05em;font-weight:950}.sub{color:#b6c5e1;font-size:12px;max-width:410px;line-height:1.45;text-align:right}.window{background:#1d2a4a;border:1px solid #ffffff3b;border-radius:22px;overflow:hidden;box-shadow:0 16px 80px #02071596,inset 0 1px #ffffff4a}.toolbar{height:52px;background:linear-gradient(180deg,#26375c,#192745);border-bottom:1px solid #ffffff2e;display:flex;align-items:center;justify-content:space-between;padding:0 22px;gap:8px}.toolbar .left{display:flex;align-items:center;gap:10px;min-width:0}.dot{width:9px;height:9px;border-radius:100%;box-shadow:inset 0 1px 2px #fff8}.dot.c{background:#ff777d}.dot.y{background:#ffc46e}.dot.g{background:#6fe2a7}.toolbar .label{font-size:11px;color:#cbdcf6;font-weight:850;letter-spacing:.09em;margin-left:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tag{border:1px solid #a1b9da45;padding:6px 10px;border-radius:15px;color:#e0f7ee;font-size:10px;letter-spacing:.09em;font-weight:900;white-space:nowrap}.stage{position:relative;overflow:hidden}canvas#game{display:block;width:100%;aspect-ratio:16/9;touch-action:none;background:#88d4fa}canvas#hero3d{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}#renderWarning{position:absolute;bottom:40px;left:20px;z-index:5;padding:12px;background:#501c37;color:white;border-radius:10px}#renderWarning[hidden]{display:none}.stage .caption{position:absolute;z-index:4;left:18px;top:16px;background:#112845be;border:1px solid #ffffff6d;border-radius:16px;padding:11px 15px;backdrop-filter:blur(12px);pointer-events:none;min-width:160px}.bigcap{font-weight:950;letter-spacing:-.025em;font-size:17px}.smallcap{font-size:10px;color:#d4ebec;font-weight:800;letter-spacing:.15em;text-transform:uppercase;margin-bottom:2px}.directions{position:absolute;z-index:4;right:19px;top:17px;background:#203a5cc9;border:1px solid #ffffff64;border-radius:14px;padding:9px 12px;font-size:10px;color:#ecffff;font-weight:800;text-align:right;pointer-events:none}.progress{position:absolute;left:21px;right:21px;bottom:15px;height:8px;background:#091a2c8a;border:1px solid #ffffff6b;border-radius:30px;overflow:hidden;pointer-events:none;z-index:5}.fill{height:100%;width:0;background:linear-gradient(90deg,#88e8bd,#f9ce63,#f17b9c);border-radius:20px;box-shadow:0 0 18px #b2fdc5;transition:width .08s}.bottom{padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:linear-gradient(#233450,#1c2a48)}button{border:1px solid #afc1df66;background:#2c3d60;color:#edf7ff;border-radius:12px;padding:11px 16px;font-size:12px;font-weight:800;cursor:pointer;min-height:41px;touch-action:manipulation}button:hover{background:#40547d}button.selected{background:linear-gradient(145deg,#ffe1a0,#ffae75);color:#493459;border:1px solid #ffe1b9}button:focus-visible{outline:3px solid #a7fff4;outline-offset:2px}.buttonrow{display:flex;gap:7px;flex-wrap:wrap}.help{font-size:11px;color:#cbdaed;text-align:right;line-height:1.6}.help strong{color:#fff}.mobile{display:none}.key{display:inline-block;padding:3px 5px;border-radius:5px;background:#ffffff27;border:1px solid #ffffff24;font-size:10px}.legend{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:12px}.legend>div{border:1px solid #ffffff1c;border-radius:13px;background:#ffffff09;padding:13px}.legend strong{display:block;color:#fff5df;font-size:12px}.legend span{display:block;color:#adbed7;font-size:11px;line-height:1.45;margin-top:4px}.legend b{font-size:10px;color:#6ceccf;letter-spacing:.06em}footer{margin-top:12px;color:#829aba;font-size:11px;text-align:center}@media(max-width:700px){.shell{width:calc(100% - 12px);padding:12px 0}.sub{display:none}header{padding:0 8px}.window{border-radius:15px}.toolbar{height:42px;padding:0 11px}.tag{font-size:8px;padding:5px}.toolbar .label{font-size:9px}.bottom{padding:10px}.buttonrow{gap:5px}.buttonrow button{font-size:10px;padding:9px}.help{display:none}.stage .caption{top:10px;left:10px;padding:7px 10px;border-radius:11px}.bigcap{font-size:12px}.smallcap{font-size:8px}.directions{font-size:8px;padding:6px 8px;top:10px;right:10px}.legend{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.legend>div{padding:9px}.legend strong{font-size:10px}.legend span{font-size:9px}.mobile{display:flex;justify-content:space-between;gap:12px;padding:8px 4px 0}canvas#game{aspect-ratio:8/9}.cluster{display:flex;gap:8px}.mobile button{min-width:65px;min-height:58px;border-radius:17px;font-size:16px;background:#344b75}.mobile #flip{background:#744c9e}.mobile #jump{background:#b86c55}}
-</style></head><body><div class="shell"><header><div><div class="eyebrow">HOPSHIFT / PLAYABLE COURSE DESIGN STUDY</div><h1>Clockwork Canopy <span style="color:#ffcd7d">✦</span></h1></div><div class="sub">A whimsical platforming world with precise stunts, musical machinery, secret paths, and Kip's signature head-slide.</div></header>
-<div class="window"><div class="toolbar"><div class="left"><span class="dot c"></span><span class="dot y"></span><span class="dot g"></span><span class="label">WORLD 01 · THE FIRST FLIP</span></div><span class="tag" id="zoneTag">01 / SUNLIT START</span></div><div class="stage"><canvas id="game" width="1280" height="720" aria-label="Playable Clockwork Canopy level with elevated platforms"></canvas><canvas id="hero3d" aria-label="3D Kip character running and flipping"></canvas><div id="renderWarning" hidden>WebGL is required to display the 3D character. Please enable graphics acceleration.</div><div class="caption"><div class="smallcap">COURSE PREVIEW</div><div class="bigcap" id="chapter">Sunlit Start</div></div><div class="directions">RUN · LAND ON PLATFORMS · FLIP · SLIDE<br><span style="color:#ffe3a6">ACTUAL WEBGL 3D KIP</span></div><div class="progress"><div class="fill" id="bar"></div></div></div><div class="bottom"><div class="buttonrow"><button class="selected" data-scene="0">01 · Garden</button><button data-scene="1">02 · Precision</button><button data-scene="2">03 · Head slide</button><button data-scene="3">04 · Finish</button><button id="reset">↺ Restart</button></div><div class="help"><strong>Move:</strong> <span class="key">←</span> <span class="key">→</span> or A / D &nbsp; <strong>Jump:</strong> <span class="key">SPACE</span><br><strong>Flip / invert:</strong> <span class="key">X</span> while airborne · hold to land upside down</div></div></div>
+.shell{width:min(1360px,calc(100% - 24px));margin:0 auto;padding:24px 0 28px}header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:13px}.eyebrow{color:#70e7d5;font-size:10px;font-weight:900;letter-spacing:.22em}h1{font-size:clamp(22px,3.5vw,36px);margin:3px 0 0;letter-spacing:-.05em;font-weight:950}.sub{color:#b6c5e1;font-size:12px;max-width:410px;line-height:1.45;text-align:right}.window{background:#1d2a4a;border:1px solid #ffffff3b;border-radius:22px;overflow:hidden;box-shadow:0 16px 80px #02071596,inset 0 1px #ffffff4a}.toolbar{height:52px;background:linear-gradient(180deg,#26375c,#192745);border-bottom:1px solid #ffffff2e;display:flex;align-items:center;justify-content:space-between;padding:0 22px;gap:8px}.toolbar .left{display:flex;align-items:center;gap:10px;min-width:0}.dot{width:9px;height:9px;border-radius:100%;box-shadow:inset 0 1px 2px #fff8}.dot.c{background:#ff777d}.dot.y{background:#ffc46e}.dot.g{background:#6fe2a7}.toolbar .label{font-size:11px;color:#cbdcf6;font-weight:850;letter-spacing:.09em;margin-left:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tag{border:1px solid #a1b9da45;padding:6px 10px;border-radius:15px;color:#e0f7ee;font-size:10px;letter-spacing:.09em;font-weight:900;white-space:nowrap}.stage{position:relative;overflow:hidden}canvas#game{display:block;width:100%;aspect-ratio:16/9;touch-action:none;background:#88d4fa}canvas#hero3d{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}#renderWarning{position:absolute;bottom:40px;left:20px;z-index:5;padding:12px;background:#501c37;color:white;border-radius:10px}#renderWarning[hidden]{display:none}.combo{position:absolute;z-index:4;left:18px;top:95px;color:#ffedbb;font-size:12px;letter-spacing:.06em;font-weight:950;text-shadow:0 2px 12px #172c51;background:#192c47c9;padding:8px 12px;border:1px solid #f1d68b66;border-radius:12px;pointer-events:none;min-width:170px}.combo.good{color:#a9ffdf;border-color:#a9ffdf88}.stage .caption{position:absolute;z-index:4;left:18px;top:16px;background:#112845be;border:1px solid #ffffff6d;border-radius:16px;padding:11px 15px;backdrop-filter:blur(12px);pointer-events:none;min-width:160px}.bigcap{font-weight:950;letter-spacing:-.025em;font-size:17px}.smallcap{font-size:10px;color:#d4ebec;font-weight:800;letter-spacing:.15em;text-transform:uppercase;margin-bottom:2px}.directions{position:absolute;z-index:4;right:19px;top:17px;background:#203a5cc9;border:1px solid #ffffff64;border-radius:14px;padding:9px 12px;font-size:10px;color:#ecffff;font-weight:800;text-align:right;pointer-events:none}.progress{position:absolute;left:21px;right:21px;bottom:15px;height:8px;background:#091a2c8a;border:1px solid #ffffff6b;border-radius:30px;overflow:hidden;pointer-events:none;z-index:5}.fill{height:100%;width:0;background:linear-gradient(90deg,#88e8bd,#f9ce63,#f17b9c);border-radius:20px;box-shadow:0 0 18px #b2fdc5;transition:width .08s}.bottom{padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:linear-gradient(#233450,#1c2a48)}button{border:1px solid #afc1df66;background:#2c3d60;color:#edf7ff;border-radius:12px;padding:11px 16px;font-size:12px;font-weight:800;cursor:pointer;min-height:41px;touch-action:manipulation}button:hover{background:#40547d}button.selected{background:linear-gradient(145deg,#ffe1a0,#ffae75);color:#493459;border:1px solid #ffe1b9}button:focus-visible{outline:3px solid #a7fff4;outline-offset:2px}.buttonrow{display:flex;gap:7px;flex-wrap:wrap}.help{font-size:11px;color:#cbdaed;text-align:right;line-height:1.6}.help strong{color:#fff}.mobile{display:none}.key{display:inline-block;padding:3px 5px;border-radius:5px;background:#ffffff27;border:1px solid #ffffff24;font-size:10px}.legend{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:12px}.legend>div{border:1px solid #ffffff1c;border-radius:13px;background:#ffffff09;padding:13px}.legend strong{display:block;color:#fff5df;font-size:12px}.legend span{display:block;color:#adbed7;font-size:11px;line-height:1.45;margin-top:4px}.legend b{font-size:10px;color:#6ceccf;letter-spacing:.06em}footer{margin-top:12px;color:#829aba;font-size:11px;text-align:center}@media(max-width:700px){.shell{width:calc(100% - 12px);padding:12px 0}.sub{display:none}header{padding:0 8px}.window{border-radius:15px}.toolbar{height:42px;padding:0 11px}.tag{font-size:8px;padding:5px}.toolbar .label{font-size:9px}.bottom{padding:10px}.buttonrow{gap:5px}.buttonrow button{font-size:10px;padding:9px}.help{display:none}.stage .caption{top:10px;left:10px;padding:7px 10px;border-radius:11px}.bigcap{font-size:12px}.smallcap{font-size:8px}.directions{font-size:8px;padding:6px 8px;top:10px;right:10px}.combo{font-size:9px;top:58px;left:9px;min-width:0;padding:6px 9px}.legend{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.legend>div{padding:9px}.legend strong{font-size:10px}.legend span{font-size:9px}.mobile{display:flex;justify-content:space-between;gap:12px;padding:8px 4px 0}canvas#game{aspect-ratio:8/9}.cluster{display:flex;gap:8px}.mobile button{min-width:65px;min-height:58px;border-radius:17px;font-size:16px;background:#344b75}.mobile #flip{background:#744c9e}.mobile #jump{background:#b86c55}}
+</style></head><body><div class="shell"><header><div><div class="eyebrow">HOPSHIFT / PRECISION PLATFORMER PLAYTEST</div><h1>Clockwork Canopy <span style="color:#ffcd7d">✦</span></h1></div><div class="sub">A playful 3D-cube platformer with precise jumps, upside-down slides, and moving machinery.</div></header>
+<div class="window"><div class="toolbar"><div class="left"><span class="dot c"></span><span class="dot y"></span><span class="dot g"></span><span class="label">WORLD 01 · THE FIRST FLIP + SLIDE</span></div><span class="tag" id="zoneTag">01 / SUNLIT START</span></div><div class="stage"><canvas id="game" width="1280" height="720" aria-label="Playable Clockwork Canopy level with elevated platforms"></canvas><canvas id="hero3d" aria-label="3D Kip character running and flipping"></canvas><div id="renderWarning" hidden>WebGL is required to display the 3D character. Please enable graphics acceleration.</div><div class="caption"><div class="smallcap">COURSE PREVIEW</div><div class="bigcap" id="chapter">Sunlit Start</div></div><div class="directions" id="moveHint">RUN → JUMP → FLIP → HEAD SLIDE<br><span style="color:#ffe3a6">THEN JUMP TO THE MOVING LIFT</span></div><div class="combo" id="combo">READY TO HOP</div><div class="progress"><div class="fill" id="bar"></div></div></div><div class="bottom"><div class="buttonrow"><button class="selected" data-scene="0">01 · Garden</button><button data-scene="1">02 · Precision</button><button data-scene="2">03 · Flip + lift</button><button data-scene="3">04 · Finish</button><button id="reset">↺ Restart</button></div><div class="help"><strong>Move:</strong> <span class="key">←</span> <span class="key">→</span> or A / D &nbsp; <strong>Jump:</strong> <span class="key">SPACE</span><br><strong>Flip / invert:</strong> <span class="key">X</span> while airborne · hold to land upside down</div></div></div>
 <div class="mobile"><div class="cluster"><button id="left" aria-label="Move left">◀</button><button id="right" aria-label="Move right">▶</button></div><div class="cluster"><button id="flip" aria-label="Flip">↻</button><button id="jump" aria-label="Jump">JUMP</button></div></div>
-<div class="legend"><div><b>01 · MARIO DNA</b><strong>Explore and experiment</strong><span>Friendly terrain, branching paths, secrets, bouncy enemies and discoverable rewards.</span></div><div><b>02 · DASH DNA</b><strong>Precision in short bursts</strong><span>Readable spikes, launch orbs, rhythmic moving blocks and fast retry points.</span></div><div><b>03 · KIP'S OWN MOVE</b><strong>Flip into head slide</strong><span>Jump, tumble head over heels, land inverted, and skim beneath a low mechanical tunnel.</span></div><div><b>04 · THE RESULT</b><strong>Flow, not forced speed</strong><span>Walk slowly to explore, then master an uninterrupted stunt chain across the course.</span></div></div><footer>This is an interactive course/look-and-feel concept, not the finished HopShift game. Course scenery uses Canvas 2D; the real Kip 3D mesh is rendered with WebGL. Raised platforms have real landing collision.</footer></div>
+<div class="legend"><div><b>01 · MARIO DNA</b><strong>Explore and experiment</strong><span>Friendly terrain, branching paths, secrets, bouncy enemies and discoverable rewards.</span></div><div><b>02 · DASH DNA</b><strong>Precision in short bursts</strong><span>Readable spikes, launch orbs, rhythmic moving blocks and fast retry points.</span></div><div><b>03 · KIP'S OWN MOVE</b><strong>Flip into head slide</strong><span>Jump, tumble head over heels, land inverted, and skim beneath a low mechanical tunnel.</span></div><div><b>04 · THE RESULT</b><strong>Earn the perfect chain</strong><span>Run → flip → land on your head → slide under the machine → jump onto the moving lift.</span></div></div><footer>Playable prototype: dimensional 3D Kip on a 2.5D course, with one-way static and moving platforms, slide tunnel collision, checkpoints and jump buffering. Not a complete level.</footer></div>
 <script>
 /* HopShift Kip 3D gameplay renderer — shared rounded-cube, front face, and limb geometry from character-3d.html. */
 (()=>{'use strict';
@@ -99,11 +99,11 @@ window.createKip3D=function(canvas,width,height){
    let pitch=info.slide?Math.PI:info.flip?info.flipAngle:0;
    let bodyYScale=1,bodyXScale=1,bodyZScale=1;
    let swing=0,shoeLift=0;
-   if(action==='run'){centerY=1.09+Math.abs(Math.sin(cycle))*.055;swing=Math.sin(cycle)*.32;shoeLift=Math.abs(Math.sin(cycle))*.17;}
+   if(action==='run'){const pace=Math.min(1,Math.abs(info.vx)/5.7);centerY=1.09+Math.abs(Math.sin(cycle))*.065*pace;swing=Math.sin(cycle)*.36*pace;shoeLift=Math.abs(Math.sin(cycle))*.18*pace;}
    if(action==='jump'){centerY=1.08;shoeLift=.12;bodyYScale=1.045;bodyXScale=.96;}
-   if(action==='flip'){centerY=1.09;shoeLift=.16;}
-   if(action==='slide'){centerY=.50;bodyYScale=.67;bodyXScale=1.05;bodyZScale=1.03;}
-   if(!info.air&&!info.slide&&info.land>0){bodyYScale-=.12*info.land;bodyXScale+=.07*info.land;}
+   if(action==='flip'){centerY=1.09;shoeLift=.17;bodyXScale=.96;bodyYScale=1.03;}
+   if(action==='slide'){centerY=.50+Math.abs(Math.sin(seconds*10))*.015;bodyYScale=.67;bodyXScale=1.11;bodyZScale=1.05;}
+   if(!info.air&&!info.slide&&info.land>0){bodyYScale-=.19*info.land;bodyXScale+=.12*info.land;}
    const base=mat.mul(mat.move(info.x,info.screenY,0),mat.scale(SCALE,SCALE,SCALE));
    const root=mat.mul(mat.mul(base,mat.move(0,centerY,0)),mat.ry(runningYaw));
    // Running turns about Y; forward somersault is pitching about the turned cube's local X.
@@ -156,11 +156,11 @@ window.createKip3D=function(canvas,width,height){
 <script>
 (()=>{'use strict';
 const c=document.getElementById('game'),g=c.getContext('2d'),MOBILE=window.innerWidth<=700,W=MOBILE?640:1280,H=720,GROUND=565,LEVEL=3620;c.width=W;c.height=H;
-const chapter=document.getElementById('chapter'),zoneTag=document.getElementById('zoneTag'),bar=document.getElementById('bar');
+const chapter=document.getElementById('chapter'),zoneTag=document.getElementById('zoneTag'),bar=document.getElementById('bar'),combo=document.getElementById('combo'),moveHint=document.getElementById('moveHint');
 const buttons=[...document.querySelectorAll('[data-scene]')];
-const zones=[{name:'Sunlit Start',start:0,cam:0,player:165,tag:'01 / SUNLIT START'},{name:'The Rhythm Works',start:880,cam:900,player:1080,tag:'02 / THE RHYTHM WORKS'},{name:'The Upside-Down Run',start:1760,cam:1720,player:1910,tag:'03 / UPSIDE-DOWN RUN'},{name:'The Skyward Finish',start:2680,cam:2620,player:2840,tag:'04 / SKYWARD FINISH'}];
-const keys={left:false,right:false,jump:false,flip:false};const player={x:165,y:GROUND,vx:0,vy:0,onGround:true,slide:false,rot:0,facing:1,flipTime:0,flipTriggered:false,holdUsed:false,airtime:0,blink:0,cp:165,land:0,coyote:0,jumpBuffer:0,flipAngle:0,flipStart:0,feetWas:GROUND};
-let cam=0,time=0,last=0,scene=0,freezeCameraUntil=0,particles=[],score=0,complete=false;const kip3d=window.createKip3D(document.getElementById('hero3d'),W,H);
+const zones=[{name:'Sunlit Start',start:0,cam:0,player:165,tag:'01 / SUNLIT START'},{name:'The Rhythm Works',start:880,cam:900,player:1080,tag:'02 / THE RHYTHM WORKS'},{name:'Flip & Lift Lab',start:1760,cam:1720,player:1800,tag:'03 / FLIP • SLIDE • LIFT'},{name:'The Skyward Finish',start:2680,cam:2620,player:2840,tag:'04 / SKYWARD FINISH'}];
+const keys={left:false,right:false,jump:false,flip:false};const player={x:165,y:GROUND,vx:0,vy:0,onGround:true,slide:false,rot:0,facing:1,flipTime:0,flipTriggered:false,holdUsed:false,airtime:0,blink:0,cp:165,land:0,coyote:0,jumpBuffer:0,flipAngle:0,flipStart:0,feetWas:GROUND,supportId:'ground',flipLanded:false,chainStep:0,chainTicks:0,slideJump:0};
+let cam=0,time=0,last=0,scene=0,freezeCameraUntil=0,particles=[],rings=[],score=0,complete=false;const lift={id:'lift',x:2440,y:451,prevX:2440,prevY:451,w:154,h:28,vx:0,vy:0};const kip3d=window.createKip3D(document.getElementById('hero3d'),W,H);
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),mix=(a,b,t)=>a+(b-a)*t,fract=x=>x-Math.floor(x),rand=n=>fract(Math.sin(n*128.892+13.19)*43758.5453);
 function rect(x,y,w,h,fill,r=0){g.fillStyle=fill;g.beginPath();g.roundRect(x,y,w,h,r);g.fill();}
 function path(pts,fill,stroke=null,lw=1){g.beginPath();pts.forEach(([x,y],i)=>i?g.lineTo(x,y):g.moveTo(x,y));g.closePath();g.fillStyle=fill;g.fill();if(stroke){g.strokeStyle=stroke;g.lineWidth=lw;g.stroke();}}
@@ -200,29 +200,50 @@ function pathShortcuts(){beam(332,466,174,30,'#e8bc78','#ffebbd','#9a7b83',14);b
  for(let i=0;i<4;i++)coin(392+i*48,420,i);coin(600,363,7);coin(826,412,3);
  beam(1210,441,142,27,'#9386bd','#ecd6f6','#665b9e',15);beam(1415,396,120,27,'#9386bd','#ecd6f6','#665b9e',15);beam(1545,468,145,24,'#9386bd','#ecd6f6','#665b9e',15);
  for(let i=0;i<4;i++)coin(1239+i*49,388,i);coin(1480,345,11);
- beam(2428,442,155,29,'#8b9cdb','#dddbfb','#536aa6',13);beam(2624,388,150,25,'#8b9cdb','#dddbfb','#536aa6',13);coin(2490,393);coin(2685,340);
+ drawMovingLift();beam(2624,388,150,25,'#8b9cdb','#dddbfb','#536aa6',13);coin(lift.x+lift.w/2,lift.y-42);coin(2685,340);
 }
-function headTunnel(){const x=1845,y=483,w=480,h=43;beam(x,y,w,h,'#796497','#ebc5d5','#61466d',14);const xx=x-cam;if(xx+w<-60||xx>W+70)return;
- for(let i=0;i<7;i++){const p=x+27+i*65-cam;rect(p,506,37,8,'#fff0b7',3);circle(p+19,489,5,'#f9d3f2');}
- for(let i=0;i<4;i++){const p=x+68+i*125-cam;path([[p,527],[p+12,548],[p+24,527]],'#f6b2c3','#ffecc9',2);}text('SLIDE!',xx+w/2,510,'950 18px system-ui','#fff5c7','center');}
+function updateMovingLift(dt){
+ lift.prevX=lift.x;lift.prevY=lift.y;
+ lift.x=2450+57*Math.sin(time*1.30);
+ lift.y=453+15*Math.sin(time*1.55+.45);
+ lift.vx=lift.x-lift.prevX;lift.vy=lift.y-lift.prevY;
+}
+function drawMovingLift(){
+ if(lift.x+lift.w<cam-110||lift.x>cam+W+110)return;
+ const cx=lift.x+lift.w*.5-cam,cy=lift.y;
+ const guideX=2450+lift.w*.5-cam;
+ g.save();g.globalAlpha=.68;
+ line(guideX-65,416,guideX+65,416,'#e2dcfc55',4);
+ line(guideX-65,416,guideX-65,508,'#d9d4ff70',5);
+ line(guideX+65,416,guideX+65,508,'#d9d4ff70',5);
+ for(let t=0;t<4;t++)circle(guideX-65,424+t*25,2.7,'#ffe4c7');
+ g.restore();
+ beam(lift.x,lift.y,lift.w,lift.h,'#728ad5','#f6e6bd','#445f95',14);
+ glow(cx,cy+7,12,'#b5f9ff');
+ for(let i=0;i<3;i++)circle(cx-42+i*42,cy+15,4,'#ddffed');
+ text('MOVING LIFT',cx,cy+44,'900 10px system-ui','#f7f2ff','center');
+}
+function headTunnel(){const x=2035,y=483,w=350,h=43;beam(x,y,w,h,'#796497','#ebc5d5','#61466d',14);const xx=x-cam;if(xx+w<-60||xx>W+70)return;
+ for(let i=0;i<5;i++){const p=x+27+i*65-cam;rect(p,506,37,8,'#fff0b7',3);circle(p+19,489,5,'#f9d3f2');}
+ for(let i=0;i<3;i++){const p=x+52+i*108-cam;path([[p,527],[p+12,548],[p+24,527]],'#f6b2c3','#ffecc9',2);}text('SLIDE!',xx+w/2,510,'950 18px system-ui','#fff5c7','center');}
 function special(){// First tutorial realm
  sign(256,GROUND-15,'RUN • JUMP','EXPLORE THE TOP PATH');checkpoint(790,GROUND-12);bounceEnemy(615,GROUND-13);
  // Rhythm industrial realm
  machineBack();arch(974,358,147,205);gear(1189,253,54,'#e8a0cb');gear(1533,289,70,'#ccb5e4',.4);spikeRow(1095,GROUND-19,4);spikeRow(1575,GROUND-19,4);orb(1057,406);orb(1467,350,1.1);sign(1324,GROUND-18,'HIT THE ORB','JUMP AT THE GLOW');checkpoint(1710,GROUND-20);
  // Slide area
  for(let i=0;i<5;i++){const x=1790+i*180-cam;gear(1790+i*180,363,45,'#c1b3e1',i*.2)}
- headTunnel();sign(1750,GROUND-20,'FLIP • SLIDE','LAND UPSIDE DOWN');glow(2377-cam,512,11,'#f9e0bc');
+ headTunnel();sign(1795,GROUND-20,'JUMP • HOLD X','LAND ON YOUR HEAD');sign(2409,GROUND-20,'SLIDE → JUMP','CATCH THE MOVING LIFT');glow(2420-cam,512,11,'#f9e0bc');
  // celebratory finish realm
  arch(2708,375,120,191);orb(2563,384,2);gear(2814,321,42,'#f5a3b0');spikeRow(2938,GROUND-19,3,'#f69f84');beam(3035,443,150,30,'#d9b783','#fff3bd','#c6a28e',14);for(let i=0;i<5;i++)coin(3054+i*28,396,i);
  const xx=3360-cam;if(xx>-150&&xx<W+150){line(xx,GROUND-20,xx,GROUND-260,'#795a73',10);path([[xx,GROUND-258],[xx+160,GROUND-242],[xx+48,GROUND-184]],'#f281b0','#fff2c4',5);text('FINISH',xx+80,GROUND-221,'950 23px system-ui','#fffced','center');glow(xx,GROUND-280,18,'#ffebb1');}
 }
 function atmosphere(){const points=75;for(let i=0;i<points;i++){const world=i*55+rand(i)*34;const sx=world-cam;if(sx<-40||sx>W+40)continue;const y=130+rand(i+9)*388;g.globalAlpha=.35+.4*Math.abs(Math.sin(time*(.7+rand(i+6))+i));circle(sx,y,1.4+rand(i+15)*2,i%3?'#fffefa':'#ffefff');g.globalAlpha=1;}}
 function moveParticles(x,y,n=12,color='#ffebac'){for(let i=0;i<n;i++){const a=Math.PI*2*rand(time*36+i),sp=2+5*rand(time*13+i);particles.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-2,l:30+rand(i+time)*20,c:color})}}
-function renderParticles(){for(const p of particles){const xx=p.x-cam;g.globalAlpha=clamp(p.l/50,0,1);circle(xx,p.y,2.5,p.c)}g.globalAlpha=1;}
+function renderParticles(){for(const q of rings){g.save();g.globalAlpha=Math.max(0,q.life)*.65;g.strokeStyle=q.c;g.lineWidth=3;g.beginPath();g.ellipse(q.x-cam, q.y-13, q.r, q.r*.24, 0, 0, Math.PI*2);g.stroke();g.restore();}for(const p of particles){const xx=p.x-cam;g.globalAlpha=clamp(p.l/50,0,1);circle(xx,p.y,2.5,p.c)}g.globalAlpha=1;}
 function hero(){
  const xx=player.x-cam,yy=player.y;
  ell(xx,yy+4,player.slide?34:28,7,'#22486c55');
- // The real 3D character is rendered by kip3d-game.js on a transparent WebGL layer.
+ // The authentic rounded-cube Kip is composited into the stage on a transparent WebGL layer.
 }
 function drawUI(){g.save();g.textAlign='center';const x=W*.50,y=46;roundGrad(x-200,17,400,42,19,'#234361d9','#20324ed9');text('✦  HOPSHIFT',x-10,y,'950 17px system-ui','#fff7ce','center');text('WORLD 1',x+145,y,'800 11px system-ui','#c6fbe7','center');g.restore();}
 function draw(){backdrop();atmosphere();
@@ -240,93 +261,141 @@ function draw(){backdrop();atmosphere();
 const platforms=[
  {x:332,w:174,y:466},{x:556,w:150,y:411},{x:771,w:105,y:460},
  {x:1210,w:142,y:441},{x:1415,w:120,y:396},{x:1545,w:145,y:468},
- {x:2428,w:155,y:442},{x:2624,w:150,y:388},{x:3035,w:150,y:443}
+ {x:2624,w:150,y:388},{x:3035,w:150,y:443}
 ];
-const ROOF={left:1845,right:2325,top:483,bottom:526};
+const ROOF={left:2035,right:2385,top:483,bottom:526};
 const NORMAL_HEIGHT=61,SLIDE_HEIGHT=29,HALF_WIDTH=21;
 const playerHeight=()=>player.slide?SLIDE_HEIGHT:NORMAL_HEIGHT;
 const roofOverlap=(x,feet,h)=>x+HALF_WIDTH>ROOF.left&&x-HALF_WIDTH<ROOF.right&&feet>ROOF.top+1&&feet-h<ROOF.bottom-1;
 const standingClear=(x,feet)=>!roofOverlap(x,feet,NORMAL_HEIGHT);
 function setScene(n){
- scene=n;cam=zones[n].cam;player.x=zones[n].player;player.y=GROUND;player.vx=0;player.vy=0;player.onGround=true;player.slide=(n===2);player.rot=player.slide?Math.PI:0;player.flipAngle=player.rot;
- player.flipTime=0;player.flipStart=0;player.jumpBuffer=0;player.coyote=0;player.land=0;player.holdUsed=false;player.cp=zones[n].player;
- freezeCameraUntil=time+.9;buttons.forEach((b,i)=>b.classList.toggle('selected',i===n));chapter.textContent=zones[n].name;zoneTag.textContent=zones[n].tag;complete=false;
+ scene=n;cam=zones[n].cam;Object.assign(player,{x:zones[n].player,y:GROUND,vx:0,vy:0,onGround:true,slide:false,rot:0,facing:1,flipTime:0,flipAngle:0,flipStart:0,airtime:0,land:0,coyote:6,jumpBuffer:0,holdUsed:false,supportId:'ground',flipLanded:false,chainStep:0,chainTicks:0,slideJump:0});
+ keys.jump=false;keys.flip=false;freezeCameraUntil=time+.65;buttons.forEach((b,i)=>b.classList.toggle('selected',i===n));chapter.textContent=zones[n].name;zoneTag.textContent=zones[n].tag;complete=false;
+ combo.textContent=n===2?'JUMP + HOLD FLIP':'READY TO HOP';combo.classList.toggle('good',false);
 }
-function landReset(surfaceY){
- const p=player;p.vy=0;p.y=surfaceY;p.onGround=true;p.airtime=0;p.coyote=6;p.land=1;
- if(keys.flip&&Math.abs(p.vx)>1.8&&p.holdUsed&&standingClear(p.x,p.y)){
-  p.slide=true;p.rot=Math.PI;p.flipAngle=Math.PI;moveParticles(p.x,p.y-2,10,'#f6abda');
- }else if(keys.flip&&Math.abs(p.vx)>1.8&&p.holdUsed){
-  p.slide=true;p.rot=Math.PI;p.flipAngle=Math.PI;
- }else{p.rot=0;p.slide=false;p.flipAngle=0;}
+const staticSurfaces=[...platforms.map((p,i)=>({...p,id:'platform-'+i})),{x:ROOF.left,w:ROOF.right-ROOF.left,y:ROOF.top,id:'roof'},{x:0,w:LEVEL,y:GROUND,id:'ground'}];
+function allSurfaces(){return [lift,...staticSurfaces];}
+function surfaceFor(id){return allSurfaces().find(s=>s.id===id)||null;}
+function landReset(surface){
+ const p=player;p.vy=0;p.y=surface.y;p.onGround=true;p.supportId=surface.id;p.airtime=0;p.coyote=6;p.land=1;
+ const inverted=keys.flip&&Math.abs(p.vx)>=1.8&&p.holdUsed&&surface.id!=='roof';
+ if(inverted){
+   p.slide=true;p.rot=Math.PI;p.flipAngle=Math.PI;p.flipLanded=true;
+   p.chainStep=Math.max(p.chainStep,1);p.chainTicks=0;
+   moveParticles(p.x,p.y-4,16,'#ffcfed');
+   ring(p.x,p.y,36,'#ffbbd8');
+ } else {
+   p.rot=0;p.slide=false;p.flipAngle=0;
+   moveParticles(p.x,p.y-2,8,'#f8ebc9');
+   ring(p.x,p.y,25,'#ffe9ab');
+ }
+ if(surface.id==='lift'){
+   p.chainStep=Math.max(p.chainStep,4);
+   combo.textContent='✦ STUNT CHAIN COMPLETE!';combo.classList.add('good');
+   ring(p.x,p.y-5,62,'#a9ffdf');moveParticles(p.x,p.y-40,28,'#b2ffe3');
+ }
 }
 function supportAt(x,feet){
- if(Math.abs(feet-GROUND)<.4)return GROUND;
- for(const b of platforms){if(Math.abs(feet-b.y)<.4&&x+HALF_WIDTH>b.x&&x-HALF_WIDTH<b.x+b.w)return b.y;}
- if(Math.abs(feet-ROOF.top)<.4&&x+HALF_WIDTH>ROOF.left&&x-HALF_WIDTH<ROOF.right)return ROOF.top;
+ for(const s of allSurfaces()){
+   if(Math.abs(feet-s.y)<1.2&&x+HALF_WIDTH>s.x+1&&x-HALF_WIDTH<s.x+s.w-1)return s.y;
+ }
  return null;
 }
 function fallingLanding(oldFeet,newFeet,x){
  let best=null;
- for(const b of [...platforms,{x:ROOF.left,w:ROOF.right-ROOF.left,y:ROOF.top},{x:0,w:LEVEL,y:GROUND}]){
-  // Pass upward through platforms; only descend onto a top surface.
-  if(oldFeet<=b.y+.5&&newFeet>=b.y&&x+HALF_WIDTH>b.x+1&&x-HALF_WIDTH<b.x+b.w-1){
-   if(best===null||b.y<best)best=b.y;
-  }
+ for(const s of allSurfaces()){
+   const previousSurfaceY=s.id==='lift'?s.prevY:s.y;
+   // Landing only while descending from above; always align to the true rendered top.
+   if(oldFeet<=previousSurfaceY+1&&newFeet>=s.y&&x+HALF_WIDTH>s.x+1&&x-HALF_WIDTH<s.x+s.w-1){
+     if(best===null||s.y<best.y)best=s;
+   }
  }
  return best;
 }
+function ring(x,y,r,c){rings.push({x,y,r,c,life:1});}
+function springJump(){
+ const p=player,fromSlide=p.slide;
+ p.jumpBuffer=0;p.slide=false;p.rot=0;p.flipAngle=0;
+ p.vy=fromSlide?-14.55:-13.8;p.onGround=false;p.supportId=null;p.coyote=0;p.flipTime=0;p.holdUsed=false;p.airtime=0;
+ if(fromSlide){p.slideJump=1;p.chainStep=Math.max(p.chainStep,3);p.vx=clamp(p.vx*1.065,-7.4,7.4);ring(p.x,p.y,52,'#aefff0');moveParticles(p.x,p.y,20,'#b9ffed');}
+ else {ring(p.x,p.y,26,'#fff4bc');moveParticles(p.x,p.y,8,'#fff7be');}
+}
 function step(dt){
  time+=dt/60;const p=player;
- const lr=(keys.right?1:0)-(keys.left?1:0),accel=p.slide?.20:.38,friction=p.slide?.93:.76;
- if(lr){p.vx=clamp(p.vx+lr*accel*dt,-(p.slide?6.6:5.7),(p.slide?6.6:5.7));p.facing=lr;}else p.vx*=Math.pow(friction,dt);
- if(p.onGround){const support=supportAt(p.x,p.y);if(support===null){p.onGround=false;p.coyote=6;p.vy=0;}else{p.coyote=6;p.y=support;}}
- else p.coyote=Math.max(0,p.coyote-dt);
+ updateMovingLift(dt);
+ if(p.onGround&&p.supportId==='lift'){
+   // An anchored player travels with the moving surface exactly, without jitter.
+   p.x+=lift.vx;p.y+=lift.vy;
+ }
+ const lr=(keys.right?1:0)-(keys.left?1:0);
+ const accel=p.slide?.28:.43,friction=p.slide?.967:.76;
+ if(lr){p.vx=clamp(p.vx+lr*accel*dt,-(p.slide?7.2:5.8),(p.slide?7.2:5.8));p.facing=lr;}
+ else p.vx*=Math.pow(friction,dt);
+ if(p.onGround){
+   const support=supportAt(p.x,p.y);
+   if(support===null){p.onGround=false;p.supportId=null;p.coyote=6;p.vy=0;}
+   else{p.coyote=6;p.y=support;}
+ }else p.coyote=Math.max(0,p.coyote-dt);
  p.jumpBuffer=Math.max(0,p.jumpBuffer-dt);
- if(p.slide&&!keys.flip&&standingClear(p.x,p.y)){p.slide=false;p.rot=0;p.flipAngle=0;}
- if(p.jumpBuffer>0&&(p.onGround||p.coyote>0)){
-   if(!p.slide||standingClear(p.x,p.y)){
-    p.jumpBuffer=0;p.slide=false;p.rot=0;p.flipAngle=0;p.vy=-13.5;p.onGround=false;p.coyote=0;p.flipTime=0;p.holdUsed=false;p.airtime=0;
-    moveParticles(p.x,p.y-5,7,'#fff7be');
-   }
+ if(p.jumpBuffer>0&&(p.onGround||p.coyote>0)&&(!p.slide||standingClear(p.x,p.y))){springJump();}
+ if(p.slide&&!keys.flip&&standingClear(p.x,p.y)){
+   p.slide=false;p.rot=0;p.flipAngle=0;moveParticles(p.x,p.y,8,'#ffe7df');
  }
  const oldX=p.x;
  let newX=clamp(p.x+p.vx*dt,HALF_WIDTH+15,LEVEL-90);
- // Solid tunnel sidewalls: the upright body cannot pass through the low roof.
  const height=playerHeight();
+ // Enforce the real tunnel volume: upright blocks cannot enter the 39px-high gap.
  if(p.y>ROOF.top+1&&p.y-height<ROOF.bottom-1){
-  if(oldX+HALF_WIDTH<=ROOF.left&&newX+HALF_WIDTH>ROOF.left){newX=ROOF.left-HALF_WIDTH;p.vx=0;}
-  if(oldX-HALF_WIDTH>=ROOF.right&&newX-HALF_WIDTH<ROOF.right){newX=ROOF.right+HALF_WIDTH;p.vx=0;}
+   if(oldX+HALF_WIDTH<=ROOF.left&&newX+HALF_WIDTH>ROOF.left){newX=ROOF.left-HALF_WIDTH;p.vx=0;}
+   if(oldX-HALF_WIDTH>=ROOF.right&&newX-HALF_WIDTH<ROOF.right){newX=ROOF.right+HALF_WIDTH;p.vx=0;}
  }
  p.x=newX;
- if(p.onGround&&supportAt(p.x,p.y)===null){p.onGround=false;p.coyote=6;}
+ if(p.onGround&&supportAt(p.x,p.y)===null){p.onGround=false;p.supportId=null;p.coyote=6;}
  if(!p.onGround){
-  p.airtime+=dt;const oldFeet=p.y;
-  p.vy=Math.min(17,p.vy+.61*dt);
-  // Variable jump: let go of Jump to cut upward velocity.
-  if(!keys.jump&&p.vy<-6.0)p.vy+=.40*dt;
-  let newFeet=p.y+p.vy*dt;
-  // Solid underside of tunnel roof: upward collisions stop against the underside.
-  if(p.vy<0&&p.x+HALF_WIDTH>ROOF.left&&p.x-HALF_WIDTH<ROOF.right&&oldFeet-playerHeight()>=ROOF.bottom-.5&&newFeet-playerHeight()<=ROOF.bottom){
-   newFeet=ROOF.bottom+playerHeight();p.vy=0;
-  }
-  p.y=newFeet;
-  if(keys.flip){p.flipTime+=dt;if(p.flipTime>5){p.holdUsed=true;p.flipAngle=mix(p.flipAngle,Math.PI,.25);}else p.flipAngle=mix(p.flipAngle,Math.PI*.62,.17);}
-  else if(p.flipTime>0){p.flipAngle=mix(p.flipAngle,Math.PI*2,.19);}
-  if(p.vy>=0){const surface=fallingLanding(oldFeet,p.y,p.x);if(surface!==null)landReset(surface);}
+   p.airtime+=dt;const oldFeet=p.y;
+   p.vy=Math.min(18,p.vy+.63*dt);
+   // Variable-height jump: early release produces a low hop, holding reaches moving lift.
+   if(!keys.jump&&p.vy<-6)p.vy+=.45*dt;
+   let newFeet=p.y+p.vy*dt;
+   if(p.vy<0&&p.x+HALF_WIDTH>ROOF.left&&p.x-HALF_WIDTH<ROOF.right&&oldFeet-playerHeight()>=ROOF.bottom-.5&&newFeet-playerHeight()<=ROOF.bottom){
+     newFeet=ROOF.bottom+playerHeight();p.vy=0;
+   }
+   p.y=newFeet;
+   if(keys.flip){
+     p.flipTime+=dt;
+     if(p.flipTime>5){p.holdUsed=true;p.flipAngle=mix(p.flipAngle,Math.PI,.36);}
+     else p.flipAngle=mix(p.flipAngle,Math.PI*.68,.24);
+   }else if(p.flipTime>0)p.flipAngle=mix(p.flipAngle,Math.PI*2,.23);
+   if(p.vy>=0){const surface=fallingLanding(oldFeet,p.y,p.x);if(surface)landReset(surface);}
  }
- if(p.x>1800&&p.x<2340&&p.slide&&Math.abs(p.vx)>3&&(Math.random()<.22))moveParticles(p.x,p.y,2,'#f2bfdc');
+ // A long tunnel rewards maintaining horizontal input but permits stopping/turning.
+ if(p.slide&&p.x>ROOF.left-25&&p.x<ROOF.right+25){
+   p.chainStep=Math.max(p.chainStep,2);
+   if(Math.abs(p.vx)>2.5&&Math.random()<.37)moveParticles(p.x,p.y-1,2,'#e0c4ef');
+ }
+ if(p.x>1740&&p.x<2440){
+   const message=p.chainStep>=3?'JUMP TO THE MOVING LIFT':p.slide?'SLIDE THROUGH · HOLD RIGHT':p.onGround?'RUN + JUMP · HOLD FLIP':'KEEP FLIP HELD TO LAND INVERTED';
+   if(combo.textContent!==message){combo.textContent=message;combo.classList.toggle('good',p.chainStep>=3);}
+ }else if(p.chainStep<4){combo.textContent='RUN · JUMP · FLIP';combo.classList.remove('good');}
+ // Intentionally simple hazard contact; reset preserves last checkpoint progress.
  if(p.onGround&&!p.slide&&((p.x>1110&&p.x<1190)||(p.x>1580&&p.x<1690)||(p.x>2941&&p.x<3031))&&p.y>GROUND-42){
-  p.x=p.cp;p.vx=0;p.y=GROUND;p.vy=0;p.onGround=true;moveParticles(p.x,p.y-24,24,'#ffd9ad');
+   p.x=p.cp;p.vx=0;p.y=GROUND;p.vy=0;p.onGround=true;p.supportId='ground';p.slide=false;p.flipAngle=0;p.chainStep=0;
+   moveParticles(p.x,p.y-24,24,'#ffd9ad');
  }
  if(p.x>790&&p.cp<790)p.cp=790;
  if(p.x>1710&&p.cp<1710)p.cp=1710;
  if(p.x>2450&&p.cp<2450)p.cp=2450;
- if(p.x>3350&&!complete){complete=true;moveParticles(p.x,p.y-70,48,'#fff5b9')}
- p.land=Math.max(0,p.land-.09*dt);
+ if(p.x>3350&&!complete){complete=true;moveParticles(p.x,p.y-70,48,'#fff5b9');}
+ p.land=Math.max(0,p.land-.085*dt);p.slideJump=Math.max(0,p.slideJump-.07*dt);
+ p.chainTicks+=dt;
+ if(p.chainTicks>600&&p.chainStep<4){p.chainStep=0;p.chainTicks=0;}
  particles=particles.filter(o=>o.l>0);for(const o of particles){o.x+=o.vx*dt;o.y+=o.vy*dt;o.vy+=.18*dt;o.l-=dt;}
- const n=p.x<935?0:p.x<1740?1:p.x<2450?2:3;chapter.textContent=zones[n].name;zoneTag.textContent=zones[n].tag;buttons.forEach((b,i)=>b.classList.toggle('selected',i===n));bar.style.width=(100*p.x/LEVEL).toFixed(1)+'%';
- const target=clamp(p.x-W*.40,0,LEVEL-W+140);if(time>=freezeCameraUntil)cam=mix(cam,target,.066*dt);else cam=mix(cam,zones[scene].cam,.11*dt);
+ rings=rings.filter(o=>o.life>0);for(const o of rings){o.life-=.075*dt;o.r+=1.25*dt;}
+ const n=p.x<935?0:p.x<1740?1:p.x<2450?2:3;
+ chapter.textContent=zones[n].name;zoneTag.textContent=zones[n].tag;
+ buttons.forEach((b,i)=>b.classList.toggle('selected',i===n));bar.style.width=(100*p.x/LEVEL).toFixed(1)+'%';
+ const target=clamp(p.x-W*.40,0,LEVEL-W+140);
+ if(time>=freezeCameraUntil)cam=mix(cam,target,.068*dt);else cam=mix(cam,zones[scene].cam,.11*dt);
 }
 let acc=0;function frame(now){const delta=Math.min(50,now-(last||now));last=now;acc+=delta;const ms=1000/60;let budget=0;while(acc>=ms&&budget++<5){step(1);acc-=ms}draw();kip3d.render({x:player.x-cam,screenY:H-player.y,time,dt:Math.min(.05,delta/1000),vx:player.vx,air:!player.onGround,slide:player.slide,flip:!player.onGround&&player.flipTime>0,flipAngle:player.flipAngle,facing:player.facing,land:player.land});requestAnimationFrame(frame)}
 const keymap={arrowleft:'left',a:'left',arrowright:'right',d:'right',' ':'jump',arrowup:'jump',w:'jump',x:'flip'};
@@ -341,6 +410,6 @@ for(const name of ['left','right','jump','flip']){const el=document.getElementBy
  el.addEventListener('pointerdown',e=>set(true,e));el.addEventListener('pointerup',e=>set(false,e));el.addEventListener('pointercancel',e=>set(false,e));el.addEventListener('lostpointercapture',()=>{keys[name]=false});
 }
 buttons.forEach((el,n)=>el.addEventListener('click',()=>setScene(n)));document.getElementById('reset').addEventListener('click',()=>setScene(0));
-const params=new URLSearchParams(location.search);let init=clamp(Number(params.get('scene')||0),0,3);if(!Number.isInteger(init))init=0;setScene(init);if(new URLSearchParams(location.search).has('debug'))window.hopshiftDebug={player,keys,platforms,step,setScene,supportAt,fallingLanding};requestAnimationFrame(frame);
+const params=new URLSearchParams(location.search);let init=clamp(Number(params.get('scene')||0),0,3);if(!Number.isInteger(init))init=0;setScene(init);if(new URLSearchParams(location.search).has('debug'))window.hopshiftDebug={player,keys,platforms,lift,roof:ROOF,step,setScene,supportAt,fallingLanding,allSurfaces,standingClear,landReset};requestAnimationFrame(frame);
 })();
 </script></body></html>
