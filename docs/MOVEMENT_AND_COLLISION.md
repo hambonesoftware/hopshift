@@ -6,7 +6,7 @@
 ## Core rules
 
 1. Character controls are manual left/right, jump, and Flip. No automatic forward motion.
-2. **Tap Flip** = a complete in-air 360-degree somersault; **hold Flip** = stop at 180 degrees to prepare an inverted landing.
+2. **Tap Flip** = a complete **forward head-over-heels in-air 360-degree somersault**; **hold Flip** = stop at 180 degrees to prepare an inverted landing. Turning left/right is **yaw**, distinct from the flip's **local X pitch** after facing direction is applied.
 3. Rotating visuals do not continuously rotate the collision shape; use well-defined stable collider shapes tied to state.
 4. When inverted and landing with adequate horizontal speed, Kip compresses and enters head slide.
 5. Releasing Flip recovers if free overhead; Jump from slide is an immediate cancel jump.
@@ -72,7 +72,7 @@ Because the art cube is roughly 54 × 54, **keep these gameplay colliders center
 
 ## Flip input semantics
 
-- Press X / Flip while airborne to begin a single full visual flip. An ordinary tap completes the turn.
+- Press X / Flip while airborne to begin a single full **forward (head-over-heels) jump somersault**. The 3D model is first oriented by travel-direction yaw and then pitches about its own local X axis; this projects as an end-over-end tumble in the level's side-scrolling plane. It must never be a character left/right turn, sideways cartwheel, or camera-facing rotation. An ordinary tap completes the turn.
 - When the hold threshold is passed (initial suggestion 100 ms), route the active rotation toward the **nearest planned inverted orientation** and settle at 180 degrees. Ensure hold never awkwardly reverses more than needed.
 - Avoid ambiguous multi-rotation behavior: no additional rotations without a new explicit Flip press.
 - While inverted, ground contact can trigger slide; if there is no suitable landing, releasing Flip smoothly returns upright.
@@ -113,7 +113,7 @@ Break the implementation into separable responsibilities: input, player state/ph
 | M02 | Hold Jump | Higher arc |
 | M03 | Jump 80 ms after leaving ledge | Coyote jump succeeds |
 | M04 | Press Jump 90 ms before landing | Buffered jump fires |
-| F01 | Tap Flip midair | Complete full somersault, upright pose |
+| F01 | Tap Flip midair | Complete forward **head-over-heels pitch** somersault in traveling direction, upright pose; not side rotation |
 | F02 | Hold Flip midair | Invert and hold feet-up pose |
 | F03 | Release Flip before landing | Return upright without unintended slide |
 | S01 | Land inverted at 180 px/s | Slide starts; no snap or clipping |
