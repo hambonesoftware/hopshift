@@ -2,13 +2,21 @@
 
 **HopShift** is a character-driven 2D precision platformer built around **Kip**, a living cube with a face on his front, little arms and legs, and a signature **flip → upside-down head slide → jump recovery** move. The design combines deliberate, Mario-like character control with readable, Geometry Dash-like obstacle courses. It is **not** an automatic runner or a Sonic-style momentum game.
 
+## Preview the redesigned character (Kip 2.0)
+
+**[Open the interactive Kip 2.0 Character Lab](https://hambonesoftware.github.io/hopshift/character-lab.html)**
+
+The character lab uses **real Canvas 2D code** (no bitmap characters or external assets) to render Kip as a softly rounded **anthropomorphic cube**, with a face on the front, short arms/legs, and expressive poses. It includes animated **idle, run, jump, full flip, upside-down head-slide, and recovery** showcases, along with three selectable body colors. The controls are interactive pose demonstrations, **not yet a finished platformer physics/collision system**. The head slide remains a visual prototype while its actual collision mechanics are tracked in M3.
+
+The original game prototype remains available separately on the main URL.
+
 ## Play the current prototype
 
 **https://hambonesoftware.github.io/hopshift/**
 
 The existing playable `index.html` is **Kip 1.0, the original adventurer/scarf character showcase**. It runs without external dependencies or a build step. It has an animated character and portrait, keyboard/touch movement, variable-height jumping, basic game feel, particles, and parallax scenery.
 
-**Important:** The approved cube character and head-slide mechanic are **planned, not yet playable**. The prototype will be upgraded milestone by milestone.
+**Important:** The new cube design has an interactive animation lab. The main game's cube replacement and head-slide physics are **not yet implemented**; those changes remain tracked as milestones.
 
 ## New character direction
 
