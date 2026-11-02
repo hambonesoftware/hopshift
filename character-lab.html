@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#11152c">
+<title>Kip 2.0 — HopShift Character Lab</title>
+<style>
+:root{--navy:#14172d;--ink:#e9e9f4;--muted:#a1a5c3;--border:#343a60;--lime:#c8fd83;--cyan:#74e9d7}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:radial-gradient(ellipse at 52% -30%,#414575 0%,#161b36 47%,#101426 100%);font-family:ui-rounded,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink)}
+body{overflow-x:hidden}button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visible{outline:3px solid #e4ff89;outline-offset:3px}
+.shell{max-width:1380px;margin:auto;padding:25px 25px 50px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 22px}
+.mark{display:flex;align-items:center;gap:12px;font-weight:1000;font-size:18px;letter-spacing:.09em}
+.logo{height:34px;width:34px;border-radius:10px;background:linear-gradient(145deg,#ffe68c,#ff9f70);box-shadow:inset 0 2px 1px #fffa,0 5px 15px #f8a45f44;transform:rotate(-8deg);position:relative}
+.logo:before,.logo:after{content:"";position:absolute;width:5px;height:8px;background:#302b64;border-radius:100%;top:12px}.logo:before{left:10px}.logo:after{left:20px}
+.top .version{font-size:11px;letter-spacing:.2em;color:#c5c8e1;border:1px solid #454b70;border-radius:99px;padding:9px 15px;font-weight:750}
+.hero-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin:0 0 25px;flex-wrap:wrap}
+.eyebrow{color:var(--lime);letter-spacing:.22em;font-size:11px;font-weight:850;margin:0 0 7px}
+h1{font-size:clamp(38px,5.2vw,69px);letter-spacing:-.07em;line-height:.99;margin:0;font-weight:1000}
+h1 em{font-style:normal;color:#ffc67a}
+.subtitle{color:#abb3d2;font-size:14px;line-height:1.7;max-width:380px;margin:0}
+.panels{display:grid;grid-template-columns:minmax(0,1.47fr) minmax(0,.9fr);gap:18px}
+.panel{border:1px solid #41466c;border-radius:25px;overflow:hidden;min-width:0;background:#262a49;box-shadow:0 19px 65px #05071b5e}
+.panel-label{height:45px;display:flex;align-items:center;justify-content:space-between;padding:0 19px;background:#242945;font-size:10px;letter-spacing:.19em;font-weight:850;color:#d3d5e8}
+.pill{font-size:9px;border:1px solid #687097;border-radius:30px;letter-spacing:.08em;color:#abffdb;padding:5px 9px}
+.canvas-wrap{position:relative}.canvas-wrap canvas{width:100%;height:auto;display:block}
+.stage-hint{position:absolute;left:17px;bottom:17px;display:flex;gap:7px;flex-wrap:wrap;pointer-events:none}
+.stage-hint span{display:inline-flex;align-items:center;justify-content:center;min-width:30px;padding:6px 8px;background:#20365bc9;color:#fff;font-size:10px;font-weight:850;border:1px solid #ffffff63;border-radius:8px;backdrop-filter:blur(5px)}
+.studio{position:relative}.studio canvas{width:100%;height:auto;display:block}
+.studio-badge{position:absolute;top:18px;left:18px;color:#fff8dd;font-size:10px;letter-spacing:.16em;font-weight:800}
+.palette{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 17px;background:#222743;border-top:1px solid #4d5577;font-size:11px;font-weight:780;letter-spacing:.1em;color:#b6c5e9}
+.swatches{display:flex;gap:9px}.swatch{width:27px;height:27px;padding:0;border-radius:50%;border:3px solid #242945;box-shadow:0 0 0 1px #545b7b}.swatch[aria-pressed="true"]{box-shadow:0 0 0 2px white,0 0 18px #ffffff22}
+.swatch.gold{background:#ffc569}.swatch.blue{background:#6bcce4}.swatch.pink{background:#ff94bb}
+.actions{margin-top:19px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.action{border:1px solid #565b83;background:#252a49;color:#e3e6fc;padding:12px 17px;border-radius:12px;letter-spacing:.02em;font-weight:850;font-size:12px;transition:background .15s,transform .15s;box-shadow:0 4px 0 #11152a}
+.action:hover{background:#343c61}.action:active{transform:translateY(3px);box-shadow:0 1px 0 #11152a}
+.action.active{color:#18223c;background:#caff8a;border-color:#daffa6;box-shadow:0 4px 0 #6ca342}
+.action.slide.active{color:#221d42;background:#9deafa;border-color:#dafcff;box-shadow:0 4px 0 #568ab9}
+.action.flip.active{color:#251c3a;background:#ffca7c;border-color:#ffe4b3;box-shadow:0 4px 0 #bb8252}
+.info{margin:20px 0 14px;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.info h2{font-size:21px;letter-spacing:-.04em;margin:0}.info p{margin:0;color:#a4aeca;font-size:12px}
+.poses{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.pose{background:#252a49;border:1px solid #40476d;border-radius:17px;overflow:hidden;min-width:0}
+.pose canvas{width:100%;height:auto;display:block}
+.pose .text{display:flex;justify-content:space-between;align-items:center;padding:9px 13px 12px;background:#222742;font-size:12px;font-weight:850}
+.pose .text small{font-size:9px;color:#acb3d0;font-weight:750;letter-spacing:.04em}
+.footer{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;color:#8e9abb;font-size:11px;margin-top:17px;line-height:1.6}
+.footer strong{color:#c5edaa}
+@media(max-width:850px){.shell{padding:17px 13px 35px}.panels{grid-template-columns:1fr}.studio canvas{max-height:400px;object-fit:contain;background:#202642}.poses{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-head{gap:10px}.subtitle{max-width:600px}.top{margin-bottom:25px}}
+@media(max-width:430px){.shell{padding-left:9px;padding-right:9px}.top .version{letter-spacing:.05em}.action{padding:13px 12px}.panels{gap:12px}.stage-hint{display:none}.studio canvas{max-height:350px}}
+</style>
+</head>
+<body>
+<main class="shell">
+  <header class="top"><div class="mark"><div class="logo"></div> HOPSHIFT</div><div class="version">CHARACTER LAB · V2.0</div></header>
+  <section class="hero-head">
+    <div><p class="eyebrow">THE NEXT GENERATION OF KIP</p><h1>Small cube.<br><em>Big tricks.</em></h1></div>
+    <p class="subtitle">Our tiny stunt hero has a big personality. Short arms, little feet, a face right on the front — and the confidence to land on his head.</p>
+  </section>
+  <section class="panels" aria-label="Animated character previews">
+    <article class="panel"><div class="panel-label"><span>01 / PLATFORM TEST SCENE</span><span class="pill">LIVE CANVAS</span></div><div class="canvas-wrap"><canvas id="world" width="860" height="530" aria-label="Animated platformer scene with cube character Kip"></canvas><div class="stage-hint"><span>←</span><span>→</span><span>SPACE</span><span>X FLIP</span><span>↓ SLIDE</span></div></div></article>
+    <article class="panel"><div class="panel-label"><span>02 / CHARACTER CLOSE-UP</span><span class="pill">RIGGED VECTOR ART</span></div><div class="studio"><canvas id="portrait" width="515" height="530" aria-label="Close-up animated Kip cube character"></canvas><div class="studio-badge">MEET KIP 2.0</div></div><div class="palette"><span>TRY A COLOR</span><div class="swatches"><button class="swatch gold" data-color="gold" aria-label="Gold cube" aria-pressed="true"></button><button class="swatch blue" data-color="blue" aria-label="Blue cube" aria-pressed="false"></button><button class="swatch pink" data-color="pink" aria-label="Pink cube" aria-pressed="false"></button></div></div></article>
+  </section>
+  <nav class="actions" aria-label="Character animation controls"><button class="action active" data-mode="idle">✦ Idle</button><button class="action" data-mode="run">↝ Run</button><button class="action" data-mode="jump">↗ Jump</button><button class="action flip" data-mode="flip">⤾ Full Flip</button><button class="action slide" data-mode="slide">⇢ Head Slide</button><button class="action" data-mode="recover">⤴ Recover</button></nav>
+  <section class="info"><h2>Every side has personality.</h2><p>Real code · Canvas 2D · no image assets</p></section>
+  <section class="poses" aria-label="Four character poses">
+    <div class="pose"><canvas id="poseIdle" width="270" height="205"></canvas><div class="text">Hello! <small>IDLE</small></div></div>
+    <div class="pose"><canvas id="poseRun" width="270" height="205"></canvas><div class="text">Little legs <small>RUN</small></div></div>
+    <div class="pose"><canvas id="poseFlip" width="270" height="205"></canvas><div class="text">Airborne <small>FLIP</small></div></div>
+    <div class="pose"><canvas id="poseSlide" width="270" height="205"></canvas><div class="text">Head first! <small>SLIDE</small></div></div>
+  </section>
+  <footer class="footer"><span><strong>Designed for HopShift</strong> · A precise platformer, not an auto-runner</span><span>Preview only — animation study, not full game physics</span></footer>
+</main>
+<script>
+'use strict';
+// HopShift — Kip 2.0. Self-contained, vector-rendered character studio.
+// Every visible part of Kip is drawn procedurally in Canvas 2D.
+const canvases={world:document.getElementById('world'),portrait:document.getElementById('portrait'),idle:document.getElementById('poseIdle'),run:document.getElementById('poseRun'),flip:document.getElementById('poseFlip'),slide:document.getElementById('poseSlide')};
+const c={}; for(const [k,v] of Object.entries(canvases))c[k]=v.getContext('2d');
+const T=Math.PI*2;const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));const lerp=(a,b,t)=>a+(b-a)*t;const smooth=t=>{t=clamp(t,0,1);return t*t*(3-2*t)};
+const palettes={gold:{main:'#ffc461',top:'#ffeab1',low:'#ef8a48',side:'#cd6c43',cheek:'#e8756a',rim:'#fff4c8',edge:'#47365a'},blue:{main:'#64d3e4',top:'#b2f7fc',low:'#358ec6',side:'#2b7fa6',cheek:'#f69eb3',rim:'#d8ffff',edge:'#30436b'},pink:{main:'#ff97bc',top:'#ffe0e5',low:'#e46399',side:'#b94885',cheek:'#ffce80',rim:'#ffe7e9',edge:'#51345d'}};
+let color='gold', mode='idle', since=performance.now()/1000, clock=0, direction=1;
+const held={left:false,right:false,jump:false,flip:false,slide:false};let stageX=405;
+function rr(g,x,y,w,h,r){g.beginPath();g.roundRect(x,y,w,h,r)}
+function fillStroke(g,fill,stroke,width=1){g.fillStyle=fill;g.fill();if(stroke){g.lineWidth=width;g.strokeStyle=stroke;g.stroke()}}
+function circle(g,x,y,r,fill,stroke,sw=1){g.beginPath();g.arc(x,y,r,0,T);fillStroke(g,fill,stroke,sw)}
+function ellipse(g,x,y,rx,ry,fill,stroke,sw=1){g.beginPath();g.ellipse(x,y,rx,ry,0,0,T);fillStroke(g,fill,stroke,sw)}
+function line(g,points,stroke,w=2){g.beginPath();points.forEach(([x,y],i)=>i?g.lineTo(x,y):g.moveTo(x,y));g.lineCap='round';g.lineJoin='round';g.lineWidth=w;g.strokeStyle=stroke;g.stroke()}
+function gradient(g,x,y,r,colors){const k=g.createLinearGradient(x,y,x+r,y+r);for(const [stop,col]of colors)k.addColorStop(stop,col);return k}
+function face(g,kind,t,p){
+  g.save();const blink=kind==='idle' && Math.sin(t*1.7)>0.996 ? .06:1;
+  const eyes=kind==='slide'?[-29,19]:[-25,25];
+  for(const [i,x] of eyes.entries()){
+    g.save();g.translate(x,-7);g.scale(1,blink);
+    ellipse(g,0,0,15.7,21,'#fffdf7',p.edge,4);
+    ellipse(g,(kind==='run'?5:kind==='slide'?5:0),2,8.7,12,'#356d97',null);
+    ellipse(g,(kind==='run'?7:kind==='slide'?7:2),3,5.3,8,'#1a284f',null);
+    circle(g,-3,-5,4.3,'#fff',null);circle(g,6,8,2,'#d5f9ff',null);
+    g.restore();
+  }
+  g.lineWidth=4.6;g.lineCap='round';g.strokeStyle=p.edge;
+  for(let i=0;i<2;i++){
+    const x=i?25:-25;const y=kind==='slide'?(i?-39:-32):kind==='flip'?-41:-39;
+    g.beginPath();g.moveTo(x-10,y+(kind==='run'?-2:0));g.quadraticCurveTo(x,y-(kind==='jump'?9:kind==='run'?7:kind==='slide'?3:0),x+10,y-(kind==='jump'?4:0));g.stroke();
+  }
+  // Gentle cheeks and a dark expressive mouth on the front face.
+  ellipse(g,-44,24,9,5.4,p.cheek,null);ellipse(g,44,24,9,5.4,p.cheek,null);
+  if(kind==='jump'||kind==='flip'){
+    ellipse(g,0,33,10,13,p.edge,null);ellipse(g,0,38,5.4,5.2,'#ec7ca0',null);
+  }else if(kind==='slide'){
+    g.beginPath();g.moveTo(-13,29);g.quadraticCurveTo(5,46,21,25);g.lineWidth=5;g.strokeStyle=p.edge;g.stroke();
+    g.beginPath();g.moveTo(3,34);g.quadraticCurveTo(11,36,17,30);g.lineWidth=3;g.strokeStyle='#fff3d5';g.stroke();
+  }else{
+    g.beginPath();g.moveTo(-13,30);g.quadraticCurveTo(0,45,15,29);g.lineWidth=5.1;g.strokeStyle=p.edge;g.stroke();
+  }
+  g.restore();
+}
+function arm(g,side,kind,t,p){
+  const x=side*57,phase=Math.sin(t*13+(side>0?Math.PI:0));
+  g.save();g.translate(x,14);let swing=kind==='run'?phase*.58:kind==='jump'?-.7:kind==='flip'?-1.05:kind==='slide'?-.45:Math.sin(t*2)*.11;
+  g.rotate(side*swing);g.scale(side,1);
+  // Tiny plush sleeve/arm; outline keeps the limb legible when shrunk.
+  g.beginPath();g.moveTo(0,-8);g.quadraticCurveTo(17,-8,22,3);g.quadraticCurveTo(31,18,22,24);g.quadraticCurveTo(11,24,6,11);g.closePath();fillStroke(g,'#4aa7ae',p.edge,4.2);
+  g.beginPath();g.ellipse(22,24,12,11,-.18,0,T);fillStroke(g,'#f9f7ec',p.edge,3.7);
+  g.beginPath();g.moveTo(15,22);g.quadraticCurveTo(24,17,31,21);g.strokeStyle='#ffffffa0';g.lineWidth=2;g.stroke();
+  g.restore();
+}
+function leg(g,side,kind,t,p){
+  const x=side*29,phase=Math.sin(t*16+(side>0?0:Math.PI));
+  g.save();g.translate(x,53);let sw=kind==='run'?phase*.5:kind==='jump'?.22:kind==='flip'?-.55:kind==='slide'?-.32:0;
+  g.rotate(sw);
+  rr(g,-8,-1,16,20,6);fillStroke(g,'#667cba',p.edge,3.6);
+  const shift=kind==='run'?phase*3:0;
+  rr(g,-12+shift,12,28,15,7);fillStroke(g,gradient(g,-15,12,36,[[0,'#88aaff'],[.7,'#4c64b7'],[1,'#2c408a']]),p.edge,3.8);
+  g.beginPath();g.moveTo(-6+shift,15);g.lineTo(10+shift,15);g.strokeStyle='#ddf0ff';g.lineWidth=2.6;g.stroke();
+  g.restore();
+}
+function kipPose(kind,t){
+  const p={angle:0,sx:1,sy:1,dy:0,bodyYOffset:0,face:kind,air:0};
+  if(kind==='idle'){p.dy=Math.sin(t*2.5)*3;p.sy=1+Math.sin(t*2.5)*.014;p.sx=1-Math.sin(t*2.5)*.008}
+  if(kind==='run'){p.dy=-Math.abs(Math.sin(t*16))*5;p.angle=Math.sin(t*16)*.038;p.sx=1.035;p.sy=.974}
+  if(kind==='jump'){const k=(t*.95)%1;p.air=43+110*Math.sin(Math.PI*k);p.dy=-p.air;p.sx=.96;p.sy=1.07;p.face='jump';}
+  if(kind==='flip'){
+    const k=(t*.74)%1;
+    p.angle=Math.PI*2*smooth(k);
+    p.air=85+116*Math.sin(Math.PI*k);p.dy=-p.air;
+    p.sx=1.01;p.sy=.99;p.face='flip';
+  }
+  if(kind==='slide'){
+    p.angle=Math.PI;p.sx=1.23;p.sy=.63;p.face='slide';
+    p.dy=30+Math.sin(t*19)*.8;
+  }
+  if(kind==='recover'){
+    const k=(t*1.2)%1;
+    p.angle=Math.PI*(1-smooth(k));p.sx=1.22-.22*smooth(k);p.sy=.65+.35*smooth(k);
+    p.dy=30*(1-smooth(k))-16*Math.sin(Math.PI*k);p.face=k<.5?'slide':'idle';
+  }
+  return p;
+}
+function drawKip(g,x,ground,s,kind,t,opts={}){
+  const p=palettes[color];const pose=kipPose(kind,t);if(typeof opts.angle==='number')pose.angle=opts.angle;
+  if(typeof opts.dy==='number')pose.dy=opts.dy;
+  g.save();g.translate(x,ground-81*s+pose.dy*s);g.scale((opts.direction||direction)*s,s);g.rotate(pose.angle);g.scale(pose.sx,pose.sy);
+  // Rear limbs draw beneath the body front. Every feature rotates with the cube.
+  for(const side of [-1,1])leg(g,side,kind,t,p);
+  arm(g,-1,kind,t,p);arm(g,1,kind,t,p);
+  // Squarish body with dimensional edge; outline is deliberately strong at game scale.
+  g.save();g.shadowColor='#251e4877';g.shadowBlur=16;g.shadowOffsetY=5;
+  rr(g,-62,-61,124,123,19);
+  fillStroke(g,gradient(g,-58,-61,120,[[0,p.top],[.22,p.main],[.76,p.main],[1,p.low]]),p.edge,5.5);g.restore();
+  // Right-facing dimensional sliver / beveled side, not a separate humanoid torso.
+  g.beginPath();g.moveTo(52,-47);g.quadraticCurveTo(60,-45,60,-33);g.lineTo(60,43);g.quadraticCurveTo(59,53,50,57);g.quadraticCurveTo(57,45,55,32);g.lineTo(55,-30);g.closePath();g.fillStyle=p.side;g.globalAlpha=.28;g.fill();g.globalAlpha=1;
+  g.save();rr(g,-53,-53,106,105,16);g.clip();
+  const gleam=gradient(g,-55,-57,124,[[0,'#ffffffbd'],[.16,'#ffffff20'],[.48,'#ffffff00'],[1,'#ffffff00']]);g.fillStyle=gleam;g.beginPath();g.ellipse(-18,-49,92,40,-.2,0,T);g.fill();
+  // Small accent flecks like toy finish, but face remains dominant.
+  ellipse(g,-49,-36,3,8,'#ffffff75',null);
+  ellipse(g,49,43,2.8,6,'#ffffff37',null);
+  face(g,pose.face,t,p);
+  g.restore();
+  g.beginPath();g.moveTo(-43,-54);g.quadraticCurveTo(-52,-54,-54,-44);g.strokeStyle=p.rim;g.globalAlpha=.9;g.lineCap='round';g.lineWidth=3.5;g.stroke();g.globalAlpha=1;
+  g.restore();
+}
+function drawShadow(g,x,y,scale,kind,t){const p=kipPose(kind,t);const h=Math.abs(p.air);g.save();g.globalAlpha=clamp(.32-h/600,.09,.34);ellipse(g,x,y+4,68*scale+h*.10,12*scale,'#29305c');g.globalAlpha=.10;ellipse(g,x,y+3,89*scale+h*.11,19*scale,'#29305c');g.restore()}
+function drawWorld(g,t){
+  const W=860,H=530;g.clearRect(0,0,W,H);
+  const sky=g.createLinearGradient(0,0,0,H);sky.addColorStop(0,'#83b9ee');sky.addColorStop(.57,'#c8e6ef');sky.addColorStop(1,'#fff0c4');g.fillStyle=sky;g.fillRect(0,0,W,H);
+  circle(g,742,96,53,'#ffecac');circle(g,742,96,78,'#ffedb740');
+  // Faint clouds and distant hills for a playful platformer atmosphere.
+  for(const q of [[97,101,1.3],[303,156,.75],[560,77,.9],[806,174,.7]]){const[x,y,s]=q;g.save();g.globalAlpha=.65;ellipse(g,x,y,59*s,19*s,'#f9fbff');ellipse(g,x+27*s,y-11*s,35*s,22*s,'#f9fbff');ellipse(g,x-31*s,y-7*s,39*s,20*s,'#f9fbff');g.restore()}
+  g.beginPath();g.moveTo(0,350);g.bezierCurveTo(110,215,172,290,244,340);g.bezierCurveTo(326,208,443,225,500,344);g.bezierCurveTo(620,231,680,245,860,337);g.lineTo(860,480);g.lineTo(0,480);g.closePath();g.fillStyle='#96c9b8';g.fill();
+  g.beginPath();g.moveTo(0,396);g.bezierCurveTo(124,324,230,379,311,390);g.bezierCurveTo(438,284,575,372,651,382);g.bezierCurveTo(742,320,814,333,860,373);g.lineTo(860,480);g.lineTo(0,480);g.closePath();g.fillStyle='#70af9b';g.fill();
+  for(let i=0;i<16;i++){let x=i*67+14;let y=365+(i%3)*16;circle(g,x,y,9+(i%3)*3,'#4f9b83');circle(g,x+11,y+3,10,'#5ca68c')}
+  // Floating, game-like orb and a small platform show the scale of the character.
+  g.save();g.shadowColor='#80fce8';g.shadowBlur=23;circle(g,700,290+Math.sin(t*2)*7,22,'#82ffe1','#ecfff6',4);g.restore();circle(g,700,290+Math.sin(t*2)*7,8,'#dfffee');
+  rr(g,638,359,140,22,7);fillStroke(g,'#8277b8','#3e456c',4);rr(g,646,353,124,11,5);g.fillStyle='#c9fce7';g.fill();
+  // Foreground ground tiles, geometry dash-like but warm and readable.
+  g.fillStyle='#4c597a';g.fillRect(0,457,860,73);
+  for(let i=0;i<17;i++){
+    let x=i*52;rr(g,x+1,455,50,69,4);fillStroke(g,i%2?'#67729e':'#7581aa','#3c476d',2);
+    rr(g,x+5,464,42,11,4);g.fillStyle='#d6c5a1';g.globalAlpha=.3;g.fill();g.globalAlpha=1;
+  }
+  rr(g,-3,445,866,16,5);fillStroke(g,'#b4e7c1','#3d635f',3);
+  g.fillStyle='#e4ffe8';g.fillRect(0,446,860,4);
+  for(let i=0;i<26;i++){const x=i*38+11;line(g,[[x,448],[x+6,439],[x+9,448]],'#5eae8e',1.5)}
+  // Distant low tunnel as a hint of the core gimmick.
+  rr(g,78,335,183,20,8);fillStroke(g,'#8573af','#42456b',4);
+  rr(g,85,359,17,87,5);fillStroke(g,'#7786a6','#454a78',3);rr(g,237,359,17,87,5);fillStroke(g,'#7786a6','#454a78',3);
+  for(let i=0;i<3;i++)circle(g,132+i*49,345,3,'#ffe2a5');
+  drawShadow(g,stageX,449,1.13,mode,t);
+  drawKip(g,stageX,445,1.13,mode,t);
+  if(mode==='slide'){
+    const px=stageX-77;for(let i=0;i<5;i++){
+      const dx=((t*135+i*29)%125);ellipse(g,px-dx,421+Math.sin(i+t*7)*5,4+i%3,2.5,'#e2f8d7a0');
+    }
+  }
+  g.save();g.font='850 11px ui-rounded,system-ui';g.fillStyle='#344565';g.fillText('THE HOPSHIFT PLAYGROUND',27,38);g.restore();
+}
+function drawPortrait(g,t){
+ const W=515,H=530;g.clearRect(0,0,W,H);const grad=g.createRadialGradient(249,194,5,249,243,380);grad.addColorStop(0,'#5d668f');grad.addColorStop(.5,'#313b66');grad.addColorStop(1,'#202640');g.fillStyle=grad;g.fillRect(0,0,W,H);
+ for(let i=0;i<10;i++){g.beginPath();g.ellipse(260,264,95+i*29,95+i*29,0,0,T);g.strokeStyle='#b5c6ff0f';g.lineWidth=2;g.stroke()}
+ circle(g,263,215,166,'#ffffff0b');
+ // A halo rim, stage shadow and authentic 2D rig — not bitmap artwork.
+ g.save();g.strokeStyle='#baf8d11f';g.lineWidth=2;g.setLineDash([6,9]);g.beginPath();g.arc(258,226,189,0,T);g.stroke();g.setLineDash([]);g.restore();
+ drawShadow(g,257,449,1.8,mode,t);
+ const portraitAir=mode==='flip'?-12-33*Math.sin(Math.PI*((t*.74)%1)):mode==='jump'?-12-43*Math.sin(Math.PI*((t*.95)%1)):undefined;
+ drawKip(g,257,435,1.91,mode,t,{dy:portraitAir});
+ g.font='900 38px ui-rounded,system-ui';g.fillStyle='#ffffffeb';g.fillText('KIP',24,475);
+ g.font='800 11px ui-rounded,system-ui';g.letterSpacing='2px';g.fillStyle='#b0f8ce';g.fillText('LIVING CUBE · STUNT HERO',24,497);g.letterSpacing='0px';
+ g.font='750 11px ui-rounded,system-ui';g.fillStyle='#d6d9f8';g.textAlign='right';g.fillText('2.0 / MODEL STUDY',492,482);g.textAlign='left';
+}
+function miniCanvas(g,kind,t){const W=270,H=205;g.clearRect(0,0,W,H);const b=g.createLinearGradient(0,0,0,H);b.addColorStop(0,'#494d7a');b.addColorStop(1,'#323b67');g.fillStyle=b;g.fillRect(0,0,W,H);
+ circle(g,135,92,79,'#ffffff0d');
+ let k=kind==='flip'?.33:t;if(kind==='idle')k=t;
+ const ground=kind==='slide'?167:180;
+ drawShadow(g,135,180,.9,kind,k);
+ drawKip(g,135,ground,kind==='slide'? .84:.9,kind,k,kind==='flip'?{direction:1,dy:-17,angle:Math.PI*.66}:{direction:1});
+ g.fillStyle='#ccebc9';rr(g,25,183,220,4,2);g.fill();
+}
+function setMode(m){mode=m;since=performance.now()/1000;for(const b of document.querySelectorAll('[data-mode]')){const active=b.dataset.mode===m;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))}}
+for(const b of document.querySelectorAll('[data-mode]'))b.addEventListener('click',()=>setMode(b.dataset.mode));
+for(const b of document.querySelectorAll('[data-color]'))b.addEventListener('click',()=>{color=b.dataset.color;for(const k of document.querySelectorAll('[data-color]'))k.setAttribute('aria-pressed',String(k===b))});
+window.addEventListener('keydown',e=>{
+ const k=e.key.toLowerCase();if(['arrowleft','arrowright','arrowdown','arrowup',' ','x','a','d','w','s'].includes(k))e.preventDefault();
+ if(k==='arrowleft'||k==='a'){held.left=true;direction=-1;setMode('run')}
+ if(k==='arrowright'||k==='d'){held.right=true;direction=1;setMode('run')}
+ if(k===' '||k==='w'||k==='arrowup'){held.jump=true;setMode('jump')}
+ if(k==='x'){held.flip=true;setMode('flip')}
+ if(k==='arrowdown'||k==='s'){held.slide=true;setMode('slide')}
+});
+window.addEventListener('keyup',e=>{
+ const k=e.key.toLowerCase();if(k==='arrowleft'||k==='a')held.left=false;
+ if(k==='arrowright'||k==='d')held.right=false;
+ if(k===' '||k==='w'||k==='arrowup')held.jump=false;
+ if(k==='x')held.flip=false;if(k==='arrowdown'||k==='s')held.slide=false;
+ if(!Object.values(held).some(Boolean)&&mode==='run')setMode('idle');
+});
+window.addEventListener('blur',()=>{for(const k of Object.keys(held))held[k]=false;if(mode==='run')setMode('idle')});
+let previous=performance.now()/1000;
+function frame(ms){const now=ms/1000;const dt=clamp(now-previous,0,.045);previous=now;clock+=dt;const t=now-since;
+ if(mode==='run'){stageX=clamp(stageX+direction*172*dt,311,569)}
+ if(mode==='slide')stageX=clamp(stageX+direction*60*dt,311,569);
+ drawWorld(c.world,t);drawPortrait(c.portrait,t);miniCanvas(c.idle,'idle',clock);miniCanvas(c.run,'run',clock);miniCanvas(c.flip,'flip',.37);miniCanvas(c.slide,'slide',clock);
+ requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
