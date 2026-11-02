@@ -2,6 +2,14 @@
 
 **HopShift** is a character-driven 2D precision platformer built around **Kip**, a living cube with a face on his front, little arms and legs, and a signature **flip → upside-down head slide → jump recovery** move. The design combines deliberate, Mario-like character control with readable, Geometry Dash-like obstacle courses. It is **not** an automatic runner or a Sonic-style momentum game.
 
+## Preview the first course design
+
+**[Explore Clockwork Canopy — an interactive course concept](https://hambonesoftware.github.io/hopshift/course-concept.html)**
+
+A standalone, code-rendered 2.5D course study combining a friendly Mario-style garden, Geometry Dash-like precision machinery, a low inverted head-slide tunnel, and a colorful finish. It includes four scene jump buttons and simple keyboard/mobile movement, jumping, and inversion controls.
+
+**Status:** Course art and mechanic visualization, **not a finished playable level**. The character drawn in this 2D Canvas stage is a simplified placeholder; the canonical **true 3D WebGL Kip** from `character-3d.html` has not been integrated with the course. Main `index.html` remains unchanged.
+
 ## Preview the 3D character (canonical)
 
 **[Launch Kip's 3D Character Studio](https://hambonesoftware.github.io/hopshift/character-3d.html)**
