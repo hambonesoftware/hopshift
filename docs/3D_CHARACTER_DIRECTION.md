@@ -40,9 +40,12 @@ Existing pages use Canvas 2D. To implement the approved model, move character vi
 4. Upon release, character may ease to a partly camera-facing idle, or stay briefly side-facing for state continuity. Test both for readability.
 5. If input reverses, rotate through the short arc with squash/twist anticipation; never visually mirror a flat image.
 
-## Flip and head slide
+## Forward somersault and head slide
 
-- Flips are true 3D transforms of the entire cube and its attached face and limbs.
+- **Flip is an airborne head-over-heels forward somersault**, initiated during a jump. Kip's cube tumbles end-over-end in the 2D gameplay plane, *in the direction he is traveling*.
+- **Direction turning is separate:** running left/right turns Kip about the vertical **yaw (local Y) axis** to reveal his side. A forward jumping flip rotates about his **local left–right pitch (X) axis after yaw**. Never use yaw as the flip, and never roll sideways around local Z.
+- A forward somersault goes from upright to upside-down and back upright (360°) within the jump arc; a held flip can stop inverted at 180° for a head-first landing.
+- The face and all limbs inherit the same 3D pitch rotation as the cube; Kip must visibly tumble over his head and feet, not rotate like a coin or cartwheel.
 - During an inverted landing, the top of the 3D cube touches the terrain.
 - When sliding, the cube body squashes vertically and widens a little, with stubby feet pointing upward and hands trailing.
 - Gameplay collision changes to a stable lower slide profile, with a safe ceiling-clearance check before returning upright.
@@ -54,6 +57,8 @@ Existing pages use Canvas 2D. To implement the approved model, move character vi
 - [Earlier 2D character lab](../character-lab.html): historical exploration only; superseded as the canonical direction.
 - [Movement engineering contract](MOVEMENT_AND_COLLISION.md)
 - [Milestone roadmap](ROADMAP.md)
+
+**Flip animation acceptance criterion:** Select Forward jump flip. Kip visibly rises from the ground, pitches **head over heels** while airborne, and finishes upright just before landing. Changing direction makes the flip carry toward the new travel direction without changing from pitch into side roll.
 
 **Acceptance criterion for M1:** At normal gameplay size, press Right and visibly see the full cube yaw toward the right, exposing its side geometry, while legs run, then press Left and see real turning toward the left. This must not be a 2D sprite mirrored or skewed.
 
