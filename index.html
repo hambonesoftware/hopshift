@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Kip — HopShift Character Prototype</title>
+<style>
+  :root{color-scheme:dark;--ink:#151b38;--violet:#665bdf;--cream:#fff5dc;--mint:#64f5d5;--yellow:#ffd06b}
+  *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#11162e;color:#f9f5ed;font-family:ui-rounded,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+  body{overflow-x:hidden;background:radial-gradient(circle at 18% 1%,#2d315f 0%,transparent 38%),radial-gradient(circle at 92% 80%,#182f42 0%,transparent 45%),#10152b}
+  .shell{width:min(1400px,calc(100% - 36px));margin:0 auto;padding:27px 0 32px}
+  header{display:flex;justify-content:space-between;align-items:center;gap:16px;margin:0 0 22px}
+  .eyebrow{font-size:10px;letter-spacing:.27em;font-weight:900;color:#7df5cf}
+  h1{font-size:clamp(30px,4.6vw,58px);letter-spacing:-.065em;margin:2px 0 0;font-weight:950;line-height:1.05}
+  h1 span{color:#ffce76}.tagline{margin-top:8px;font-size:13px;color:#bac3db;max-width:540px;line-height:1.5}
+  .brand-mark{border:1px solid #465170;padding:10px 13px;border-radius:13px;color:#d3d5ed;font-weight:900;letter-spacing:.15em;font-size:11px;white-space:nowrap}
+  .gallery{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(290px,.77fr);gap:18px;align-items:stretch}
+  .panel{border:1px solid #394363;border-radius:22px;background:#202842;overflow:hidden;box-shadow:0 26px 65px #040a1d66;min-width:0}
+  .panel-top{height:48px;padding:0 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;background:#202742}
+  .panel-title{font-size:11px;letter-spacing:.15em;font-weight:900;color:#dce2f5}
+  .status{display:flex;align-items:center;gap:6px;color:#aebfd5;font-size:10px;font-weight:850;letter-spacing:.1em}
+  .status i{width:7px;height:7px;border-radius:50%;background:#65f1b6;box-shadow:0 0 11px #65f1b6}
+  .stage-wrap{position:relative;overflow:hidden;background:#8cd9ee}
+  canvas{display:block;width:100%;height:auto;touch-action:none}
+  #scene{aspect-ratio:960 / 515}
+  #portrait{aspect-ratio:330 / 410;background:#e3b887}
+  .scene-caption{position:absolute;left:16px;top:16px;background:#182342b5;border:1px solid #ffffff60;border-radius:11px;backdrop-filter:blur(9px);padding:9px 12px;pointer-events:none}
+  .scene-caption b{display:block;font-size:12px;letter-spacing:.04em}.scene-caption small{display:block;color:#d1e4ee;margin-top:2px;font-size:10px}
+  .controls{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px;background:#202742;border-top:1px solid #404a66}
+  .keys{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .control{min-width:52px;min-height:47px;display:grid;place-items:center;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:none;border-radius:13px;border:1px solid #627394;background:linear-gradient(#384466,#293450);color:#fff;font:900 18px system-ui;box-shadow:inset 0 1px #ffffff28,0 4px 0 #141c33;transition:transform .07s,background .07s}
+  .control:active,.control.active{transform:translateY(3px);box-shadow:inset 0 2px 4px #11162c;background:#485579}
+  .jump{width:110px;border-color:#ffb36b;background:linear-gradient(#fca66b,#e77466);color:#3c294b;font-size:13px;letter-spacing:.13em;box-shadow:inset 0 1px #fff9,0 4px 0 #9a4c60}
+  .jump:active,.jump.active{background:#efb36c}
+  .controls-hint{font-size:11px;line-height:1.45;color:#bdc7de;text-align:right}.controls-hint b{color:#fff}
+  .card-bottom{padding:17px 20px 19px;display:flex;gap:12px;align-items:center;justify-content:space-between;background:#202742;border-top:1px solid #404a66}
+  .label{font-size:11px;letter-spacing:.15em;font-weight:900;color:#ffe1aa}.small{font-size:11px;color:#afbbd2;line-height:1.55;margin-top:5px}
+  .pill{padding:7px 11px;background:#3a435d;border:1px solid #62708c;color:#d5e8ed;border-radius:999px;font-size:10px;font-weight:800;white-space:nowrap}
+  .footer-note{margin-top:16px;display:flex;flex-wrap:wrap;gap:9px}.foot-pill{padding:8px 12px;border:1px solid #344461;border-radius:999px;color:#a6bbd2;font-size:11px;font-weight:750}
+  @media(max-width:900px){.gallery{grid-template-columns:minmax(0,1fr)}.portrait-panel{max-width:none}.portrait-panel .portrait-wrap{max-height:360px;overflow:hidden}.portrait-panel canvas{max-height:360px;object-fit:contain;aspect-ratio:auto;background:#e7ba88}.shell{width:min(700px,calc(100% - 22px));padding-top:18px}.brand-mark{font-size:9px}.controls-hint{font-size:10px}}
+  @media(max-width:540px){.shell{width:calc(100% - 16px)}header{margin-bottom:14px}.tagline{font-size:11px}.panel{border-radius:16px}.panel-top{height:40px;padding:0 13px}.panel-title{font-size:9px}.status{font-size:9px}.controls{padding:10px}.control{min-width:52px;min-height:50px}.jump{width:90px}.controls-hint{display:none}.scene-caption{top:8px;left:8px;padding:6px 8px}.scene-caption b{font-size:10px}.scene-caption small{font-size:8px}.portrait-panel .portrait-wrap{max-height:310px}.portrait-panel canvas{max-height:310px}}
+  @media(prefers-reduced-motion:reduce){.control{transition:none}}
+</style>
+</head>
+<body>
+<main class="shell">
+<header>
+ <div><div class="eyebrow">HOPSHIFT / CHARACTER DESIGN STUDY 01</div><h1>Meet <span>Kip.</span></h1><div class="tagline">A tiny explorer with oversized boots, a living scarf, and absolutely no fear of giant jumps.</div></div>
+ <div class="brand-mark">HS — LAB</div>
+</header>
+<section class="gallery" aria-label="Interactive character preview">
+ <div class="panel">
+  <div class="panel-top"><span class="panel-title">PLAYABLE MOVEMENT TEST</span><span class="status"><i></i> LIVE CANVAS</span></div>
+  <div class="stage-wrap"><canvas id="scene" width="960" height="515" aria-label="Interactive character and platforming landscape"></canvas><div class="scene-caption"><b>SPRINGLIGHT MEADOW</b><small>Walk · Jump · Explore</small></div></div>
+  <div class="controls"><div class="keys"><button class="control" id="left" aria-label="Move left">◀</button><button class="control" id="right" aria-label="Move right">▶</button><button class="control jump" id="jump" aria-label="Jump">JUMP ↥</button></div><div class="controls-hint"><b>Keyboard:</b> ← → / A D to move<br><b>Space / ↑ / W</b> to jump</div></div>
+ </div>
+ <div class="panel portrait-panel">
+  <div class="panel-top"><span class="panel-title">CLOSE-UP / LIVE ANIMATION</span><span class="status"><i></i> VECTOR ART</span></div>
+  <div class="portrait-wrap"><canvas id="portrait" width="330" height="410" aria-label="Large animated close-up of Kip"></canvas></div>
+  <div class="card-bottom"><div><div class="label">KIP / THE LITTLE SPARK</div><div class="small">Squash & stretch · blinking eyes · swinging limbs · reactive scarf · soft contact shadows</div></div><span class="pill">v0.1</span></div>
+ </div>
+</section>
+<div class="footer-note"><span class="foot-pill">100% drawn in JavaScript Canvas</span><span class="foot-pill">Responsive keyboard + touch controls</span><span class="foot-pill">Real gravity, jump buffering and coyote time</span></div>
+</main>
+<script>
+(() => {
+'use strict';
+const scene = document.getElementById('scene');
+const portrait = document.getElementById('portrait');
+const a = scene.getContext('2d');
+const b = portrait.getContext('2d');
+const W = 960, H = 515, GROUND = 404, WORLD_END = 2450;
+const state = {left:false,right:false,jump:false};
+const player = {x:245,y:GROUND,vx:0,vy:0,ground:true,coyote:8,jumpBuffer:0,facing:1,step:0,land:0,air:0,blink:0,orbs:0};
+const platforms = [{x:525,y:323,w:164},{x:852,y:296,w:150},{x:1160,y:322,w:185},{x:1530,y:294,w:150},{x:1845,y:335,w:184}];
+const orbs = [{x:435,y:275},{x:680,y:235},{x:1058,y:225},{x:1370,y:228},{x:1710,y:212},{x:2100,y:290}];
+const particles = [];
+let time=0,cam=0,prev=performance.now();
+function clamp(v,l,h){return Math.max(l,Math.min(h,v));}
+function lerp(x,y,t){return x+(y-x)*t;}
+function rounded(ctx,x,y,w,h,r){ctx.beginPath();ctx.roundRect(x,y,w,h,r);}
+function grad(ctx,x,y,w,h,top,bottom){const g=ctx.createLinearGradient(x,y,x+w*.3,y+h);g.addColorStop(0,top);g.addColorStop(1,bottom);return g;}
+function glowDot(ctx,x,y,r,col){ctx.save();ctx.shadowBlur=r*2;ctx.shadowColor=col;ctx.fillStyle=col;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();ctx.restore();}
+function puff(x,y,count=8){for(let i=0;i<count;i++){let ang=Math.PI+(Math.random()*Math.PI);let sp=.7+Math.random()*3.1;particles.push({x,y,vx:Math.cos(ang)*sp,vy:Math.sin(ang)*sp-1.5,r:2+Math.random()*5,life:1,color:i%3===0?'#ffebba':'#c2f7cf'});}}
+function resize(canvas,ctx,logicalWidth,logicalHeight){const box=canvas.getBoundingClientRect();const dpr=Math.min(window.devicePixelRatio||1,2);const px=Math.max(1,Math.round(box.width*dpr));const py=Math.max(1,Math.round(box.height*dpr));if(canvas.width!==px||canvas.height!==py){canvas.width=px;canvas.height=py;}ctx.setTransform(px/logicalWidth,0,0,py/logicalHeight,0,0);ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';}
+function path(ctx,coords,fill,stroke,line=3){ctx.beginPath();for(const [type,...v] of coords){if(type==='M')ctx.moveTo(...v);else if(type==='L')ctx.lineTo(...v);else if(type==='Q')ctx.quadraticCurveTo(...v);else if(type==='C')ctx.bezierCurveTo(...v);else if(type==='Z')ctx.closePath();}if(fill){ctx.fillStyle=fill;ctx.fill();}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=line;ctx.lineJoin='round';ctx.lineCap='round';ctx.stroke();}}
+function circle(ctx,x,y,r,fill,stroke,line=2){ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fillStyle=fill;ctx.fill();if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=line;ctx.stroke();}}
+function shoe(ctx,front,angle){ctx.save();ctx.translate(front?17:-15,23);ctx.rotate(angle);const edge='#29304e';path(ctx,[['M',-17,-11],['Q',-12,-20,1,-16],['Q',11,-16,17,-7],['Q',37,-5,36,4],['Q',36,13,24,14],['L',-15,13],['Q',-22,8,-17,-11],['Z']],grad(ctx,-14,-14,43,30,'#ffe7a2','#e59a53'),edge,3.8);path(ctx,[['M',-17,5],['Q',7,10,35,6],['L',35,12],['Q',24,18,-15,14],['Q',-21,11,-17,5],['Z']],'#f3f6fb',edge,2.8);path(ctx,[['M',6,-11],['Q',18,-13,23,-3],['L',7,-3],['Z']],'#fff1c3');path(ctx,[['M',-7,-8],['L',8,-8]],null,'#d27f52',2.3);ctx.restore();}
+function drawKip(ctx,x,y,scale,opt={}){
+ const run=clamp(Math.abs(opt.vx||0)/5.4,0,1),inAir=!!opt.air,phase=opt.phase||0,land=opt.land||0,face=opt.face||1,seconds=opt.t||0;
+ const swing=Math.sin(phase)*run,torsoBob=inAir?0:Math.abs(Math.cos(phase))*run*2 + Math.sin(seconds*2.5)*1.6*(1-run);
+ const tilt=clamp((opt.vx||0)/14,-.17,.17)+clamp((opt.vy||0)/100,-.11,.11);
+ const squash=land*.18,stretch=inAir?.08:0;
+ ctx.save();ctx.translate(x,y-torsoBob);ctx.scale(scale*face*(1+squash*.7-stretch*.55),scale*(1-squash+stretch));
+ // The scarf flies behind Kip, driven by motion and a little idle breeze.
+ const wave=Math.sin(seconds*7)*3;const scarf=run*12+(inAir?12:0);
+ path(ctx,[['M',-5,-83],['C',-32,-99,-41-scarf,-92+wave,-63-scarf,-84+wave],['Q',-52-scarf,-77+wave,-47-scarf,-70+wave],['C',-28,-71,-18,-68,-9,-72],['Z']],grad(ctx,-60,-90,55,30,'#ffb654','#ed5d67'),'#8f395a',3.1);
+ path(ctx,[['M',-48-scarf,-78+wave],['L',-54-scarf,-65+wave],['L',-62-scarf,-83+wave]],'#ff8b5c','#a94355',2.3);
+ // Rear arm and mitt.
+ ctx.save();ctx.translate(-27,-61);ctx.rotate(-swing*.7+Math.sin(seconds*2)*.06);path(ctx,[['M',2,-2],['Q',-20,5,-17,31],['Q',-11,39,-2,30],['L',12,6],['Z']],grad(ctx,-13,3,28,28,'#44c5b5','#1f7c9e'),'#293452',3.3);circle(ctx,-10,31,10,'#fff2d5','#293452',3);ctx.restore();
+ // Legs, with readable silhouettes while running.
+ for(let i=0;i<2;i++){let rear=i===0;const legSwing=inAir?(rear?-.35:.42):(rear?swing:-swing)*.35;
+ ctx.save();ctx.translate(rear?-12:12,-30);ctx.rotate(legSwing);path(ctx,[['M',-10,-2],['L',10,-3],['Q',13,9,11,24],['Q',-1,29,-10,23],['Z']],grad(ctx,-5,-3,15,30,rear?'#252f66':'#3c4c91','#25315b'),'#252942',3.2);shoe(ctx,!rear,clamp(legSwing*1.2,-.35,.35));ctx.restore();}
+ // Main jacket silhouette.
+ ctx.save();ctx.translate(0,-66);ctx.rotate(tilt);
+ path(ctx,[['M',-26,-9],['Q',-33,0,-31,28],['Q',-26,44,0,42],['Q',29,45,32,25],['Q',33,-1,24,-12],['Q',0,-26,-26,-9],['Z']],grad(ctx,-21,-17,50,61,'#5fead3','#2697b7'),'#283452',4);
+ path(ctx,[['M',-22,2],['Q',-26,29,-11,35]],null,'#83ffe6',3);
+ path(ctx,[['M',-20,35],['Q',0,42,23,34]],null,'#146c92',3.5);
+ path(ctx,[['M',4,-13],['Q',8,5,4,37]],null,'#135e83',3);
+ circle(ctx,13,14,10,'#236785','#174365',2);path(ctx,[['M',13,6],['L',18,13],['L',11,21],['L',8,14],['Z']],'#ffe18c');
+ circle(ctx,-16,21,2.2,'#f2eabb');
+ ctx.restore();
+ // Forward arm.
+ ctx.save();ctx.translate(26,-69);ctx.rotate(swing*.7-.11);path(ctx,[['M',-6,0],['Q',10,-9,17,9],['L',18,28],['Q',13,36,4,33],['Q',-2,28,-6,0],['Z']],grad(ctx,-4,0,25,34,'#68ffe1','#2394b2'),'#293452',3.5);circle(ctx,12,31,11,'#fff2d8','#293452',3.1);path(ctx,[['M',6,28],['Q',11,23,16,28]],null,'#d6b5a2',1.7);ctx.restore();
+ // Head - slightly lagging behind the torso.
+ ctx.save();ctx.translate(-tilt*15,-112+Math.sin(seconds*2.4)*.75);ctx.rotate(tilt*.48);
+ // Hoodie/helmet outer shell, indigo shadow edge.
+ path(ctx,[['M',-33,-7],['C',-39,-45,-21,-62,3,-60],['C',31,-60,44,-39,37,-7],['Q',35,18,16,22],['L',-17,20],['Q',-35,13,-33,-7],['Z']],grad(ctx,-30,-57,66,78,'#83f6e0','#219cb2'),'#293452',4.2);
+ // Ears, back first.
+ circle(ctx,-32,2,9,'#e7ab8d','#293452',3);circle(ctx,31,2,9,'#e7ab8d','#293452',3);
+ // Face - honey/peach skin.
+ path(ctx,[['M',-28,-19],['Q',-23,-41,3,-41],['Q',29,-40,30,-15],['L',28,5],['Q',22,25,0,26],['Q',-22,24,-28,5],['Z']],grad(ctx,-25,-36,55,65,'#ffdda6','#f5ac8e'),'#293452',3.5);
+ // Cheeks.
+ ctx.globalAlpha=.55;circle(ctx,-21,4,7,'#ed8a86');circle(ctx,20,4,7,'#ed8a86');ctx.globalAlpha=1;
+ // Soft helmet rim and hair tuft.
+ path(ctx,[['M',-33,-22],['Q',-20,-50,7,-49],['Q',29,-47,35,-20],['Q',18,-35,6,-31],['Q',-17,-35,-33,-22],['Z']],'#175e81','#293452',2.7);
+ path(ctx,[['M',-20,-34],['Q',-19,-53,-4,-54],['Q',-4,-69,9,-67],['Q',11,-57,16,-53],['Q',29,-55,29,-43],['Q',18,-31,6,-35],['Q',-7,-32,-20,-34],['Z']],grad(ctx,-12,-60,42,35,'#ffdc83','#f69a66'),'#293452',3.2);
+ // Tiny hood buckle in the upper left.
+ rounded(ctx,-34,-17,11,16,4);ctx.fillStyle='#ffe8a5';ctx.fill();ctx.strokeStyle='#293452';ctx.lineWidth=2.2;ctx.stroke();
+ // Eyes: readable at both small and large scales, with animated blink.
+ const blink=opt.blink||0;for(const ex of [-11,12]){ctx.save();ctx.translate(ex,-8);ctx.scale(1,1-.94*blink);circle(ctx,0,0,9.0,'#fffdf6','#32405c',2.1);circle(ctx,2.1+(face<0?-1:1),1.5,4.7,'#20294a');circle(ctx,3.3,-1,1.8,'#ffffff');ctx.restore();}
+ path(ctx,[['M',-17,-21],['Q',-11,-24,-5,-20]],null,'#7d4b5b',2);
+ path(ctx,[['M',7,-20],['Q',13,-24,19,-19]],null,'#7d4b5b',2);
+ path(ctx,[['M',-4,11],['Q',1,17,9,10]],null,'#964e60',2.8);
+ circle(ctx,4,4,1.6,'#f5b095');
+ // Small metallic seam lines on hood.
+ path(ctx,[['M',-31,-28],['Q',-40,-8,-30,14]],null,'#b9fff0',2.1);
+ ctx.restore();
+ // Collar and scarf knot sit above both head and body groups.
+ path(ctx,[['M',-22,-85],['Q',-2,-78,19,-82],['L',15,-69],['Q',-2,-65,-23,-71],['Z']],grad(ctx,-20,-88,43,22,'#ffc16d','#f26d6d'),'#933e58',3);
+ path(ctx,[['M',9,-77],['Q',23,-74,20,-59],['L',12,-53],['L',5,-70],['Z']],'#fa9464','#933e58',2.8);
+ ctx.restore();
+}
+function drawBackdrop(ctx,t,camera){
+ ctx.fillStyle=grad(ctx,0,0,0,H,'#6ac8e8','#fff1cd');ctx.fillRect(0,0,W,H);
+ const sun=ctx.createRadialGradient(776,93,10,776,93,167);sun.addColorStop(0,'#fff8d1bb');sun.addColorStop(1,'#fff8d100');ctx.fillStyle=sun;ctx.fillRect(565,0,390,280);circle(ctx,790,100,43,'#fff4c5');
+ // tiny slow-moving clouds
+ const clouds=[{x:115,y:89,s:1.1},{x:430,y:121,s:.82},{x:940,y:72,s:1.16},{x:1210,y:142,s:.72}];ctx.save();ctx.translate(-(camera*.13)%1250,0);
+ for(let tile=0;tile<3;tile++)for(const c of clouds){let x=c.x+1250*tile;ctx.globalAlpha=.62;ctx.fillStyle='#fff';ctx.beginPath();ctx.ellipse(x,c.y,47*c.s,14*c.s,0,0,7);ctx.ellipse(x-24*c.s,c.y-8*c.s,22*c.s,19*c.s,0,0,7);ctx.ellipse(x+15*c.s,c.y-13*c.s,29*c.s,21*c.s,0,0,7);ctx.fill();}ctx.restore();ctx.globalAlpha=1;
+ // distant rolling mountains
+ ctx.save();ctx.translate(-(camera*.06)%1550,0);for(let j=0;j<3;j++){
+ ctx.translate(j===0?0:1550,0);
+ path(ctx,[['M',-100,312],['Q',90,172,268,294],['Q',474,112,650,297],['Q',845,165,1100,301],['Q',1390,155,1660,312],['L',1660,515],['L',-100,515],['Z']],'#b4e0d2');
+ }ctx.restore();
+ ctx.save();ctx.translate(-(camera*.18)%1100,0);for(let j=0;j<4;j++){ctx.save();ctx.translate(j*1100,0);path(ctx,[['M',-150,376],['Q',46,256,249,366],['Q',483,239,671,362],['Q',836,281,1140,375],['L',1140,515],['L',-150,515],['Z']],'#7fc8ae');ctx.restore();}ctx.restore();
+ // atmospheric particles
+ for(let i=0;i<22;i++){const x=((i*199+84-t*.12-camera*.08)%1100+1100)%1100,y=80+(i*113)%265;circle(ctx,x,y,1.2+(i%3)*.6,'#fff9dbbb');}
+}
+function bush(ctx,x,y,s,far=false){ctx.save();ctx.translate(x,y);ctx.scale(s,s);const color=far?'#5baf93':'#2fa78a';const dark=far?'#449d87':'#207c72';circle(ctx,-26,-14,22,color);circle(ctx,0,-24,27,color);circle(ctx,25,-10,20,dark);path(ctx,[['M',-45,-7],['Q',0,-22,43,-6],['L',48,12],['L',-50,12],['Z']],color);if(!far){circle(ctx,-13,-31,4,'#75ddac');circle(ctx,10,-16,4,'#75ddac');}ctx.restore();}
+function drawGround(ctx,camera,t){
+ ctx.save();ctx.translate(-camera,0);
+ // Raised platform shadows and tops.
+ for(const p of platforms){rounded(ctx,p.x+4,p.y+11,p.w,25,10);ctx.fillStyle='#307d73';ctx.fill();rounded(ctx,p.x,p.y,p.w,16,8);ctx.fillStyle='#438a87';ctx.fill();rounded(ctx,p.x,p.y,p.w,10,7);ctx.fillStyle='#b4f7ad';ctx.fill();ctx.fillStyle='#e6ffcc';ctx.fillRect(p.x+11,p.y+2,p.w-22,2);}
+ // World floor and layered geology.
+ ctx.fillStyle='#287e71';ctx.fillRect(0,GROUND,WORLD_END,111);
+ ctx.fillStyle='#4aa58a';ctx.fillRect(0,GROUND,WORLD_END,17);
+ ctx.fillStyle='#b7f0a2';ctx.fillRect(0,GROUND-2,WORLD_END,10);
+ ctx.fillStyle='#e1ffbd';ctx.fillRect(0,GROUND-2,WORLD_END,3);
+ for(let i=0;i<170;i++){const x=i*23,y=432+(i*47)%87;ctx.globalAlpha=i%2?.35:.6;rounded(ctx,x,y,12+(i%5)*5,4+(i%3),2);ctx.fillStyle=i%3?'#205e69':'#88c38b';ctx.fill();}ctx.globalAlpha=1;
+ for(let x=30;x<WORLD_END;x+=153){bush(ctx,x,GROUND-5,.72+((x*7)%5)*.08,false);}
+ // wispy grass
+ for(let x=4;x<WORLD_END;x+=27){const h=6+(x%7);path(ctx,[['M',x,GROUND+1],['Q',x-5,GROUND-h,x-7,GROUND-h-1],['M',x,GROUND+1],['Q',x+4,GROUND-h*.8,x+5,GROUND-h]],null,'#e3ffb1',1.5);}
+ // Interactive orbs and their small radiating stars.
+ for(const o of orbs){const dy=Math.sin(t*2.8+o.x)*4;const xx=o.x,yy=o.y+dy;
+ ctx.save();ctx.shadowColor='#ffe596';ctx.shadowBlur=24;circle(ctx,xx,yy,13,'#ffcf73','#fff6c2',3);ctx.restore();circle(ctx,xx,yy,5,'#fff6db');for(let k=0;k<4;k++){let q=t*.8+k*Math.PI*.5;circle(ctx,xx+Math.cos(q)*21,yy+Math.sin(q)*21,1.7,'#fff6db');}}
+ // Sparkle flowers
+ for(let x=140;x<WORLD_END;x+=207){circle(ctx,x,GROUND-7,3,'#fff6de');for(let n=0;n<5;n++){const a=n*6.283/5;circle(ctx,x+Math.cos(a)*6,GROUND-7+Math.sin(a)*6,4,n%2?'#ffb88c':'#fff0b3');}circle(ctx,x,GROUND-7,2.8,'#f4b65d');}
+ ctx.restore();
+}
+function drawEffects(ctx,camera){ctx.save();ctx.translate(-camera,0);for(const p of particles){ctx.globalAlpha=clamp(p.life,0,1)*.8;circle(ctx,p.x,p.y,p.r*p.life,p.color);}ctx.globalAlpha=1;ctx.restore();}
+function drawPortrait(ctx,t){
+ ctx.fillStyle=grad(ctx,0,0,330,410,'#f7d6a2','#dc9d93');ctx.fillRect(0,0,330,410);
+ const halo=ctx.createRadialGradient(160,163,5,164,169,165);halo.addColorStop(0,'#fff4d7cc');halo.addColorStop(1,'#fff4d700');ctx.fillStyle=halo;ctx.fillRect(0,0,330,350);
+ for(let i=0;i<4;i++){ctx.save();ctx.translate(165,175);ctx.rotate(t*.11+i*Math.PI/2);rounded(ctx,118,-1,24,2,1);ctx.fillStyle='#ffffff88';ctx.fill();ctx.restore();}
+ circle(ctx,166,181,125,'#fff4dc36','#fff8df75',2);
+ // geometric accents
+ path(ctx,[['M',24,92],['L',30,78],['L',36,92],['L',30,103],['Z']],'#fff0c2');path(ctx,[['M',297,242],['L',304,226],['L',311,242],['L',304,254],['Z']],'#fff0c2');
+ ctx.beginPath();ctx.ellipse(167,361,77,13,0,0,2*Math.PI);ctx.fillStyle='#9c628d55';ctx.fill();
+ const air=!player.ground;const y=air?349-14*Math.sin(t*4):349;
+ drawKip(ctx,162,y,1.65,{vx:player.vx,vy:player.vy,air,face:1,phase:player.step,t,land:player.land,blink:player.blink});
+ ctx.fillStyle='#763f65';ctx.font='900 11px system-ui';ctx.textAlign='center';ctx.letterSpacing='3px';ctx.fillText('READY FOR ADVENTURE',165,394);
+}
+function simulate(dt){
+ time+=dt/60;
+ const left=state.left,right=state.right;let target=(right?1:0)-(left?1:0);
+ const accel=player.ground?.66:.42;
+ player.vx+=clamp(target*5.6-player.vx,-accel*dt,accel*dt);
+ if(target===0){player.vx*=Math.pow(player.ground?.77:.95,dt);if(Math.abs(player.vx)<.06)player.vx=0;}
+ if(target!==0)player.facing=target;
+ player.x=clamp(player.x+player.vx*dt,65,WORLD_END-60);
+ player.jumpBuffer=Math.max(0,player.jumpBuffer-dt);
+ player.coyote=Math.max(0,player.coyote-dt);
+ if(player.ground)player.coyote=7;
+ if(player.jumpBuffer>0&&player.coyote>0){player.vy=-12.8;player.ground=false;player.coyote=0;player.jumpBuffer=0;player.land=0;puff(player.x,player.y,7);}
+ if(!state.jump&&player.vy< -4.2)player.vy+=.52*dt;
+ const oldY=player.y;player.vy+=.60*dt;player.vy=clamp(player.vy,-20,14.8);player.y+=player.vy*dt;
+ let landing=GROUND;
+ if(player.vy>=0){for(const p of platforms){if(player.x>p.x-25&&player.x<p.x+p.w+25&&oldY<=p.y+1&&player.y>=p.y)landing=Math.min(landing,p.y);}}
+ const wasGround=player.ground;player.ground=false;
+ if(player.y>=landing&&player.vy>=0){player.y=landing;player.vy=0;player.ground=true;if(!wasGround){player.land=1;puff(player.x,player.y,10);}}
+ player.land=Math.max(0,player.land-.095*dt);
+ player.step+=(player.ground?Math.abs(player.vx)*.19:.045)*dt;
+ player.blink=Math.max(0,1-Math.abs((time%4.25)-3.55)/.09);
+ for(const o of orbs){const d=Math.hypot(player.x-o.x,(player.y-95)-o.y);if(d<23&&player.vy<0&&o.x>player.orbs){player.orbs=o.x;for(let i=0;i<11;i++){let ang=i*Math.PI*2/11;particles.push({x:o.x,y:o.y,vx:Math.cos(ang)*3,vy:Math.sin(ang)*3,r:4,life:1,color:'#ffde99'});}}}
+ for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=.1*dt;p.life-=.025*dt;if(p.life<=0)particles.splice(i,1);}
+ const ideal=clamp(player.x-260,0,WORLD_END-W);cam=lerp(cam,ideal,1-Math.pow(.89,dt));
+}
+function render(now){const dt=clamp((now-prev)/16.6667,.12,2);prev=now;simulate(dt);
+ resize(scene,a,W,H);drawBackdrop(a,time,cam);drawGround(a,cam,time);
+ // Player contact shadow visibly changes height with jump.
+ a.save();a.translate(-cam,0);const floor=player.ground?player.y:GROUND;const jumpH=Math.max(0,floor-player.y);a.beginPath();a.ellipse(player.x,GROUND+5,clamp(40-jumpH*.09,19,40),8-jumpH*.009,0,0,Math.PI*2);a.fillStyle=`rgba(30,71,86,${clamp(.21-jumpH*.0006,.07,.21)})`;a.fill();a.restore();
+ drawKip(a,player.x-cam,player.y,1.13,{vx:player.vx,vy:player.vy,air:!player.ground,face:player.facing,phase:player.step,t:time,land:player.land,blink:player.blink});
+ drawEffects(a,cam);resize(portrait,b,330,410);drawPortrait(b,time);
+ requestAnimationFrame(render);
+}
+function beginJump(){if(!state.jump){state.jump=true;player.jumpBuffer=8;}}
+function endJump(){state.jump=false;}
+function handleKey(e,down){const k=e.key.toLowerCase();if(['arrowleft','arrowright','arrowup',' ','a','d','w'].includes(k))e.preventDefault();if(k==='arrowleft'||k==='a')state.left=down;if(k==='arrowright'||k==='d')state.right=down;if(k===' '||k==='arrowup'||k==='w'){if(down)beginJump();else endJump();}}
+window.addEventListener('keydown',e=>handleKey(e,true));window.addEventListener('keyup',e=>handleKey(e,false));
+window.addEventListener('blur',()=>{state.left=false;state.right=false;state.jump=false;document.querySelectorAll('.control').forEach(e=>e.classList.remove('active'));});
+for(const [id,key] of [['left','left'],['right','right'],['jump','jump']]){const el=document.getElementById(id);const start=e=>{e.preventDefault();el.setPointerCapture?.(e.pointerId);el.classList.add('active');if(key==='jump')beginJump();else state[key]=true;};const end=e=>{e.preventDefault();el.classList.remove('active');if(key==='jump')endJump();else state[key]=false;};el.addEventListener('pointerdown',start);el.addEventListener('pointerup',end);el.addEventListener('pointercancel',end);el.addEventListener('lostpointercapture',()=>{el.classList.remove('active');if(key==='jump')endJump();else state[key]=false;});}
+requestAnimationFrame(render);
+})();
+</script>
+</body>
+</html>
