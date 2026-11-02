@@ -45,7 +45,7 @@ Do not advertise these planned features as playable until they are merged and ve
 ### M3 — Signature flip + head-slide system (game identity)
 
 **Scope**
-- Add X key / Flip button; tap = full 360° flip, hold = inverted 180° stance.
+- Add X key / Flip button; tap = full **airborne forward somersault (pitch around local X after directional yaw)**, hold = inverted 180° stance. The flip is not a horizontal left/right facing turn.
 - Add land detection for inverted top-of-cube contact, including a funny slow-speed wobble.
 - Add visually compressed upside-down slide with shorter collider and skid animation.
 - Add slide friction, slope response, speed cap, blocked stand-up detection, and slide-cancel jump.
